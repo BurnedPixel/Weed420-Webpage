@@ -198,7 +198,6 @@
     "SITE_CONTENT.md",
     "dist",
     "src/components/Footer.astro",
-    "src/components/TourDates.astro",
     "node_modules/@img/sharp-libvips-linuxmusl-x64/README.md",
     "node_modules/@jridgewell/remapping/README.md",
     "node_modules/enhanced-resolve/README.md",
