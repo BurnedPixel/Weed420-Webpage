@@ -11,14 +11,12 @@
             "id": "d672cc9b50eb76c2",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "image",
               "state": {
-                "file": "AGENTS.md",
-                "mode": "source",
-                "source": false
+                "file": "pictures/1Weed420 Caracas by Sofia Montilla @sofiamontilla.PNG"
               },
-              "icon": "lucide-file",
-              "title": "AGENTS"
+              "icon": "lucide-image",
+              "title": "1Weed420 Caracas by Sofia Montilla @sofiamontilla"
             }
           }
         ]
@@ -94,7 +92,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "AGENTS.md",
+                "file": "pictures/1Weed420 Caracas by Sofia Montilla @sofiamontilla.PNG",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -104,7 +102,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks for AGENTS"
+              "title": "Backlinks for 1Weed420 Caracas by Sofia Montilla @sofiamontilla"
             }
           },
           {
@@ -113,12 +111,12 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "AGENTS.md",
+                "file": "pictures/1Weed420 Caracas by Sofia Montilla @sofiamontilla.PNG",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Outgoing links from AGENTS"
+              "title": "Outgoing links from 1Weed420 Caracas by Sofia Montilla @sofiamontilla"
             }
           },
           {
@@ -156,13 +154,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "AGENTS.md",
+                "file": "pictures/1Weed420 Caracas by Sofia Montilla @sofiamontilla.PNG",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of AGENTS"
+              "title": "Outline of 1Weed420 Caracas by Sofia Montilla @sofiamontilla"
             }
           }
         ]
@@ -183,11 +181,10 @@
       "bases:Create new base": false
     }
   },
-  "active": "d672cc9b50eb76c2",
+  "active": "e1ddde7caf293a1f",
   "lastOpenFiles": [
-    "tourdates.csv",
     "dist/index.html",
-    "dist/_astro/index@_@astro.C2vK5LUS.css",
+    "dist/_astro/index@_@astro.xG83DEre.css",
     "dist/_astro",
     "dist/robots.txt",
     "dist/images/weed420_boursedecommerce©raphaelmassart-9.jpg",
@@ -196,18 +193,19 @@
     "dist/images/weed420_boursedecommerce©raphaelmassart-6.jpg",
     "dist/images/weed420_boursedecommerce©raphaelmassart-5.jpg",
     "dist/images/weed420_boursedecommerce©raphaelmassart-4.jpg",
-    "dist/images/weed420_boursedecommerce©raphaelmassart-3.jpg",
     "dist/images/weed420_boursedecommerce©raphaelmassart-2.jpg",
+    "dist/images/weed420_boursedecommerce©raphaelmassart-3.jpg",
     "dist/images/weed420_boursedecommerce©raphaelmassart-16.jpg",
     "dist/images/weed420_boursedecommerce©raphaelmassart-15.jpg",
     "dist/images",
     "dist/favicon.ico",
-    "tourdates_template.csv",
-    "suavemarciagumbo69@gmail.com.ics",
-    "SITE_CONTENT.md",
-    "dist/_astro/index@_@astro.D4v8XUl3.css",
-    "src/middleware.ts",
+    "dist/_astro/index@_@astro.n9by-FnK.css",
+    "dist/_astro/index@_@astro.B1uw5HG_.css",
+    "dist/_astro/index@_@astro.DsLrKilH.css",
     "AGENTS.md",
+    "dist/_astro/index@_@astro.C2vK5LUS.css",
+    "tourdates.csv",
+    "SITE_CONTENT.md",
     "node_modules/@img/sharp-libvips-linuxmusl-x64/README.md",
     "node_modules/@jridgewell/remapping/README.md",
     "node_modules/enhanced-resolve/README.md",

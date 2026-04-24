@@ -20,6 +20,7 @@ const {
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     <meta name="description" content={description} />
+    <meta name="theme-color" content="#0a0a0a" />
     <title>{title}</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -29,3 +30,31 @@ const {
     <slot />
   </body>
 </html>
+
+<style is:global>
+  * {
+    box-sizing: border-box;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  section {
+    animation: fadeIn 0.6s ease-out both;
+  }
+  
+  #home { animation-delay: 0s; }
+  #bio { animation-delay: 0.1s; }
+  #music { animation-delay: 0.2s; }
+  #video { animation-delay: 0.3s; }
+  #tour { animation-delay: 0.4s; }
+  #booking { animation-delay: 0.5s; }
+</style>
