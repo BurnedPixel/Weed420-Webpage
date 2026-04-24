@@ -1,19 +1,20 @@
 # Weed420 EPK - Astro Project
 
-**Version:** 1.0.0 | **Last Updated:** 2026-04-24
+**Version:** 1.1.0 | **Last Updated:** 2026-04-24
 
 Electronic Press Kit for Weed420, Venezuelan experimental collective (formed 2021). Known for: epic collage, hexd, deconstructed club, cloud rap, reggaetón. "Amor de encava" debuted #2 on RateYourMusic 2025.
 
 ## Tech Stack
 - **Framework:** Astro + Tailwind CSS
 - **Tour Dates:** Google Sheets fetch (client-side)
-- **Hosting:** Cloudflare Pages
+- **Album Covers:** Bandcamp CDN (direct URL)
 
 ## Dev Commands
-| Command           | Description                       |
-| ----------------- | --------------------------------- |
-| `npm run build`   | Build to `dist/`                  |
-| `npm run preview` | Preview production build          |
+| Command | Description |
+|---------|-----------|
+| `npm run dev` | Start dev server (localhost:4321) |
+| `npm run build` | Build to `dist/` |
+| `npm run preview` | Preview production build |
 
 ## Design System
 | Element | Value |
@@ -27,44 +28,50 @@ Electronic Press Kit for Weed420, Venezuelan experimental collective (formed 202
 ```
 src/
   components/   # Navbar, Hero, AboutPreview, MediaPlatforms, MediaGrid, TourDates, Footer
-  layouts/     # Layout.astro
-  pages/      # index.astro
-  styles/     # global.css
-public/images/
-  caracas-portrait.jpg   # Hero background
-  albums/                # Album covers (to be added)
+  layouts/      # Layout.astro
+  pages/       # index.astro
+  styles/      # global.css
 ```
 
 ## Deployment (Cloudflare Pages)
 ```bash
-# Build first
 npm run build
-
-# Commit changes to git BEFORE deploying
 git add -A && git commit -m "[deploy] Your message"
-
-# Deploy ONLY when explicitly directed by user
 wrangler pages deploy dist --project-name=weed420-epk
 ```
 
-> **Important:** Always commit to git before deploying. Don't deploy online unless user explicitly requests it.
-
 **Live URL:** https://master.weed420-epk.pages.dev
 
-## Image Guidelines
-- Max file size: 25MB (Cloudflare limit)
-- Hero: 1920x1080, optimized
-- Album art: 600x600 square
-- Place in `public/images/albums/` for discography
+## Refresh Routine (for updates)
 
-## Google Sheets (Tour Dates)
-Sheet columns: `date`, `venue`, `city`
+### 1. Update Tour Dates from Google Sheets
+```bash
+curl -s "https://docs.google.com/spreadsheets/d/10JV33dWWWoVUqHGb5DdUpmmg1TSdHEiccmxEezEZ_ws/gviz/tq?tqx=out:json&sheet=tourdates"
+```
 
-Date formats accepted:
-- `APR 08 2025` (single)
-- `APR 08-13 2025` (range)
+### 2. Check for New Bandcamp Releases
+```bash
+# Find new album slugs and scrape cover URLs
+for album in $(curl -s "https://xweed420x.bandcamp.com/music" | grep -oP 'album/[a-z0-9-]+' | sort -u); do
+  slug=$(echo "$album" | sed 's/album\///')
+  url="https://xweed420x.bandcamp.com/$album"
+  cover=$(curl -s "$url" | grep -oP 'image" content="https://f4\.bcbits\.com/img/[^"]+' | head -1 | sed 's/"//g' | sed 's/image" content="//')
+  echo "$slug -> $cover"
+done
+```
 
-**Sheet URL:** Configured in `src/components/TourDates.astro` (line 2)
+### 3. Add New Album to MediaGrid
+In `src/components/MediaGrid.astro`, add entry:
+```javascript
+{ title: 'Album Name', year: '2026', featured: false, image: 'https://f4.bcbits.com/img/COVER_ID_10.jpg', link: 'https://xweed420x.bandcamp.com/album/slug' },
+```
+
+### 4. Then build and deploy
+```bash
+npm run build
+git add -A && git commit -m "[feat] Add new Bandcamp release"
+# Deploy when ready
+```
 
 ## Key URLs
 | Platform | URL |
@@ -80,12 +87,6 @@ Types:
 - `[fix]` - Bug fixes
 - `[feat]` - New features
 - `[deploy]` - Deployment
-- `[assets]` - Image updates
-
-Example: `[deploy] Fix navbar scroll transition`
-
-
 
 ## Pending Tasks
-- [ ] Add album covers to `public/images/albums/`
 - [ ] Verify social media links in Footer.astro
