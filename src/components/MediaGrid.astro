@@ -48,7 +48,7 @@ const floatDelays = [0, 0.8, 1.6];
     <div class="flex flex-wrap justify-center gap-x-6 gap-y-3">
       {sections.map(section => (
         <div class="inline-flex items-start gap-2">
-          <h3 class="text-[10px] tracking-[0.25em] uppercase text-text bg-text/5 px-1 py-1.5 self-stretch flex items-center justify-center" style="writing-mode: vertical-rl;">{section.label}</h3>
+          <h3 class="text-[10px] tracking-[0.25em] uppercase text-text bg-text/5 px-1 py-1.5 flex items-center justify-center" style="writing-mode: vertical-rl; height: clamp(80px, 15vw, 140px);">{section.label}</h3>
           {section.items.map(release => (
             <a
               href={release.link}
