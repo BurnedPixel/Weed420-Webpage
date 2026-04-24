@@ -88,5 +88,10 @@ Types:
 - `[feat]` - New features
 - `[deploy]` - Deployment
 
+## Development Workflow
+
+1. **Always commit after every change** - Run `git add -A && git commit -m "message"` after each edit
+2. **Only deploy when explicitly requested** - Wait for user to say "deploy" or similar before running wrangler
+
 ## Pending Tasks
 - [ ] Verify social media links in Footer.astro
