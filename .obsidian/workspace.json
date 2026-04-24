@@ -185,12 +185,8 @@
   },
   "active": "d672cc9b50eb76c2",
   "lastOpenFiles": [
-    "AGENTS.md",
-    "notes/site-content.md",
-    "notes",
-    "src/components/Press.astro",
     "dist/index.html",
-    "dist/_astro/index@_@astro.guyqDFrh.css",
+    "dist/_astro/index@_@astro.Jj50MTOR.css",
     "dist/_astro",
     "dist/robots.txt",
     "dist/images/albums/rvrt-3.jpg",
@@ -200,12 +196,17 @@
     "dist/images/albums/lo-que-puedo-hacer.jpg",
     "dist/images/albums/fotos-varias-nts.jpg",
     "dist/images/albums/evilchanga.jpg",
-    "dist/images/albums/esto-no-es-un-show.jpg",
     "dist/images/albums/estoy-viviendo.jpg",
+    "dist/images/albums/esto-no-es-un-show.jpg",
     "dist/images/albums/dedicado-a-nts.jpg",
     "dist/images/albums",
     "dist/images",
     "dist/favicon.ico",
+    "AGENTS.md",
+    "notes/site-content.md",
+    "notes",
+    "src/components/Press.astro",
+    "dist/_astro/index@_@astro.guyqDFrh.css",
     "dist/_astro/index@_@astro.CdX4Ak4m.css",
     "SITE_CONTENT.md",
     "README.md",
@@ -229,7 +230,6 @@
     "node_modules/tslib/README.md",
     "node_modules/@jridgewell/resolve-uri/README.md",
     "node_modules/graceful-fs/README.md",
-    "node_modules/fontkitten/README.md",
-    "node_modules/xxhash-wasm/README.md"
+    "node_modules/fontkitten/README.md"
   ]
 }

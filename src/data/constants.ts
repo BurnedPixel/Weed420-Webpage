@@ -20,8 +20,36 @@ export const SOCIALS = [
 ];
 
 export const PRESS = [
-  // Add press reviews here. Example:
-  // { quote: 'Amazing...', source: 'Pitchfork', url: 'https://...' },
+  {
+    quote: 'Builds sonic collages capturing the melancholiness of a country stuck in limbo. Layers reggaeton easter eggs and crooner classics with memes and fair hike announcements that underscore generational struggle and a life-sustaining sense of humor.',
+    source: 'Rolling Stone',
+    url: 'https://www.rollingstone.com/music/music-lists/best-latin-albums-2025-1235470004/weed420-amor-de-encava-1235470166/',
+  },
+  {
+    quote: 'One of the coolest things I\'ve heard this year. The collective used encava bus sounds and samples to concoct a dizzying, plunderfucked mix, capturing the grim loneliness of how it feels to live in Venezuela now.',
+    source: 'Pitchfork',
+    url: 'https://pitchfork.com/thepitch/the-5-most-exciting-musical-rabbit-holes-of-2025-so-far/',
+  },
+  {
+    quote: 'El fenómeno más intrigante de un año lleno de cuestionamientos. Una perspectiva sui generis que pocas veces se había visto. Con cada nueva escucha muta en algo mucho más complejo.',
+    source: 'Vogue México',
+    url: 'https://www.vogue.mx/articulo/mejores-discos-de-musica-latina-de-2025',
+  },
+  {
+    quote: 'Few records of this decade encapsulate the emotional drain of the Venezuelan crisis as vividly as amor de encava. The way weed420 twists salsa romántica feels like a statement of Venezuelan pride.',
+    source: 'Remezcla',
+    url: 'https://remezcla.com/lists/music/8-voices-shaping-venezuelas-music/',
+  },
+  {
+    quote: 'Explora los vínculos entre memoria, política y experimentación sonora. Ruido y texturas psicodélicas creando reinterpretaciones atmosféricas de la música latinoamericana.',
+    source: 'Pinault Collection',
+    url: 'https://www.pinaultcollection.com/fr/boursedecommerce/los-thuthanaka-weed420',
+  },
+  {
+    quote: 'Works excellently as protest music, communicating through sheer sound alone the current trials of Venezuelan living, while serving as a candid tribute to the culture that inspired it.',
+    source: 'Merry-Go-Round Magazine',
+    url: 'https://merrygoroundmagazine.com/weed420-brandish-nostalgia-as-a-weapon-on-amor-de-encava/',
+  },
 ];
 
 export const NAV_LINKS = [
