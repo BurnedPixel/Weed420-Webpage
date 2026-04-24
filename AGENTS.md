@@ -50,7 +50,7 @@ Valid Types:
 When authorized, execute the following sequence:
 1. `npm run build`
 2. `git add -A && git commit -m "[deploy] <Your specific deployment message>"`
-3. `wrangler pages deploy dist --project-name=weed420-epk`
+3. `wrangler pages deploy dist --project-name=weed420`
 *Live Production URL:* https://weed420.pages.dev
 
 ## 5. Standard Operating Procedures (SOPs)
