@@ -1,6 +1,14 @@
 ---
 import { PLATFORMS } from '../data/constants';
-import { iconDefs } from '../data/icons';
+import SpotifySvg from '../../assets/spotify.svg?raw';
+import BandcampSvg from '../../assets/bandcamp.svg?raw';
+import SoundCloudSvg from '../../assets/soundcloud.svg?raw';
+
+const svgMap = {
+  bandcamp: BandcampSvg,
+  spotify: SpotifySvg,
+  soundcloud: SoundCloudSvg,
+};
 ---
 
 <section id="music" class="py-24 px-6">
@@ -16,9 +24,7 @@ import { iconDefs } from '../data/icons';
           class="group flex flex-col items-center gap-3 text-text-dim hover:text-text transition-all duration-300"
         >
           <div class="w-16 h-16 flex items-center justify-center border border-border-light group-hover:border-accent group-hover:bg-accent/10 transition-all duration-300">
-            <svg class="w-9 h-9" viewBox={iconDefs[platform.icon].viewBox} fill="currentColor">
-              <path d={iconDefs[platform.icon].path} />
-            </svg>
+            <span class="w-9 h-9 [&>svg]:w-full [&>svg]:h-full" set:html={svgMap[platform.icon]} />
           </div>
           <span class="text-xs tracking-wider uppercase">{platform.name}</span>
         </a>

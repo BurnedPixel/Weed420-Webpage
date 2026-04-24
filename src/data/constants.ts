@@ -1,6 +1,6 @@
 export const SITE = {
   name: 'weed420',
-  contactEmail: 'booking@weed420.com',
+  contactEmail: 'juanchiphelan@gmail.com',
   googleSheetBaseUrl: 'https://docs.google.com/spreadsheets/d/10JV33dWWWoVUqHGb5DdUpmmg1TSdHEiccmxEezEZ_ws',
 } as const;
 
