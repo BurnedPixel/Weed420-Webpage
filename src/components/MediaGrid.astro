@@ -22,13 +22,14 @@ const secondary = releases.filter(r => !r.featured);
     <h2 class="text-xs tracking-[0.3em] uppercase text-[#dc2626] mb-12 text-center">Discography</h2>
     
     <h3 class="text-xs tracking-[0.2em] uppercase text-[#f5f5f5]/40 mb-6 text-center">Albums</h3>
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 mb-10">
-      {featured.map(release => (
+    <div class="flex flex-wrap justify-center gap-4 md:gap-8 mb-10">
+      {featured.map((release, i) => (
         <a 
           href={release.link}
           target="_blank"
           rel="noopener noreferrer"
-          class="group relative aspect-square bg-[#1a1a1a] overflow-hidden border border-[#f5f5f5]/10 hover:border-[#dc2626]/50 transition-colors"
+          class="group relative aspect-square bg-[#1a1a1a] overflow-hidden border border-[#f5f5f5]/10 hover:border-[#dc2626]/50 transition-all duration-300 hover:-translate-y-1"
+          style={`width: clamp(140px, 25vw, 260px); animation: float 3s ease-in-out infinite; animation-delay: ${i * 0.8}s;`}
         >
           <img 
             src={release.image}
@@ -80,3 +81,10 @@ const secondary = releases.filter(r => !r.featured);
     </div>
   </div>
 </section>
+
+<style>
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
+  }
+</style>
