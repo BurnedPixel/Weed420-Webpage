@@ -3,12 +3,12 @@ const GOOGLE_SHEET_URL = 'https://docs.google.com/spreadsheets/d/10JV33dWWWoVUqH
 ---
 
 <section id="tour" class="py-24 px-6">
-  <div class="max-w-4xl mx-auto">
-    <h2 class="text-xs tracking-[0.3em] uppercase text-[#dc2626] mb-12 text-center">Tour Dates</h2>
+  <div class="max-w-3xl mx-auto">
+    <h2 class="text-xs tracking-[0.3em] uppercase text-[#dc2626] mb-10 text-center">Tour Dates</h2>
     
     <div id="tour-dates" class="space-y-0">
       <div class="text-center text-[#f5f5f5]/50 py-8">
-        <p class="text-sm tracking-wider">Loading tour dates...</p>
+        <p class="text-xs tracking-wider">Loading tour dates...</p>
       </div>
     </div>
   </div>
@@ -59,9 +59,8 @@ async function fetchTourDates() {
   
   if (GOOGLE_SHEET_URL === 'YOUR_GOOGLE_SHEET_PUBLISHED_URL_HERE') {
     container.innerHTML = `
-      <div class="text-center text-[#f5f5f5]/50 py-8">
-        <p class="text-sm tracking-wider">No tour dates configured yet</p>
-        <p class="text-xs tracking-wider mt-2 text-[#dc2626]">Add a Google Sheet and update the GOOGLE_SHEET_URL in src/components/TourDates.astro</p>
+      <div class="text-center text-[#f5f5f5]/40 py-4 text-xs">
+        No tour dates configured
       </div>
     `;
     return;
@@ -76,7 +75,6 @@ async function fetchTourDates() {
     }
     
     const text = await response.text();
-    
     const jsonStart = text.indexOf('{');
     const jsonEnd = text.lastIndexOf('}') + 1;
     const jsonStr = text.slice(jsonStart, jsonEnd);
@@ -86,8 +84,8 @@ async function fetchTourDates() {
     
     if (rows.length === 0) {
       container.innerHTML = `
-        <div class="text-center text-[#f5f5f5]/50 py-8">
-          <p class="text-sm tracking-wider">No tour dates</p>
+        <div class="text-center text-[#f5f5f5]/40 py-4 text-xs">
+          No upcoming tour dates
         </div>
       `;
       return;
@@ -97,45 +95,36 @@ async function fetchTourDates() {
       date: sanitize(row.c[0]?.f || row.c[0]?.v || ''),
       venue: sanitize(row.c[1]?.v || ''),
       city: sanitize(row.c[2]?.v || ''),
-      ticketLink: sanitize(row.c[3]?.v || ''),
-      isPast: row.c[4]?.v === true || row.c[4]?.v === 'TRUE' || row.c[4]?.v === 'true' || row.c[4]?.v === 1 || isPastDate(row.c[0]?.v || row.c[0]?.f || '')
+      isPast: isPastDate(row.c[0]?.v || row.c[0]?.f || '')
     })).filter(d => d.date || d.venue);
     
-    dates.sort((a, b) => {
-      if (a.isPast !== b.isPast) return a.isPast ? 1 : -1;
-      return 0;
-    });
+    const upcoming = dates.filter(d => !d.isPast);
+    const past = dates.filter(d => d.isPast);
     
-    container.innerHTML = dates.map(d => {
-      const safeDate = escapeHtml(d.date);
-      const safeVenue = escapeHtml(d.venue);
-      const safeCity = escapeHtml(d.city);
-      const hasLink = d.ticketLink && d.ticketLink.startsWith('http');
-      const isPast = d.isPast;
-      
-      return `
-        <a href="${hasLink ? escapeHtml(d.ticketLink) : '#'}" class="group flex items-center justify-between py-4 border-b border-[#f5f5f5]/10 hover:border-[#dc2626]/50 transition-colors ${isPast ? 'opacity-40' : ''}" ${hasLink ? 'target="_blank" rel="noopener noreferrer nofollow"' : ''}>
-          <div class="flex items-center gap-6 md:gap-12">
-            <span class="text-sm font-mono tracking-wider text-[#dc2626] ${isPast ? 'line-through' : ''}">${safeDate}</span>
-            <span class="text-[#f5f5f5] font-medium ${isPast ? 'line-through' : ''}">${safeVenue}</span>
-          </div>
-          <div class="flex items-center gap-6">
-            <span class="text-sm text-[#f5f5f5]/50 hidden md:block ${isPast ? 'line-through' : ''}">${safeCity}</span>
-            ${hasLink && !isPast ? `
-              <span class="text-xs tracking-wider uppercase text-[#f5f5f5]/30 group-hover:text-[#dc2626] transition-colors">
-                Tickets
-              </span>
-            ` : ''}
-          </div>
-        </a>
+    if (upcoming.length === 0 && past.length === 0) {
+      container.innerHTML = `
+        <div class="text-center text-[#f5f5f5]/40 py-4 text-xs">
+          No upcoming tour dates
+        </div>
       `;
-    }).join('');
+      return;
+    }
+    
+    container.innerHTML = upcoming.map(d => `
+      <div class="flex items-center justify-between py-3 border-b border-[#f5f5f5]/10 hover:border-[#dc2626]/30 transition-colors">
+        <div class="flex items-center gap-4">
+          <span class="text-xs font-mono tracking-wider text-[#dc2626]">${escapeHtml(d.date)}</span>
+          <span class="text-xs text-[#f5f5f5]/80">${escapeHtml(d.venue)}</span>
+        </div>
+        <span class="text-xs text-[#f5f5f5]/50">${escapeHtml(d.city)}</span>
+      </div>
+    `).join('');
     
   } catch (error) {
     console.error('Error fetching tour dates:', error);
     container.innerHTML = `
-      <div class="text-center text-[#f5f5f5]/50 py-8">
-        <p class="text-sm tracking-wider">Unable to load tour dates</p>
+      <div class="text-center text-[#f5f5f5]/40 py-4 text-xs">
+        Unable to load tour dates
       </div>
     `;
   }
