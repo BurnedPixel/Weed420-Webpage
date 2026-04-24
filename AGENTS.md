@@ -1,97 +1,86 @@
-# Weed420 EPK - Astro Project
+# Agent System Context: Weed420 EPK
 
-**Version:** 1.1.0 | **Last Updated:** 2026-04-24
+## 1. Project Overview
+You are tasked with building and maintaining an Electronic Press Kit (EPK) for **Weed420**, a Venezuelan experimental music collective formed in 2021. 
+* **Aesthetic & Domain:** Experimental, epic collage, hexd, deconstructed club, cloud rap, reggaetón.
+* **Key Fact:** Their release "Amor de encava" debuted #2 on RateYourMusic in 2025. 
 
-Electronic Press Kit for Weed420, Venezuelan experimental collective (formed 2021). Known for: epic collage, hexd, deconstructed club, cloud rap, reggaetón. "Amor de encava" debuted #2 on RateYourMusic 2025.
+## 2. Technical Stack & Architecture
+You must strictly adhere to the following stack. Do not introduce new frameworks or CSS libraries without explicit user approval.
+* **Core Framework:** Astro
+* **Styling:** Tailwind CSS
+* **Data Strategy:**
+  * Tour Dates: Client-side fetch from Google Sheets JSON endpoint.
+  * Album Covers: Direct image URLs from Bandcamp CDN.
 
-## Tech Stack
-- **Framework:** Astro + Tailwind CSS
-- **Tour Dates:** Google Sheets fetch (client-side)
-- **Album Covers:** Bandcamp CDN (direct URL)
-
-## Dev Commands
-| Command | Description |
-|---------|-----------|
-| `npm run dev` | Start dev server (localhost:4321) |
-| `npm run build` | Build to `dist/` |
-| `npm run preview` | Preview production build |
-
-## Design System
-| Element | Value |
-|---------|-------|
-| Background | `#0a0a0a` (near black) |
-| Text | `#f5f5f5` (off-white) |
-| Accent | `#dc2626` (deep red) |
-| Font | Inter / Montserrat |
-
-## Architecture
-```
+### Directory Structure
+Ensure all new components and logic follow this established structure:
+```text
 src/
-  components/   # Navbar, Hero, AboutPreview, MediaPlatforms, MediaGrid, TourDates, Footer
-  layouts/      # Layout.astro
-  pages/       # index.astro
-  styles/      # global.css
+  ├── components/   # Navbar, Hero, AboutPreview, MediaPlatforms, MediaGrid, TourDates, Footer
+  ├── layouts/      # Layout.astro
+  ├── pages/        # index.astro
+  └── styles/       # global.css
 ```
 
-## Deployment (Cloudflare Pages)
+## 3. Design System
+Apply these exact values when constructing or modifying Tailwind classes.
+* **Background:** `#0a0a0a` (Near black)
+* **Text:** `#f5f5f5` (Off-white)
+* **Accent:** `#dc2626` (Deep red)
+* **Typography:** Primary `Inter`, Secondary `Montserrat`
+
+## 4. Operational Rules & Workflow
+
+### Development Commands
+Execute these commands via terminal when required:
+* `npm run dev` : Start local development server on localhost:4321
+* `npm run build` : Compile static output to `dist/`
+* `npm run preview` : Preview the compiled production build locally
+
+### Git Commit Convention
+You must commit your work after every logical change. Use the following format strictly: `[<type>] <description>`
+Valid Types:
+* `[feat]` - For new features or components.
+* `[fix]` - For bug fixes.
+* `[deploy]` - Reserved for deployment commits.
+
+### Deployment Protocol
+**CRITICAL:** Only deploy when explicitly instructed by the user (e.g., "deploy the site").
+When authorized, execute the following sequence:
+1. `npm run build`
+2. `git add -A && git commit -m "[deploy] <Your specific deployment message>"`
+3. `wrangler pages deploy dist --project-name=weed420-epk`
+*Live Production URL:* https://master.weed420-epk.pages.dev
+
+## 5. Standard Operating Procedures (SOPs)
+
+### SOP: Update Tour Dates
+When asked to refresh tour dates, fetch the latest JSON payload from Google Sheets:
 ```bash
-npm run build
-git add -A && git commit -m "[deploy] Your message"
-wrangler pages deploy dist --project-name=weed420-epk
+curl -s "[https://docs.google.com/spreadsheets/d/10JV33dWWWoVUqHGb5DdUpmmg1TSdHEiccmxEezEZ_ws/gviz/tq?tqx=out:json&sheet=tourdates](https://docs.google.com/spreadsheets/d/10JV33dWWWoVUqHGb5DdUpmmg1TSdHEiccmxEezEZ_ws/gviz/tq?tqx=out:json&sheet=tourdates)"
 ```
 
-**Live URL:** https://master.weed420-epk.pages.dev
-
-## Refresh Routine (for updates)
-
-### 1. Update Tour Dates from Google Sheets
+### SOP: Add New Bandcamp Release
+When a new release is dropped, follow this exact routine to update the site:
+1. Scrape the Bandcamp page for the new album slug and high-resolution CDN cover URL:
 ```bash
-curl -s "https://docs.google.com/spreadsheets/d/10JV33dWWWoVUqHGb5DdUpmmg1TSdHEiccmxEezEZ_ws/gviz/tq?tqx=out:json&sheet=tourdates"
-```
-
-### 2. Check for New Bandcamp Releases
-```bash
-# Find new album slugs and scrape cover URLs
-for album in $(curl -s "https://xweed420x.bandcamp.com/music" | grep -oP 'album/[a-z0-9-]+' | sort -u); do
+for album in $(curl -s "[https://xweed420x.bandcamp.com/music](https://xweed420x.bandcamp.com/music)" | grep -oP 'album/[a-z0-9-]+' | sort -u); do
   slug=$(echo "$album" | sed 's/album\///')
-  url="https://xweed420x.bandcamp.com/$album"
+  url="[https://xweed420x.bandcamp.com/$album](https://xweed420x.bandcamp.com/$album)"
   cover=$(curl -s "$url" | grep -oP 'image" content="https://f4\.bcbits\.com/img/[^"]+' | head -1 | sed 's/"//g' | sed 's/image" content="//')
   echo "$slug -> $cover"
 done
 ```
-
-### 3. Add New Album to MediaGrid
-In `src/components/MediaGrid.astro`, add entry:
+2. Update `src/components/MediaGrid.astro` by injecting the new entry object:
 ```javascript
-{ title: 'Album Name', year: 'year', featured: false, image: 'https://f4.bcbits.com/img/COVER_ID_10.jpg', link: 'https://xweed420x.bandcamp.com/album/slug' },
+{ title: 'Album Name', year: 'year', featured: false, image: '<SCRAPED_COVER_URL>', link: '[https://xweed420x.bandcamp.com/album/](https://xweed420x.bandcamp.com/album/)<SLUG>' }
 ```
+3. Run `npm run build` to verify the integration.
+4. Commit: `git add -A && git commit -m "[feat] Add new Bandcamp release"`
 
-### 4. Then build and deploy
-```bash
-npm run build
-git add -A && git commit -m "[feat] Add new Bandcamp release"
-# Deploy when ready
-```
-
-## Key URLs
-| Platform | URL |
-|----------|-----|
-| Bandcamp | https://xweed420x.bandcamp.com/ |
-| Spotify | https://open.spotify.com/artist/5UM6QbXYllW5ByF0umKJt1 |
-| RateYourMusic | https://rateyourmusic.com/release/album/weed420/amor-de-encava/ |
-
-## Commit Convention
-Format: `[<type>] <description>`
-
-Types:
-- `[fix]` - Bug fixes
-- `[feat]` - New features
-- `[deploy]` - Deployment
-
-## Development Workflow
-
-1. **Always commit after every change** - Run `git add -A && git commit -m "message"` after each edit
-2. **Only deploy when explicitly requested** - Wait for user to say "deploy" or similar before running wrangler
-
-## Pending Tasks
-- [ ] Verify social media links in Footer.astro
+## 6. Current Context & Pending Tasks
+* **Task 1:** Verify the structural integrity and functionality of social media links located within `Footer.astro`.
+* **Known URLs:**
+  * Bandcamp: `[Requires actual URL check]`
+  * Spotify: `https://xweed420x.bandcamp.com/Spotifyhttps://open.spotify.com/artist/5UM6QbXYllW5ByF0umKJt1RateYourMusichttps://rateyourmusic.com/release/album/weed420/amor-de-encava/Commit` (Verify this structure).
