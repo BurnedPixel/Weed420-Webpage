@@ -1,10 +1,5 @@
 ---
 const GOOGLE_SHEET_URL = 'YOUR_GOOGLE_SHEET_PUBLISHED_URL_HERE';
-
-function sanitizeString(str: string | undefined): string {
-  if (!str) return '';
-  return str.replace(/[<>\"'&]/g, '').slice(0, 200);
-}
 ---
 
 <section id="tour" class="py-24 px-6">
@@ -33,6 +28,27 @@ function escapeHtml(str) {
     .replace(/>/g, '&gt;')
     .replace(/"/g, '&quot;')
     .replace(/'/g, '&#039;');
+}
+
+function parseDate(dateStr) {
+  if (!dateStr) return null;
+  try {
+    const months = {JAN:0,FEB:1,MAR:2,APR:3,MAY:4,JUN:5,JUL:6,AUG:7,SEP:8,OCT:9,NOV:10,DEC:11};
+    const parts = dateStr.toUpperCase().trim().split(/[\s,]+/);
+    if (parts.length >= 3) {
+      const month = months[parts[0]] || 0;
+      const day = parseInt(parts[1]) || 1;
+      const year = parseInt(parts[2]) || new Date().getFullYear();
+      return new Date(year, month, day);
+    }
+  } catch (e) {}
+  return null;
+}
+
+function isPastDate(dateStr) {
+  const d = parseDate(dateStr);
+  if (!d) return false;
+  return d < new Date();
 }
 
 async function fetchTourDates() {
@@ -69,7 +85,7 @@ async function fetchTourDates() {
     if (rows.length === 0) {
       container.innerHTML = `
         <div class="text-center text-[#f5f5f5]/50 py-8">
-          <p class="text-sm tracking-wider">No upcoming tour dates</p>
+          <p class="text-sm tracking-wider">No tour dates</p>
         </div>
       `;
       return;
@@ -79,24 +95,31 @@ async function fetchTourDates() {
       date: sanitize(row.c[0]?.f || row.c[0]?.v || ''),
       venue: sanitize(row.c[1]?.v || ''),
       city: sanitize(row.c[2]?.v || ''),
-      ticketLink: sanitize(row.c[3]?.v || '')
+      ticketLink: sanitize(row.c[3]?.v || ''),
+      isPast: row.c[4]?.v === true || row.c[4]?.v === 'TRUE' || row.c[4]?.v === 'true' || row.c[4]?.v === 1 || isPastDate(row.c[0]?.v || row.c[0]?.f || '')
     })).filter(d => d.date || d.venue);
+    
+    dates.sort((a, b) => {
+      if (a.isPast !== b.isPast) return a.isPast ? 1 : -1;
+      return 0;
+    });
     
     container.innerHTML = dates.map(d => {
       const safeDate = escapeHtml(d.date);
       const safeVenue = escapeHtml(d.venue);
       const safeCity = escapeHtml(d.city);
       const hasLink = d.ticketLink && d.ticketLink.startsWith('http');
+      const isPast = d.isPast;
       
       return `
-        <a href="${hasLink ? escapeHtml(d.ticketLink) : '#'}" class="group flex items-center justify-between py-4 border-b border-[#f5f5f5]/10 hover:border-[#dc2626]/50 transition-colors" ${hasLink ? 'target="_blank" rel="noopener noreferrer nofollow"' : ''}>
+        <a href="${hasLink ? escapeHtml(d.ticketLink) : '#'}" class="group flex items-center justify-between py-4 border-b border-[#f5f5f5]/10 hover:border-[#dc2626]/50 transition-colors ${isPast ? 'opacity-40' : ''}" ${hasLink ? 'target="_blank" rel="noopener noreferrer nofollow"' : ''}>
           <div class="flex items-center gap-6 md:gap-12">
-            <span class="text-sm font-mono tracking-wider text-[#dc2626]">${safeDate}</span>
-            <span class="text-[#f5f5f5] font-medium">${safeVenue}</span>
+            <span class="text-sm font-mono tracking-wider text-[#dc2626] ${isPast ? 'line-through' : ''}">${safeDate}</span>
+            <span class="text-[#f5f5f5] font-medium ${isPast ? 'line-through' : ''}">${safeVenue}</span>
           </div>
           <div class="flex items-center gap-6">
-            <span class="text-sm text-[#f5f5f5]/50 hidden md:block">${safeCity}</span>
-            ${hasLink ? `
+            <span class="text-sm text-[#f5f5f5]/50 hidden md:block ${isPast ? 'line-through' : ''}">${safeCity}</span>
+            ${hasLink && !isPast ? `
               <span class="text-xs tracking-wider uppercase text-[#f5f5f5]/30 group-hover:text-[#dc2626] transition-colors">
                 Tickets
               </span>
