@@ -30,9 +30,13 @@
 | ---------- | ------------------------------------------------------ | ------------------------------------- |
 | Bandcamp   | https://xweed420x.bandcamp.com/                        | `src/components/MediaPlatforms.astro` |
 | Spotify    | https://open.spotify.com/artist/5UM6QbXYllW5ByF0umKJt1 | `src/components/MediaPlatforms.astro` |
-| SoundCloud | https://soundcloud.com/alejania                        | `src/components/MediaPlatforms.astro` |
-| Instagram  | https://www.instagram.com/weedcuatroscientosveinte/    | `src/components/Footer.astro`         |
-| YouTube    | https://youtube.com/@weedcuatrocientosveinte           | `src/components/Footer.astro`         |
+| SoundCloud  | https://soundcloud.com/alejania                        | `src/components/MediaPlatforms.astro` |
+| Apple Music | https://music.apple.com/us/artist/weed420/1702350628   | `src/components/MediaPlatforms.astro` |
+| Deezer      | https://www.deezer.com/artist/225759075                | `src/components/MediaPlatforms.astro` |
+| Tidal       | https://tidal.com/artist/41371367                      | `src/components/MediaPlatforms.astro` |
+| YouTube Music | https://www.youtube.com/@weedcuatrocientosveinte     | `src/components/MediaPlatforms.astro` |
+| Instagram   | https://www.instagram.com/weedcuatroscientosveinte/    | `src/components/Footer.astro`         |
+| YouTube     | https://youtube.com/@weedcuatrocientosveinte           | `src/components/Footer.astro`         |
 
 **MediaGrid album links:**
 - `src/components/MediaGrid.astro` - Links to Bandcamp pages

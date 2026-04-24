@@ -88,13 +88,17 @@ done
 | `master` | Original rigid/blocky design | https://master.weed420-epk.pages.dev |
 | `design/organic` | Organic floating design with animations | https://design-organic.weed420-epk.pages.dev |
 
-### Current Discography (both branches)
+### Current Discography
 - 3 Featured Albums: amor de encava (2025), Estoy viviendo (2026), EVILCHANGA (2024)
 - 8 EPs/Singles: RVRT 3, psp, Esto no es un show, malandreo conceptual, Dedicado a [NTS], Fotos varias [NTS], Miren miren guayo... [NTS], lo que puedo hacer para mejorar es hacer plata
  * **Platform URLs:**
    * Bandcamp: `https://xweed420x.bandcamp.com/`
    * Spotify: `https://open.spotify.com/artist/5UM6QbXYllW5ByF0umKJt1`
    * SoundCloud: `https://soundcloud.com/alejania`
+   * Apple Music: `https://music.apple.com/us/artist/weed420/1702350628`
+   * Deezer: `https://www.deezer.com/artist/225759075`
+   * Tidal: `https://tidal.com/artist/41371367`
+   * YouTube Music: `https://www.youtube.com/@weedcuatrocientosveinte`
  * **Social URLs:**
    * Instagram: `https://www.instagram.com/weedcuatroscientosveinte/`
    * YouTube: `https://youtube.com/@weedcuatrocientosveinte`

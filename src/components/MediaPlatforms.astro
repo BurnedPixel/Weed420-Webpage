@@ -3,11 +3,19 @@ import { PLATFORMS } from '../data/constants';
 import SpotifySvg from '../../assets/spotify.svg?raw';
 import BandcampSvg from '../../assets/bandcamp.svg?raw';
 import SoundCloudSvg from '../../assets/soundcloud.svg?raw';
+import AppleMusicSvg from '../../assets/applemusic.svg?raw';
+import DeezerSvg from '../../assets/deezer.svg?raw';
+import TidalSvg from '../../assets/tidal.svg?raw';
+import YouTubeMusicSvg from '../../assets/youtubeMusic.svg?raw';
 
 const svgMap = {
   bandcamp: BandcampSvg,
   spotify: SpotifySvg,
   soundcloud: SoundCloudSvg,
+  applemusic: AppleMusicSvg,
+  deezer: DeezerSvg,
+  tidal: TidalSvg,
+  youtubemusic: YouTubeMusicSvg,
 };
 ---
 
@@ -15,7 +23,7 @@ const svgMap = {
   <div class="max-w-7xl mx-auto">
     <h2 class="text-xs tracking-[0.3em] uppercase text-accent mb-12 text-center">Listen</h2>
 
-    <div class="flex flex-wrap justify-center gap-8 md:gap-16">
+    <div class="flex flex-wrap justify-center gap-4 md:gap-6">
       {PLATFORMS.map(platform => (
         <a
           href={platform.url}
