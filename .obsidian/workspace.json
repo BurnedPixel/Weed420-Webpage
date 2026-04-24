@@ -11,14 +11,10 @@
             "id": "d672cc9b50eb76c2",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "AGENTS.md",
-                "mode": "source",
-                "source": false
-              },
+              "type": "empty",
+              "state": {},
               "icon": "lucide-file",
-              "title": "AGENTS"
+              "title": "New tab"
             }
           }
         ]
@@ -183,7 +179,7 @@
       "bases:Create new base": false
     }
   },
-  "active": "d672cc9b50eb76c2",
+  "active": "e1ddde7caf293a1f",
   "lastOpenFiles": [
     "dist/index.html",
     "dist/_astro/index@_@astro.DvOELfpS.css",
@@ -197,16 +193,17 @@
     "dist/images",
     "dist/favicon.svg",
     "dist/favicon.ico",
+    "public/images/hero4.jpg",
+    "public/images/hero3.jpg",
+    "public/images/hero1.jpg",
+    "dist/_astro/index@_@astro.B04Q4vFI.css",
+    "public/images/hero2.jpg",
+    "SITE_CONTENT.md",
+    "README.md",
+    "AGENTS.md",
     "dist/_astro/index@_@astro.DWimryFS.css",
     "dist/images/albums",
     "dist/_astro/index@_@astro.B_0HjYAh.css",
-    "dist/_astro/index@_@astro.DwMow1ph.css",
-    "dist/images/weed420_boursedecommerce©raphaelmassart-9.jpg",
-    "dist/images/weed420_boursedecommerce©raphaelmassart-8.jpg",
-    "dist/images/weed420_boursedecommerce©raphaelmassart-7.jpg",
-    "dist/images/weed420_boursedecommerce©raphaelmassart-6.jpg",
-    "AGENTS.md",
-    "SITE_CONTENT.md",
     "node_modules/@img/sharp-libvips-linuxmusl-x64/README.md",
     "node_modules/@jridgewell/remapping/README.md",
     "node_modules/enhanced-resolve/README.md",
@@ -228,7 +225,6 @@
     "node_modules/@jridgewell/resolve-uri/README.md",
     "node_modules/graceful-fs/README.md",
     "node_modules/fontkitten/README.md",
-    "node_modules/xxhash-wasm/README.md",
-    "node_modules/xxhash-wasm/LICENSE.md"
+    "node_modules/xxhash-wasm/README.md"
   ]
 }
