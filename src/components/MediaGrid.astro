@@ -1,0 +1,61 @@
+---
+const releases = [
+  {
+    title: 'Amor de encava',
+    year: '2025',
+    image: 'https://images.unsplash.com/photo-1614613535308-eb5fbd3d2c17?w=600&q=80',
+    link: 'https://xweed420x.bandcamp.com/album/amor-de-encava',
+  },
+  {
+    title: 'EVILCHANGA',
+    year: '2024',
+    image: 'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=600&q=80',
+    link: 'https://xweed420x.bandcamp.com/album/evilchanga',
+  },
+  {
+    title: 'la malasangrura',
+    year: '2023',
+    image: 'https://images.unsplash.com/photo-1470225620780-dba8ba36badd?w=600&q=80',
+    link: 'https://xweed420x.bandcamp.com/album/la-malasangrura',
+  },
+  {
+    title: 'RVRT 3',
+    year: '2023',
+    image: 'https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=600&q=80',
+    link: 'https://xweed420x.bandcamp.com/album/rvrt-3',
+  },
+];
+---
+
+<section id="video" class="py-24 px-6">
+  <div class="max-w-7xl mx-auto">
+    <h2 class="text-xs tracking-[0.3em] uppercase text-[#dc2626] mb-12 text-center">Discography</h2>
+    
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+      {releases.map(release => (
+        <a 
+          href={release.link}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="group relative aspect-square bg-[#1a1a1a] overflow-hidden"
+        >
+          <img 
+            src={release.image}
+            alt={release.title}
+            class="w-full h-full object-cover opacity-50 group-hover:opacity-70 group-hover:scale-105 transition-all duration-500"
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-transparent to-transparent opacity-80"></div>
+          <div class="absolute bottom-0 left-0 right-0 p-4">
+            <p class="text-xs text-[#dc2626] tracking-widest mb-1">{release.year}</p>
+            <h3 class="text-lg font-bold uppercase">{release.title}</h3>
+          </div>
+          <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+            <span class="text-sm tracking-wider uppercase text-[#f5f5f5] border border-[#f5f5f5] px-4 py-2">
+              Listen
+            </span>
+          </div>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>
