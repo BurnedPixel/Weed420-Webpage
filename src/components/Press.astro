@@ -1,0 +1,33 @@
+---
+import { PRESS } from '../data/constants';
+---
+
+<section id="press" class="py-24 px-6">
+  <div class="max-w-4xl mx-auto">
+    <h2 class="text-xs tracking-[0.3em] uppercase text-accent mb-12 text-center">Press</h2>
+
+    {PRESS.length === 0 ? (
+      <p class="text-sm text-text-dim text-center">Press reviews coming soon.</p>
+    ) : (
+      <div class="space-y-6">
+        {PRESS.map(item => (
+          item.url ? (
+            <a href={item.url} target="_blank" rel="noopener noreferrer" class="block border border-border hover:border-accent/50 transition-colors p-6">
+              <blockquote class="text-sm text-text-muted leading-relaxed mb-4">
+                &ldquo;{item.quote}&rdquo;
+              </blockquote>
+              <cite class="text-xs tracking-wider uppercase text-accent not-italic">&mdash; {item.source}</cite>
+            </a>
+          ) : (
+            <div class="block border border-border p-6">
+              <blockquote class="text-sm text-text-muted leading-relaxed mb-4">
+                &ldquo;{item.quote}&rdquo;
+              </blockquote>
+              <cite class="text-xs tracking-wider uppercase text-accent not-italic">&mdash; {item.source}</cite>
+            </div>
+          )
+        ))}
+      </div>
+    )}
+  </div>
+</section>

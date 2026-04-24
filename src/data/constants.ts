@@ -19,9 +19,15 @@ export const SOCIALS = [
   { name: 'YouTube', url: 'https://youtube.com/@weedcuatrocientosveinte', icon: 'youtube' as const },
 ];
 
+export const PRESS = [
+  // Add press reviews here. Example:
+  // { quote: 'Amazing...', source: 'Pitchfork', url: 'https://...' },
+];
+
 export const NAV_LINKS = [
   { href: '#home', label: 'Home' },
   { href: '#bio', label: 'Bio' },
+  { href: '#press', label: 'Press' },
   { href: '#music', label: 'Music' },
   { href: '#discography', label: 'Releases' },
   { href: '#tour', label: 'Tour' },

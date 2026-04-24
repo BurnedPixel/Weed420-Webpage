@@ -44,6 +44,7 @@ section {
 
 #home { animation-delay: 0s; }
 #bio { animation-delay: 0.1s; }
+#press { animation-delay: 0.15s; }
 #music { animation-delay: 0.2s; }
 #discography { animation-delay: 0.3s; }
 #tour { animation-delay: 0.4s; }
