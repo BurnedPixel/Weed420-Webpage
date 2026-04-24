@@ -11,10 +11,14 @@
             "id": "d672cc9b50eb76c2",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {},
+              "type": "markdown",
+              "state": {
+                "file": "SITE_CONTENT.md",
+                "mode": "source",
+                "source": false
+              },
               "icon": "lucide-file",
-              "title": "New tab"
+              "title": "SITE_CONTENT"
             }
           }
         ]
@@ -179,20 +183,23 @@
       "bases:Create new base": false
     }
   },
-  "active": "e1ddde7caf293a1f",
+  "active": "d672cc9b50eb76c2",
   "lastOpenFiles": [
     "dist/index.html",
-    "dist/_astro/index@_@astro.CbPFlKCW.css",
+    "dist/_astro/index@_@astro.CkyL5qJM.css",
     "dist/_astro",
     "dist/robots.txt",
-    "dist/images/hero4.jpg",
-    "dist/images/hero3.jpg",
     "dist/images/hero2.jpg",
-    "dist/images/hero1.jpg",
     "dist/images/caracas-portrait.jpg",
     "dist/images",
     "dist/favicon.svg",
     "dist/favicon.ico",
+    "README.md",
+    "AGENTS.md",
+    "dist/_astro/index@_@astro.CbPFlKCW.css",
+    "dist/images/hero4.jpg",
+    "dist/images/hero3.jpg",
+    "dist/images/hero1.jpg",
     "public/images/hero4.jpg",
     "public/images/hero3.jpg",
     "public/images/hero1.jpg",
@@ -200,11 +207,8 @@
     "dist/_astro/index@_@astro.B04Q4vFI.css",
     "public/images/hero2.jpg",
     "SITE_CONTENT.md",
-    "README.md",
-    "AGENTS.md",
     "dist/_astro/index@_@astro.DWimryFS.css",
     "dist/images/albums",
-    "dist/_astro/index@_@astro.B_0HjYAh.css",
     "node_modules/@img/sharp-libvips-linuxmusl-x64/README.md",
     "node_modules/@jridgewell/remapping/README.md",
     "node_modules/enhanced-resolve/README.md",

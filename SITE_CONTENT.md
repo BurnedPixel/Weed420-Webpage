@@ -26,14 +26,13 @@
 
 ## External Links
 
-| Platform | URL | Update In |
-|----------|-----|---------|
-| Bandcamp | https://xweed420x.bandcamp.com/ | `src/components/MediaPlatforms.astro` |
-| Spotify | https://open.spotify.com/artist/5UM6QbXYllW5ByF0umKJt1 | `src/components/MediaPlatforms.astro` |
-| SoundCloud | https://soundcloud.com/weed420 | `src/components/MediaPlatforms.astro` |
-| Instagram | @YOUR_HANDLE | `src/components/Footer.astro` |
-| Twitter/X | @YOUR_HANDLE | `src/components/Footer.astro` |
-| YouTube | https://youtube.com/@YOUR_CHANNEL | `src/components/Footer.astro` |
+| Platform   | URL                                                    | Update In                             |
+| ---------- | ------------------------------------------------------ | ------------------------------------- |
+| Bandcamp   | https://xweed420x.bandcamp.com/                        | `src/components/MediaPlatforms.astro` |
+| Spotify    | https://open.spotify.com/artist/5UM6QbXYllW5ByF0umKJt1 | `src/components/MediaPlatforms.astro` |
+| SoundCloud | https://soundcloud.com/weed420                         | `src/components/MediaPlatforms.astro` |
+| Instagram  | https://www.instagram.com/weedcuatroscientosveinte/    | `src/components/Footer.astro`         |
+| YouTube    | https://youtube.com/@weedcuatrocientosveinte           | `src/components/Footer.astro`         |
 
 **MediaGrid album links:**
 - `src/components/MediaGrid.astro` - Links to Bandcamp pages

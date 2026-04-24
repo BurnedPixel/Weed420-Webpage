@@ -91,7 +91,10 @@ done
 ### Current Discography (both branches)
 - 3 Featured Albums: amor de encava (2025), Estoy viviendo (2026), EVILCHANGA (2024)
 - 8 EPs/Singles: RVRT 3, psp, Esto no es un show, malandreo conceptual, Dedicado a [NTS], Fotos varias [NTS], Miren miren guayo... [NTS], lo que puedo hacer para mejorar es hacer plata
-* **Task 1:** Verify the structural integrity and functionality of social media links located within `Footer.astro`.
-* **Known URLs:**
-  * Bandcamp: `[Requires actual URL check]`
-  * Spotify: `https://xweed420x.bandcamp.com/Spotifyhttps://open.spotify.com/artist/5UM6QbXYllW5ByF0umKJt1RateYourMusichttps://rateyourmusic.com/release/album/weed420/amor-de-encava/Commit` (Verify this structure).
+ * **Platform URLs:**
+   * Bandcamp: `https://xweed420x.bandcamp.com/`
+   * Spotify: `https://open.spotify.com/artist/5UM6QbXYllW5ByF0umKJt1`
+   * SoundCloud: `https://soundcloud.com/weed420`
+ * **Social URLs:**
+   * Instagram: `https://instagram.com/weed420`
+   * YouTube: `https://youtube.com/@weed420`
