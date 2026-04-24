@@ -22,7 +22,7 @@
             }
           },
           {
-            "id": "da3af3bcc5e46285",
+            "id": "e278718b5938d3d5",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -198,10 +198,10 @@
       "bases:Create new base": false
     }
   },
-  "active": "da3af3bcc5e46285",
+  "active": "e278718b5938d3d5",
   "lastOpenFiles": [
     "dist/index.html",
-    "dist/_astro/index@_@astro.DEA0ls6W.css",
+    "dist/_astro/index@_@astro.DWJi_FDI.css",
     "dist/_astro",
     "dist/robots.txt",
     "dist/images/albums/rvrt-3.jpg",
@@ -211,17 +211,18 @@
     "dist/images/albums/lo-que-puedo-hacer.jpg",
     "dist/images/albums/la-malasangrura-2023.jpg",
     "dist/images/albums/fotos-varias-nts.jpg",
-    "dist/images/albums/evilchanga.jpg",
     "dist/images/albums/estoy-viviendo.jpg",
+    "dist/images/albums/evilchanga.jpg",
     "dist/images/albums/esto-no-es-un-show.jpg",
     "dist/images/albums",
     "dist/images",
     "dist/favicon.ico",
-    "scripts/fetch-bandcamp.mjs",
-    "scripts",
     "notes/site-content.md",
     "Untitled.md",
-    "dist/_astro/index@_@astro.C4nosU5w.css",
+    "dist/_astro/index@_@astro.DMQt0NS1.css",
+    "dist/_astro/index@_@astro.BBlgGGKI.css",
+    "dist/_astro/index@_@astro.DOdRpIo4.css",
+    "dist/_astro/index@_@astro.CJioD5SC.css",
     "SITE_CONTENT.md",
     "README.md",
     "AGENTS.md",
