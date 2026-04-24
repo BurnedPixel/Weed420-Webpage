@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "SITE_CONTENT.md",
+                "file": "AGENTS.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "SITE_CONTENT"
+              "title": "AGENTS"
             }
           }
         ]
@@ -185,6 +185,7 @@
   },
   "active": "d672cc9b50eb76c2",
   "lastOpenFiles": [
+    "dist/index.html",
     "dist/_astro/index@_@astro.bJ6U-oZn.css",
     "dist/_astro",
     "dist/robots.txt",
@@ -193,11 +194,11 @@
     "dist/images",
     "dist/favicon.svg",
     "dist/favicon.ico",
-    "dist/index.html",
+    "SITE_CONTENT.md",
+    "AGENTS.md",
+    "README.md",
     "dist/_astro/index@_@astro.7dWeEwiW.css",
     "dist/_astro/index@_@astro.yjmBcqmo.css",
-    "README.md",
-    "AGENTS.md",
     "assets/applemusic.svg",
     "assets/Apple_Music_Icon_blk_lg_072420.svg",
     "assets/tidal.svg",
@@ -205,9 +206,7 @@
     "assets/youtubeMusic.svg",
     "assets/Unconfirmed 734847.crdownload",
     "assets/deezer.svg",
-    "assets/Unconfirmed 320759.crdownload",
     "assets/9d0754a0-af14-4a5d-9609-6eba4669ac5c.jpeg",
-    "SITE_CONTENT.md",
     "dist/images/hero4.jpg",
     "node_modules/@img/sharp-libvips-linuxmusl-x64/README.md",
     "node_modules/@jridgewell/remapping/README.md",

@@ -62,13 +62,12 @@ const contactEmail = 'booking@YOUR_DOMAIN.com';
 
 Place in `public/images/`:
 
-| File | Description | Used In |
-|------|------------|--------|
-| `caracas-portrait.jpg` | Hero background (1920x1080, optimized) | Hero |
-| `albums/amor-de-encava.jpg` | Album art 2025 (600x600) | MediaGrid |
-| `albums/evilchanga.jpg` | Album art 2024 (600x600) | MediaGrid |
-| `albums/la-malasangrura.jpg` | Album art 2023 (600x600) | MediaGrid |
-| `albums/rvrt-3.jpg` | Album art 2023 (600x600) | MediaGrid |
+| File                         | Description                            | Used In   |
+| ---------------------------- | -------------------------------------- | --------- |
+| `caracas-portrait.jpg`       | Hero background (1920x1080, optimized) | Hero      |
+| `albums/amor-de-encava.jpg`  | Album art 2025 (600x600)               | MediaGrid |
+| `albums/evilchanga.jpg`      | Album art 2024 (600x600)               | MediaGrid |
+| `albums/rvrt-3.jpg`          | Album art 2023 (600x600)               | MediaGrid |
 
 **Image specs:**
 - Max size: 25MB per file (Cloudflare Pages limit)
