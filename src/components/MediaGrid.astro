@@ -1,17 +1,17 @@
 ---
 const releases = [
-  { title: 'amor de encava', year: '2025', featured: true, link: 'https://xweed420x.bandcamp.com/album/amor-de-encava' },
-  { title: 'Estoy viviendo', year: '2026', featured: true, link: 'https://xweed420x.bandcamp.com/album/estoy-viviendo' },
-  { title: 'EVILCHANGA', year: '2024', featured: true, link: 'https://xweed420x.bandcamp.com/album/evilchanga' },
-  { title: 'la malasangrura', year: '2023', featured: true, link: 'https://xweed420x.bandcamp.com/album/la-malasangrura' },
-  { title: 'RVRT 3', year: '2023', featured: false, link: 'https://xweed420x.bandcamp.com/album/rvrt-3' },
-  { title: 'psp', year: 'N/A', featured: false, link: 'https://xweed420x.bandcamp.com/album/psp' },
-  { title: 'Esto no es un show', year: 'N/A', featured: false, link: 'https://xweed420x.bandcamp.com/album/esto-no-es-un-show' },
-  { title: 'malandreo conceptual', year: '2024', featured: false, link: 'https://xweed420x.bandcamp.com/album/malandreo-conceptual' },
-  { title: 'Dedicado a [NTS]', year: 'N/A', featured: false, link: 'https://xweed420x.bandcamp.com/album/dedicado-a-nts' },
-  { title: 'Fotos varias [NTS]', year: '2025', featured: false, link: 'https://xweed420x.bandcamp.com/album/fotos-varias-nts' },
-  { title: 'Miren miren guayo... [NTS]', year: '2025', featured: false, link: 'https://xweed420x.bandcamp.com/album/miren-miren-guayo-nts' },
-  { title: 'lo que puedo hacer para mejorar es hacer plata', year: 'N/A', featured: false, link: 'https://xweed420x.bandcamp.com/album/lo-que-puedo-hacer-para-mejorar-es-hacer-plata' },
+  { title: 'amor de encava', year: '2025', featured: true, image: '/images/albums/amor-de-encava.jpg', link: 'https://xweed420x.bandcamp.com/album/amor-de-encava' },
+  { title: 'Estoy viviendo', year: '2026', featured: true, image: '/images/albums/estoy-viviendo.jpg', link: 'https://xweed420x.bandcamp.com/album/estoy-viviendo' },
+  { title: 'EVILCHANGA', year: '2024', featured: true, image: '/images/albums/evilchanga.jpg', link: 'https://xweed420x.bandcamp.com/album/evilchanga' },
+  { title: 'la malasangrura', year: '2023', featured: true, image: '/images/albums/la-malasangrura.jpg', link: 'https://xweed420x.bandcamp.com/album/la-malasangrura' },
+  { title: 'RVRT 3', year: '2023', featured: false, image: '/images/albums/rvrt-3.jpg', link: 'https://xweed420x.bandcamp.com/album/rvrt-3' },
+  { title: 'psp', year: 'N/A', featured: false, image: '/images/albums/psp.jpg', link: 'https://xweed420x.bandcamp.com/album/psp' },
+  { title: 'Esto no es un show', year: 'N/A', featured: false, image: '/images/albums/esto-no-es-un-show.jpg', link: 'https://xweed420x.bandcamp.com/album/esto-no-es-un-show' },
+  { title: 'malandreo conceptual', year: '2024', featured: false, image: '/images/albums/malandreo-conceptual.jpg', link: 'https://xweed420x.bandcamp.com/album/malandreo-conceptual' },
+  { title: 'Dedicado a [NTS]', year: 'N/A', featured: false, image: '/images/albums/dedicado-a-nts.jpg', link: 'https://xweed420x.bandcamp.com/album/dedicado-a-nts' },
+  { title: 'Fotos varias [NTS]', year: '2025', featured: false, image: '/images/albums/fotos-varias-nts.jpg', link: 'https://xweed420x.bandcamp.com/album/fotos-varias-nts' },
+  { title: 'Miren miren guayo... [NTS]', year: '2025', featured: false, image: '/images/albums/miren-miren-guayo-nts.jpg', link: 'https://xweed420x.bandcamp.com/album/miren-miren-guayo-nts' },
+  { title: 'lo que puedo hacer para mejorar es hacer plata', year: 'N/A', featured: false, image: '/images/albums/lo-que-puedo-hacer-para-mejorar-es-hacer-plata.jpg', link: 'https://xweed420x.bandcamp.com/album/lo-que-puedo-hacer-para-mejorar-es-hacer-plata' },
 ];
 
 const featured = releases.filter(r => r.featured);
@@ -31,6 +31,11 @@ const secondary = releases.filter(r => !r.featured);
           rel="noopener noreferrer"
           class="group relative aspect-square bg-[#1a1a1a] overflow-hidden border border-[#f5f5f5]/10 hover:border-[#dc2626]/50 transition-colors"
         >
+          <img 
+            src={release.image}
+            alt={release.title}
+            class="w-full h-full object-cover opacity-60 group-hover:opacity-80 group-hover:scale-105 transition-all duration-500"
+          />
           <div class="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-transparent to-transparent opacity-60"></div>
           <div class="absolute bottom-0 left-0 right-0 p-3">
             <p class="text-[10px] text-[#dc2626] tracking-widest mb-0.5">{release.year}</p>
@@ -54,6 +59,11 @@ const secondary = releases.filter(r => !r.featured);
           rel="noopener noreferrer"
           class="group relative aspect-square bg-[#1a1a1a] overflow-hidden hover:border hover:border-[#dc2626]/30 transition-colors"
         >
+          <img 
+            src={release.image}
+            alt={release.title}
+            class="w-full h-full object-cover opacity-50 group-hover:opacity-70 transition-opacity duration-300"
+          />
           <div class="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-transparent to-transparent opacity-50"></div>
           <div class="absolute bottom-0 left-0 right-0 p-2">
             <p class="text-[8px] text-[#dc2626]/60 tracking-wider mb-0.5">{release.year}</p>
