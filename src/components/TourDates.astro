@@ -78,13 +78,13 @@ try {
     <div class="space-y-0 text-left">
       {error && (
         <div class="text-text-dim py-8">
-          <p class="text-xs tracking-wider">{error}</p>
+          <p class="text-sm tracking-wider">{error}</p>
         </div>
       )}
 
       {!error && entries.length === 0 && (
         <div class="text-text-dim py-4">
-          <p class="text-xs">No upcoming tour dates</p>
+          <p class="text-sm">No upcoming tour dates</p>
         </div>
       )}
 
@@ -92,18 +92,18 @@ try {
         d.link ? (
           <a href={d.link} target="_blank" rel="noopener noreferrer" class="flex items-center justify-between py-3 border-b border-border hover:border-accent-muted transition-colors block">
             <div class="flex items-center gap-4">
-              <span class="text-xs font-mono tracking-wider text-accent">{d.date}</span>
-              <span class="text-xs text-text/80">{d.venue}</span>
+              <span class="text-sm tracking-wider text-accent">{d.date}</span>
+              <span class="text-sm text-text/80">{d.venue}</span>
             </div>
-            <span class="text-xs text-text-dim">{d.city}</span>
+            <span class="text-sm text-text-dim">{d.city}</span>
           </a>
         ) : (
           <div class="flex items-center justify-between py-3 border-b border-border">
             <div class="flex items-center gap-4">
-              <span class="text-xs font-mono tracking-wider text-accent">{d.date}</span>
-              <span class="text-xs text-text/80">{d.venue}</span>
+              <span class="text-sm tracking-wider text-accent">{d.date}</span>
+              <span class="text-sm text-text/80">{d.venue}</span>
             </div>
-            <span class="text-xs text-text-dim">{d.city}</span>
+            <span class="text-sm text-text-dim">{d.city}</span>
           </div>
         )
       ))}

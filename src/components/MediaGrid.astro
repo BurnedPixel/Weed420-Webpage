@@ -1,5 +1,5 @@
 ---
-import { releases, featured, secondary } from '../data/discography';
+import { featured, secondary } from '../data/discography';
 
 const floatDelays = [0, 0.8, 1.6];
 ---
@@ -8,7 +8,7 @@ const floatDelays = [0, 0.8, 1.6];
   <div class="max-w-7xl mx-auto">
     <h2 class="text-xs tracking-[0.3em] uppercase text-accent mb-12 text-center">Discography</h2>
 
-    <h3 class="text-xs tracking-[0.2em] uppercase text-text-dim mb-6 text-center">Albums</h3>
+    <h3 class="text-sm tracking-[0.2em] uppercase text-text-dim mb-6 text-center">Albums</h3>
     <div class="flex flex-wrap justify-center gap-4 md:gap-8 mb-10">
       {featured.map((release, i) => (
         <a
@@ -26,11 +26,11 @@ const floatDelays = [0, 0.8, 1.6];
           />
           <div class="absolute inset-0 bg-gradient-to-t from-bg via-transparent to-transparent opacity-60"></div>
           <div class="absolute bottom-0 left-0 right-0 p-3">
-            <p class="text-[10px] text-accent tracking-widest mb-0.5">{release.year}</p>
-            <h3 class="text-sm font-bold uppercase leading-tight">{release.title}</h3>
+            <p class="text-xs text-accent tracking-widest mb-0.5">{release.year}</p>
+            <h3 class="text-sm font-semibold uppercase leading-tight">{release.title}</h3>
           </div>
           <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-bg/60">
-            <span class="text-xs tracking-wider uppercase text-text border border-text px-3 py-1.5">
+            <span class="text-sm tracking-wider uppercase text-text border border-text px-3 py-1.5">
               Listen
             </span>
           </div>
@@ -38,7 +38,7 @@ const floatDelays = [0, 0.8, 1.6];
       ))}
     </div>
 
-    <h3 class="text-xs tracking-[0.2em] uppercase text-text-dim mb-6 text-center">EPs & Singles</h3>
+    <h3 class="text-sm tracking-[0.2em] uppercase text-text-dim mb-6 text-center">EPs & Singles</h3>
     <div class="grid grid-cols-3 md:grid-cols-6 gap-2">
       {secondary.map(release => (
         <a
@@ -55,11 +55,11 @@ const floatDelays = [0, 0.8, 1.6];
           />
           <div class="absolute inset-0 bg-gradient-to-t from-bg via-transparent to-transparent opacity-50"></div>
           <div class="absolute bottom-0 left-0 right-0 p-2">
-            <p class="text-[8px] text-accent/60 tracking-wider mb-0.5">{release.year}</p>
-            <h3 class="text-[10px] font-medium uppercase leading-tight truncate">{release.title}</h3>
+            <p class="text-xs text-accent/60 tracking-wider mb-0.5">{release.year}</p>
+            <h3 class="text-xs font-medium uppercase leading-tight truncate">{release.title}</h3>
           </div>
           <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200 bg-bg/60">
-            <span class="text-[9px] tracking-wider uppercase text-text border border-text-dim px-2 py-1">
+            <span class="text-xs tracking-wider uppercase text-text border border-text-dim px-2 py-1">
               &rarr;
             </span>
           </div>
