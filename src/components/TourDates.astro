@@ -92,7 +92,7 @@ try {
         d.link ? (
           <a href={d.link} target="_blank" rel="noopener noreferrer" class="flex items-center justify-between py-3 border-b border-border hover:border-accent-muted transition-colors block">
             <div class="flex items-center gap-2 sm:gap-4">
-              <span class="text-[11px] sm:text-sm tracking-wider text-accent">{d.date}</span>
+              <span class="text-[11px] sm:text-sm tracking-wider text-accent uppercase">{d.date}</span>
               <span class="text-[11px] sm:text-sm text-text/80">{d.venue}</span>
             </div>
             <span class="text-[11px] sm:text-sm text-text-dim">{d.city}</span>
@@ -100,7 +100,7 @@ try {
         ) : (
           <div class="flex items-center justify-between py-3 border-b border-border">
             <div class="flex items-center gap-2 sm:gap-4">
-              <span class="text-[11px] sm:text-sm tracking-wider text-accent">{d.date}</span>
+              <span class="text-[11px] sm:text-sm tracking-wider text-accent uppercase">{d.date}</span>
               <span class="text-[11px] sm:text-sm text-text/80">{d.venue}</span>
             </div>
             <span class="text-[11px] sm:text-sm text-text-dim">{d.city}</span>
