@@ -51,7 +51,7 @@ When authorized, execute the following sequence:
 1. `npm run build`
 2. `git add -A && git commit -m "[deploy] <Your specific deployment message>"`
 3. `wrangler pages deploy dist --project-name=weed420-epk`
-*Live Production URL:* https://master.weed420-epk.pages.dev
+*Live Production URL:* https://weed420.pages.dev
 
 ## 5. Standard Operating Procedures (SOPs)
 
@@ -85,7 +85,7 @@ done
 ### Branches
 | Branch | Description | URL |
 |--------|-------------|-----|
-| `master` | Original rigid/blocky design | https://master.weed420-epk.pages.dev |
+| `master` | Original rigid/blocky design | https://weed420.pages.dev |
 | `design/organic` | Organic floating design with animations | https://design-organic.weed420-epk.pages.dev |
 
 ### Current Discography
