@@ -82,3 +82,14 @@ Example: `[deploy] Fix navbar scroll transition`
 ## Pending Tasks
 - [ ] Add album covers to `public/images/albums/`
 - [ ] Verify streaming links
+
+## Upcoming Tour Dates (2025-2026)
+| Date | Venue | City |
+|------|-------|------|
+| OCT 03 2025 | Out.Fest | Barreiro PT |
+| OCT 09-11 2025 | Unsound | Polonia PL |
+| OCT 29-31 2025 | C2C | Torino IT |
+| NOV 01 2025 | Le Guess Who | Utrecht NL |
+| NOV 04-08 2025 | Le Guess Who | Utrecht NL |
+| NOV 06 2025 | MIRA Festival | Barcelona ES |
+| NOV 11 2025 | ALICE | Copenhagen DK |
