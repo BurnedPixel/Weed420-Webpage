@@ -19,14 +19,14 @@ const months: Record<string, number> = {
 function parseDate(dateStr: string): Date | null {
   if (!dateStr) return null;
   const dashIdx = dateStr.indexOf('-');
-  const normalized = dashIdx > -1
-    ? dateStr.slice(0, dashIdx).trim() + ' ' + dateStr.slice(dashIdx + 1).trim()
-    : dateStr;
-  const parts = normalized.toUpperCase().trim().split(/[\s,]+/);
+  if (dashIdx > -1) {
+    dateStr = dateStr.slice(0, dashIdx).trim() + dateStr.slice(dateStr.lastIndexOf(' '));
+  }
+  const parts = dateStr.toUpperCase().trim().split(/[\s,]+/);
   if (parts.length >= 3) {
     const month = months[parts[0]] ?? 0;
     const day = parseInt(parts[1]) || 1;
-    const year = parseInt(parts[2]) || CURRENT_YEAR;
+    const year = parseInt(parts[parts.length - 1]) || CURRENT_YEAR;
     return new Date(year, month, day);
   }
   return null;
