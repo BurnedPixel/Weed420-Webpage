@@ -83,5 +83,4 @@ Example: `[deploy] Fix navbar scroll transition`
 
 ## Pending Tasks
 - [ ] Add album covers to `public/images/albums/`
-- [ ] Update MediaGrid to use album covers
 - [ ] Verify streaming links
