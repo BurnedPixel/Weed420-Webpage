@@ -1,0 +1,20 @@
+---
+interface Props {
+  id: string;
+  label: string;
+  subtitle?: string;
+  variant?: 'default' | 'alt';
+}
+
+const { id, label, subtitle, variant = 'default' } = Astro.props;
+---
+
+<section id={id} class={`py-24 px-6 ${variant === 'alt' ? 'bg-bg-alt' : ''}`}>
+  <div class="max-w-7xl mx-auto">
+    <h2 class="text-xs tracking-[0.3em] uppercase text-accent mb-12 text-center">{label}</h2>
+    {subtitle && (
+      <h3 class="text-xs tracking-[0.2em] uppercase text-text-dim mb-6 text-center">{subtitle}</h3>
+    )}
+    <slot />
+  </div>
+</section>

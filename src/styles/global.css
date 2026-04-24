@@ -2,8 +2,16 @@
 
 @theme {
   --color-bg: #0a0a0a;
+  --color-bg-alt: #050505;
+  --color-bg-card: #1a1a1a;
   --color-text: #f5f5f5;
+  --color-text-muted: oklch(from var(--color-text) l c h / 0.6);
+  --color-text-dim: oklch(from var(--color-text) l c h / 0.4);
+  --color-text-faint: oklch(from var(--color-text) l c h / 0.3);
   --color-accent: #dc2626;
+  --color-accent-muted: oklch(from var(--color-accent) l c h / 0.3);
+  --color-border: oklch(from var(--color-text) l c h / 0.1);
+  --color-border-light: oklch(from var(--color-text) l c h / 0.2);
   --font-sans: 'Inter', 'Montserrat', system-ui, sans-serif;
 }
 
@@ -12,8 +20,31 @@ html {
   color: var(--color-text);
   font-family: var(--font-sans);
   scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 body {
   min-height: 100vh;
 }
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+section {
+  animation: fadeIn 0.6s ease-out both;
+}
+
+#home { animation-delay: 0s; }
+#bio { animation-delay: 0.1s; }
+#music { animation-delay: 0.2s; }
+#discography { animation-delay: 0.3s; }
+#tour { animation-delay: 0.4s; }
+#booking { animation-delay: 0.5s; }
