@@ -33,8 +33,7 @@ src/
   styles/     # global.css
 public/images/
   caracas-portrait.jpg   # Hero background
-  hero1-4.jpg            # MediaGrid placeholders
-  albums/                # Album covers (future)
+  albums/                # Album covers (to be added)
 ```
 
 ## Deployment (Cloudflare Pages)
@@ -54,7 +53,7 @@ wrangler pages deploy dist --project-name=weed420-epk
 - Place in `public/images/albums/` for discography
 
 ## Google Sheets (Tour Dates)
-Sheet columns: `date`, `venue`, `city`, `ticket_link`, `is_past`
+Sheet columns: `date`, `venue`, `city`
 
 Date formats accepted:
 - `APR 08 2025` (single)
@@ -66,6 +65,7 @@ Date formats accepted:
 | Platform | URL |
 |----------|-----|
 | Bandcamp | https://xweed420x.bandcamp.com/ |
+| Spotify | https://open.spotify.com/artist/5UM6QbXYllW5ByF0umKJt1 |
 | RateYourMusic | https://rateyourmusic.com/release/album/weed420/amor-de-encava/ |
 
 ## Commit Convention
@@ -79,10 +79,6 @@ Types:
 
 Example: `[deploy] Fix navbar scroll transition`
 
-## Pending Tasks
-- [ ] Add album covers to `public/images/albums/`
-- [ ] Verify streaming links
-
 ## Upcoming Tour Dates (2025-2026)
 | Date | Venue | City |
 |------|-------|------|
@@ -93,3 +89,7 @@ Example: `[deploy] Fix navbar scroll transition`
 | NOV 04-08 2025 | Le Guess Who | Utrecht NL |
 | NOV 06 2025 | MIRA Festival | Barcelona ES |
 | NOV 11 2025 | ALICE | Copenhagen DK |
+
+## Pending Tasks
+- [ ] Add album covers to `public/images/albums/`
+- [ ] Verify social media links in Footer.astro

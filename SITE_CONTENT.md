@@ -1,168 +1,109 @@
----
-tags: [epk, documentation]
----
+# SITE CONTENT TEMPLATE - Weed420 EPK
 
-# Weed420 EPK - Site Content Guide
-
-> This file documents all content needed to finalize the website. Replace placeholders with real assets.
+> Fill in the values below to finalize the site. Code blocks show which files to update.
 
 ---
 
-## 1. Artist Identity
+## Artist Information
+
+```javascript
+// src/components/Hero.astro (line 10-18)
+// Title: "weed" + "420" styled separately
+
+// src/components/AboutPreview.astro (line 19-24)
+// Bio short/long paragraphs
+```
 
 | Field | Value |
 |-------|-------|
-| Name | weed420 |
+| Artist Name | weed420 |
 | Formed | 2021 |
 | Origin | Venezuela |
 | Genres | epic collage, hexd, deconstructed club, cloud rap, reggaetón |
-| Key Achievement | #2 RateYourMusic Top Albums 2025 |
+| Key Achievement | #2 RateYourMusic 2025 (Amor de encava) |
 
 ---
 
-## 2. Media Assets Needed
+## External Links
 
-### Hero Background
-- **File:** `public/images/hero.jpg`
-- **Specs:** 1920x1080px, dark/moody
-- **Current:** Unsplash placeholder
+| Platform | URL | Update In |
+|----------|-----|---------|
+| Bandcamp | https://xweed420x.bandcamp.com/ | `src/components/MediaPlatforms.astro` |
+| Spotify | https://open.spotify.com/artist/5UM6QbXYllW5ByF0umKJt1 | `src/components/MediaPlatforms.astro` |
+| SoundCloud | https://soundcloud.com/weed420 | `src/components/MediaPlatforms.astro` |
+| Instagram | @YOUR_HANDLE | `src/components/Footer.astro` |
+| Twitter/X | @YOUR_HANDLE | `src/components/Footer.astro` |
+| YouTube | https://youtube.com/@YOUR_CHANNEL | `src/components/Footer.astro` |
 
-### Artist Portrait
-- **File:** `public/images/portrait.jpg`
-- **Specs:** 4:5 aspect ratio, 800x1000px
-- **Current:** Unsplash placeholder
-
-### Album Art (4 releases)
-| Release | File | Link |
-|---------|------|------|
-| Amor de encava (2025) | `public/images/amor-de-encava.jpg` | https://xweed420x.bandcamp.com/album/amor-de-encava |
-| EVILCHANGA (2024) | `public/images/evilchanga.jpg` | https://xweed420x.bandcamp.com/album/evilchanga |
-| la malasangrura (2023) | `public/images/la-malasangrura.jpg` | https://xweed420x.bandcamp.com/album/la-malasangrura |
-| RVRT 3 (2023) | `public/images/rvrt-3.jpg` | https://xweed420x.bandcamp.com/album/rvrt-3 |
+**MediaGrid album links:**
+- `src/components/MediaGrid.astro` - Links to Bandcamp pages
 
 ---
 
-## 3. External Links
+## Contact Information
 
-### Streaming Platforms
-| Platform | URL |
-|----------|-----|
-| Bandcamp | https://xweed420x.bandcamp.com/ |
-| Spotify | https://open.spotify.com/artist/YOUR_SPOTIFY_ID |
-| SoundCloud | https://soundcloud.com/weed420 |
-| Apple Music | YOUR_APPLE_MUSIC_LINK |
-
-### Social Media
-| Platform | URL |
-|----------|-----|
-| Instagram | https://instagram.com/YOUR_HANDLE |
-| Twitter/X | https://twitter.com/YOUR_HANDLE |
-| YouTube | https://youtube.com/@YOUR_CHANNEL |
-
-### RateYourMusic
-- https://rateyourmusic.com/release/album/weed420/amor-de-encava/
-
----
-
-## 4. Tour Dates (Google Sheets)
-
-**Sheet Structure:**
-| Column | Example |
-|--------|---------|
-| date | MAR 15, 2026 |
-| venue | Club XYZ |
-| city | Caracas, VE |
-| ticket_link | https://example.com/tickets |
-
-**Instructions:**
-1. Create Google Sheet with columns: `date`, `venue`, `city`, `ticket_link`
-2. Rename tab to `tourdates`
-3. Share as "Anyone with link can view"
-4. Copy URL to `src/components/TourDates.astro` line 3
-
----
-
-## 5. Booking & Contact
+```javascript
+// src/components/Footer.astro (line 6)
+const contactEmail = 'booking@YOUR_DOMAIN.com';
+```
 
 | Field | Value |
 |-------|-------|
-| Email | booking@weed420.com |
-| Management | YOUR_MANAGEMENT_EMAIL |
-| Press | YOUR_PRESS_EMAIL |
-
-**Files to update:** `src/components/Footer.astro` (line 6)
+| Booking | booking@YOUR_DOMAIN.com |
+| Press | press@YOUR_DOMAIN.com |
+| Management | mgmt@YOUR_DOMAIN.com |
 
 ---
 
-## 6. About Text Templates
+## Images Required
 
-### Short Bio (50 words)
-```
-Weed420 is a Venezuelan experimental collective formed in 2021. 
-They blend epic collage, hexd, deconstructed club, cloud rap, and 
-reggaetón into dense audio experiences. Their debut album "Amor de 
-encava" debuted #2 on RateYourMusic's Top Albums of 2025.
-```
+Place in `public/images/`:
 
-### Medium Bio (150 words)
-```
-Weed420 is a Venezuelan experimental electronic music collective 
-formed in 2021. They produce epic collage, hexd, deconstructed 
-club, cloud rap, and reggaetón—drawing from the sound of 
-Venezuelan public transport "encavas" and internet culture.
+| File | Description | Used In |
+|------|------------|--------|
+| `caracas-portrait.jpg` | Hero background (1920x1080, optimized) | Hero |
+| `albums/amor-de-encava.jpg` | Album art 2025 (600x600) | MediaGrid |
+| `albums/evilchanga.jpg` | Album art 2024 (600x600) | MediaGrid |
+| `albums/la-malasangrura.jpg` | Album art 2023 (600x600) | MediaGrid |
+| `albums/rvrt-3.jpg` | Album art 2023 (600x600) | MediaGrid |
 
-Their debut album "Amor de encava" (2025) debuted at #2 on 
-RateYourMusic's Top Albums of 2025. Previous releases include 
-EVILCHANGA (2024), la malasangrura (2023), and RVRT 3 (2023).
+**Image specs:**
+- Max size: 25MB per file (Cloudflare Pages limit)
+- Recommended: <5MB each
+- Formats: JPG, PNG, WebP
 
-The collective emerged from artists sharing heavily processed 
-remixes of Venezuelan trap and urban music through digital 
-platforms. Their sound blends noise, salsa, trap, and soundscape 
-into a moving audio experience reflecting younger generations 
-in Venezuela.
+---
+
+## Tour Dates (Google Sheets)
+
+```csv
+// Google Sheet columns: date, venue, city
+// date format: "OCT 03 2025" or "OCT 03-05 2025" for ranges
 ```
 
-### Full Press Kit Bio
-> [Request from PR/management]
+**Sheet URL:** Configured in `src/components/TourDates.astro` (line 2)
+
+**Deploy local to test:**
+```bash
+npm run dev
+```
+
+**Deploy to production:**
+```bash
+wrangler pages deploy dist --project-name=weed420-epk
+```
 
 ---
 
-## 7. Video Content
+## Checklist
 
-| Title | Platform | URL |
-|-------|----------|-----|
-| Music Video 1 | YouTube | YOUR_LINK |
-| Live Session | YouTube | YOUR_LINK |
-| Interview | YouTube | YOUR_LINK |
-
----
-
-## 8. Checklist
-
-- [ ] Hero image (1920x1080)
-- [ ] Portrait image (800x1000, 4:5)
-- [ ] 4 album cover images (square, 600x600)
-- [ ] Update Bandcamp/Spotify/SoundCloud links
-- [ ] Update social media links
-- [ ] Configure Google Sheet for tour dates
-- [ ] Update booking email
-- [ ] Test all links
-- [ ] Verify mobile responsive
+- [ ] Update Social Media links in Footer.astro
+- [ ] Update email in Footer.astro  
+- [ ] Add album covers to public/images/albums/
+- [ ] Verify all external links work
+- [ ] Test on localhost:4321
+- [ ] Deploy to production
 
 ---
 
-## 9. Component Reference
-
-| Component | File | Placeholder Tag |
-|-----------|------|----------------|
-| Navbar | `src/components/Navbar.astro` | - |
-| Hero | `src/components/Hero.astro` | Unsplash image |
-| About | `src/components/AboutPreview.astro` | Unsplash portrait |
-| Media Platforms | `src/components/MediaPlatforms.astro` | hardcoded URLs |
-| Media Grid | `src/components/MediaGrid.astro` | Unsplash images |
-| Tour Dates | `src/components/TourDates.astro` | placeholder message |
-| Footer | `src/components/Footer.astro` | placeholder email |
-
----
-
-*Last updated: 2026-04-24*
+*Last Updated: 2026-04-24*
