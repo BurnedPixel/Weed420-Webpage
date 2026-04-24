@@ -1,5 +1,10 @@
 ---
 const GOOGLE_SHEET_URL = 'YOUR_GOOGLE_SHEET_PUBLISHED_URL_HERE';
+
+function sanitizeString(str: string | undefined): string {
+  if (!str) return '';
+  return str.replace(/[<>\"'&]/g, '').slice(0, 200);
+}
 ---
 
 <section id="tour" class="py-24 px-6">
@@ -15,6 +20,21 @@ const GOOGLE_SHEET_URL = 'YOUR_GOOGLE_SHEET_PUBLISHED_URL_HERE';
 </section>
 
 <script define:vars={{ GOOGLE_SHEET_URL }}>
+function sanitize(str) {
+  if (!str) return '';
+  return str.replace(/[<>\"'&]/g, '').slice(0, 200);
+}
+
+function escapeHtml(str) {
+  if (!str) return '';
+  return str
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
+}
+
 async function fetchTourDates() {
   const container = document.getElementById('tour-dates');
   if (!container) return;
@@ -32,6 +52,11 @@ async function fetchTourDates() {
   try {
     const url = GOOGLE_SHEET_URL + '/gviz/tq?tqx=out:json&sheet=tourdates';
     const response = await fetch(url);
+    
+    if (!response.ok) {
+      throw new Error('Fetch failed');
+    }
+    
     const text = await response.text();
     
     const jsonStart = text.indexOf('{');
@@ -50,29 +75,36 @@ async function fetchTourDates() {
       return;
     }
     
-    const dates = rows.map(row => ({
-      date: row.c[0]?.f || row.c[0]?.v || '',
-      venue: row.c[1]?.v || '',
-      city: row.c[2]?.v || '',
-      ticketLink: row.c[3]?.v || ''
+    const dates = rows.slice(0, 50).map(row => ({
+      date: sanitize(row.c[0]?.f || row.c[0]?.v || ''),
+      venue: sanitize(row.c[1]?.v || ''),
+      city: sanitize(row.c[2]?.v || ''),
+      ticketLink: sanitize(row.c[3]?.v || '')
     })).filter(d => d.date || d.venue);
     
-    container.innerHTML = dates.map(d => `
-      <a href="${d.ticketLink || '#'}" class="group flex items-center justify-between py-4 border-b border-[#f5f5f5]/10 hover:border-[#dc2626]/50 transition-colors" ${d.ticketLink ? 'target="_blank" rel="noopener noreferrer"' : ''}>
-        <div class="flex items-center gap-6 md:gap-12">
-          <span class="text-sm font-mono tracking-wider text-[#dc2626]">${d.date}</span>
-          <span class="text-[#f5f5f5] font-medium">${d.venue}</span>
-        </div>
-        <div class="flex items-center gap-6">
-          <span class="text-sm text-[#f5f5f5]/50 hidden md:block">${d.city}</span>
-          ${d.ticketLink ? `
-            <span class="text-xs tracking-wider uppercase text-[#f5f5f5]/30 group-hover:text-[#dc2626] transition-colors">
-              Tickets
-            </span>
-          ` : ''}
-        </div>
-      </a>
-    `).join('');
+    container.innerHTML = dates.map(d => {
+      const safeDate = escapeHtml(d.date);
+      const safeVenue = escapeHtml(d.venue);
+      const safeCity = escapeHtml(d.city);
+      const hasLink = d.ticketLink && d.ticketLink.startsWith('http');
+      
+      return `
+        <a href="${hasLink ? escapeHtml(d.ticketLink) : '#'}" class="group flex items-center justify-between py-4 border-b border-[#f5f5f5]/10 hover:border-[#dc2626]/50 transition-colors" ${hasLink ? 'target="_blank" rel="noopener noreferrer nofollow"' : ''}>
+          <div class="flex items-center gap-6 md:gap-12">
+            <span class="text-sm font-mono tracking-wider text-[#dc2626]">${safeDate}</span>
+            <span class="text-[#f5f5f5] font-medium">${safeVenue}</span>
+          </div>
+          <div class="flex items-center gap-6">
+            <span class="text-sm text-[#f5f5f5]/50 hidden md:block">${safeCity}</span>
+            ${hasLink ? `
+              <span class="text-xs tracking-wider uppercase text-[#f5f5f5]/30 group-hover:text-[#dc2626] transition-colors">
+                Tickets
+              </span>
+            ` : ''}
+          </div>
+        </a>
+      `;
+    }).join('');
     
   } catch (error) {
     console.error('Error fetching tour dates:', error);
