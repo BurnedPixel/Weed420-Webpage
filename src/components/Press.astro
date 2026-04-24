@@ -10,29 +10,50 @@ import { PRESS } from '../data/constants';
       <p class="text-sm text-text-dim text-center">Press reviews coming soon.</p>
     ) : (
       <div class="space-y-6">
-        {PRESS.map(item => (
-          item.url ? (
-            <a href={item.url} target="_blank" rel="noopener noreferrer" class="block border border-border hover:border-accent/50 transition-colors p-6">
-              <blockquote class="text-sm text-text-muted leading-relaxed mb-4">
-                &ldquo;{item.quote}&rdquo;
+        {PRESS.map(item => {
+          const hasEn = Boolean(item.quoteEn);
+          return item.url ? (
+            <a href={item.url} target="_blank" rel="noopener noreferrer" class="group block border border-border hover:border-accent/50 transition-colors p-6">
+              <blockquote class="relative text-sm leading-relaxed mb-4">
+                <span class={hasEn ? 'group-hover:opacity-0 transition-opacity duration-500 ease-in-out' : ''}>
+                  &ldquo;{item.quote}&rdquo;
+                </span>
+                {hasEn && (
+                  <span class="absolute top-0 left-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-in-out text-text">
+                    &ldquo;{item.quoteEn}&rdquo;
+                  </span>
+                )}
               </blockquote>
               <cite class="inline-flex items-baseline gap-2 text-xs tracking-wider uppercase not-italic">
                 <span class="text-accent">&mdash; {item.source}</span>
                 <span class="text-text/70 text-[10px]">{item.article}</span>
+                {hasEn && (
+                  <span class="text-text/40 text-[9px] tracking-normal lowercase opacity-0 group-hover:opacity-100 transition-opacity duration-300">(hover to translate)</span>
+                )}
               </cite>
             </a>
           ) : (
-            <div class="block border border-border p-6">
-              <blockquote class="text-sm text-text-muted leading-relaxed mb-4">
-                &ldquo;{item.quote}&rdquo;
+            <div class="group block border border-border hover:border-accent/50 transition-colors p-6">
+              <blockquote class="relative text-sm leading-relaxed mb-4">
+                <span class={hasEn ? 'group-hover:opacity-0 transition-opacity duration-500 ease-in-out' : ''}>
+                  &ldquo;{item.quote}&rdquo;
+                </span>
+                {hasEn && (
+                  <span class="absolute top-0 left-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-in-out text-text">
+                    &ldquo;{item.quoteEn}&rdquo;
+                  </span>
+                )}
               </blockquote>
               <cite class="inline-flex items-baseline gap-2 text-xs tracking-wider uppercase not-italic">
                 <span class="text-accent">&mdash; {item.source}</span>
                 <span class="text-text/70 text-[10px]">{item.article}</span>
+                {hasEn && (
+                  <span class="text-text/40 text-[9px] tracking-normal lowercase opacity-0 group-hover:opacity-100 transition-opacity duration-300">(hover to translate)</span>
+                )}
               </cite>
             </div>
-          )
-        ))}
+          );
+        })}
       </div>
     )}
   </div>

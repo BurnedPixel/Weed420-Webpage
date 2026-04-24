@@ -34,6 +34,7 @@ export const PRESS = [
   },
   {
     quote: 'El fenómeno más intrigante de un año lleno de cuestionamientos. Una perspectiva sui generis que pocas veces se había visto. Con cada nueva escucha muta en algo mucho más complejo.',
+    quoteEn: 'The most intriguing phenomenon of a year full of questions. A unique perspective rarely seen before. With each listen it mutates into something much more complex.',
     source: 'Vogue México',
     article: 'Los 30 Mejores Discos de Música Latina de 2025',
     url: 'https://www.vogue.mx/articulo/mejores-discos-de-musica-latina-de-2025',
@@ -46,6 +47,7 @@ export const PRESS = [
   },
   {
     quote: 'Explora los vínculos entre memoria, política y experimentación sonora. Ruido y texturas psicodélicas creando reinterpretaciones atmosféricas de la música latinoamericana.',
+    quoteEn: 'Explores the links between memory, politics and sonic experimentation. Noise and psychedelic textures creating atmospheric reinterpretations of Latin American music.',
     source: 'Pinault Collection',
     article: 'Los Thuthanaka + Weed420',
     url: 'https://www.pinaultcollection.com/fr/boursedecommerce/los-thuthanaka-weed420',
