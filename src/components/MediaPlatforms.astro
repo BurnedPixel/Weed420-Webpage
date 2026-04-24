@@ -34,7 +34,7 @@ const svgMap = {
           <div class="w-16 h-16 flex items-center justify-center border border-border-light group-hover:border-accent group-hover:bg-accent/10 transition-all duration-300">
             <span class="w-9 h-9 [&>svg]:w-full [&>svg]:h-full" set:html={svgMap[platform.icon]} />
           </div>
-          <span class="text-xs tracking-wider uppercase">{platform.name}</span>
+          <span class="text-[10px] tracking-wider uppercase max-w-[64px] text-center leading-tight">{platform.name}</span>
         </a>
       ))}
     </div>

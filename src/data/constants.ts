@@ -11,7 +11,7 @@ export const PLATFORMS = [
   { name: 'Apple Music', url: 'https://music.apple.com/us/artist/weed420/1702350628', icon: 'applemusic' as const },
   { name: 'Deezer', url: 'https://www.deezer.com/artist/225759075', icon: 'deezer' as const },
   { name: 'Tidal', url: 'https://tidal.com/artist/41371367', icon: 'tidal' as const },
-  { name: 'YouTube Music', url: 'https://www.youtube.com/@weedcuatrocientosveinte', icon: 'youtubemusic' as const },
+  { name: 'YT MUSIC', url: 'https://www.youtube.com/@weedcuatrocientosveinte', icon: 'youtubemusic' as const },
 ];
 
 export const SOCIALS = [
