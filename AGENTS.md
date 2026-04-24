@@ -37,11 +37,17 @@ public/images/
 
 ## Deployment (Cloudflare Pages)
 ```bash
+# Build first
+npm run build
+
+# Commit changes to git BEFORE deploying
+git add -A && git commit -m "[deploy] Your message"
+
 # Deploy ONLY when explicitly directed by user
 wrangler pages deploy dist --project-name=weed420-epk
 ```
 
-> **Important:** Do NOT auto-deploy after every change. Only deploy when user explicitly requests it.
+> **Important:** Always commit to git before deploying. Don't deploy online unless user explicitly requests it.
 
 **Live URL:** https://master.weed420-epk.pages.dev
 
