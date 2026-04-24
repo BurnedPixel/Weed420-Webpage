@@ -53,7 +53,7 @@ try {
 
   let prevDate: string | null = null;
   entries = rows
-    .slice(0, 50)
+    .slice(1)
     .map(row => {
       const dateVal = row.c?.[0]?.f || row.c?.[0]?.v || prevDate;
       if (dateVal) prevDate = dateVal;
