@@ -6,7 +6,7 @@ export interface Release {
   link: string;
 }
 
-export const releases: Release[] = [
+const releases: Release[] = [
   { title: 'amor de encava', year: '2025', featured: true, image: '/images/albums/amor-de-encava.jpg', link: 'https://xweed420x.bandcamp.com/album/amor-de-encava' },
   { title: 'Estoy viviendo', year: '2026', featured: true, image: '/images/albums/estoy-viviendo.jpg', link: 'https://xweed420x.bandcamp.com/album/estoy-viviendo' },
   { title: 'EVILCHANGA', year: '2024', featured: true, image: '/images/albums/evilchanga.jpg', link: 'https://xweed420x.bandcamp.com/album/evilchanga' },

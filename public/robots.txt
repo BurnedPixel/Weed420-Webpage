@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://weed420.com/sitemap-index.xml
+Sitemap: https://weed420.pages.dev/sitemap-index.xml
