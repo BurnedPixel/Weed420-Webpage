@@ -7,7 +7,7 @@ Edit this note to update the text displayed on the site. Sections marked with `(
 ## Hero (id: home)
 - **Title:** weed420
 - **Subtitle:** Venezuelan Experimental Collective
-- **Accolade:** Amor de encava · #2 RateYourMusic 2025
+- **Accolade:** Amor de encava · Top 50 Latin Music Albums 2025
 - **Scroll text:** Scroll
 
 ---
@@ -15,8 +15,8 @@ Edit this note to update the text displayed on the site. Sections marked with `(
 ## About / Bio (id: bio)
 - **Eyebrow:** About
 - **Heading:** Epic Collage From Venezuela
-- **Body 1:** Formed in 2021, weed420 is a Venezuelan experimental collective producing epic collage, hexd, deconstructed club, cloud rap, and reggaeton. Their debut album "Amor de encava" debuted at #2 on RateYourMusic's Top Albums of 2025.
-- **Body 2:** Drawing from the sound of Venezuelan public transport "encavas" and internet culture, they blend noise, salsa, trap and soundscape into a dense, moving audio experience.
+- **Body 1:** weed420 is an experimental sound-collage collective from Valencia, Venezuela, exploring memory, politics, and the experience of uprooting. Blending noise, lo-fi, and maximalist vaporwave, they fuse somber cloud-rap and ambient textures with 2000s perreo and salsa. Through guitars, synths, and processed vocals, they connect chopped ‘n’ screwed trap with deep-rooted Latin American influences, creating hyper-emo, atmospheric reinterpretations of club music filled with joyful abandon.
+- **Body 2:** Their conceptual depth peaks in Amor de Encava, an album inspired by customized Venezuelan transit buses. Weaving reggaetón, salsa baúl, and pop memories, it maps a sonic cartography of daily life and systemic catastrophe. Live, weed420 deploys this radical collage approach, jumping between overwhelming percussion and hypnotic abstraction. Amid political turmoil, their immersive performances position rhythm as a definitive space for resistance and memory.
 - **Button:** Learn More
 - **Image:** /images/hero2.jpg
 
@@ -55,4 +55,4 @@ Edit this note to update the text displayed on the site. Sections marked with `(
 - **Email:** juanchiphelan@gmail.com
 - **Social label:** Follow
 - **Socials:** (array in src/data/constants.ts — SOCIALS)
-- **Copyright:** weed420. All rights reserved.
+- **Copyright:** weed420. All rights reserved. 
