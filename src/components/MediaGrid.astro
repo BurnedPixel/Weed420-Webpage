@@ -1,57 +1,67 @@
 ---
 const releases = [
-  {
-    title: 'Amor de encava',
-    year: '2025',
-    image: '/images/albums/amor-de-encava.jpg',
-    link: 'https://xweed420x.bandcamp.com/album/amor-de-encava',
-  },
-  {
-    title: 'EVILCHANGA',
-    year: '2024',
-    image: '/images/albums/evilchanga.jpg',
-    link: 'https://xweed420x.bandcamp.com/album/evilchanga',
-  },
-  {
-    title: 'la malasangrura',
-    year: '2023',
-    image: '/images/albums/la-malasangrura.jpg',
-    link: 'https://xweed420x.bandcamp.com/album/la-malasangrura',
-  },
-  {
-    title: 'RVRT 3',
-    year: '2023',
-    image: '/images/albums/rvrt-3.jpg',
-    link: 'https://xweed420x.bandcamp.com/album/rvrt-3',
-  },
+  { title: 'amor de encava', year: '2025', featured: true, link: 'https://xweed420x.bandcamp.com/album/amor-de-encava' },
+  { title: 'Estoy viviendo', year: '2026', featured: true, link: 'https://xweed420x.bandcamp.com/album/estoy-viviendo' },
+  { title: 'EVILCHANGA', year: '2024', featured: true, link: 'https://xweed420x.bandcamp.com/album/evilchanga' },
+  { title: 'la malasangrura', year: '2023', featured: true, link: 'https://xweed420x.bandcamp.com/album/la-malasangrura' },
+  { title: 'RVRT 3', year: '2023', featured: false, link: 'https://xweed420x.bandcamp.com/album/rvrt-3' },
+  { title: 'psp', year: 'N/A', featured: false, link: 'https://xweed420x.bandcamp.com/album/psp' },
+  { title: 'Esto no es un show', year: 'N/A', featured: false, link: 'https://xweed420x.bandcamp.com/album/esto-no-es-un-show' },
+  { title: 'malandreo conceptual', year: '2024', featured: false, link: 'https://xweed420x.bandcamp.com/album/malandreo-conceptual' },
+  { title: 'Dedicado a [NTS]', year: 'N/A', featured: false, link: 'https://xweed420x.bandcamp.com/album/dedicado-a-nts' },
+  { title: 'Fotos varias [NTS]', year: '2025', featured: false, link: 'https://xweed420x.bandcamp.com/album/fotos-varias-nts' },
+  { title: 'Miren miren guayo... [NTS]', year: '2025', featured: false, link: 'https://xweed420x.bandcamp.com/album/miren-miren-guayo-nts' },
+  { title: 'lo que puedo hacer para mejorar es hacer plata', year: 'N/A', featured: false, link: 'https://xweed420x.bandcamp.com/album/lo-que-puedo-hacer-para-mejorar-es-hacer-plata' },
 ];
+
+const featured = releases.filter(r => r.featured);
+const secondary = releases.filter(r => !r.featured);
 ---
 
 <section id="video" class="py-24 px-6">
   <div class="max-w-7xl mx-auto">
     <h2 class="text-xs tracking-[0.3em] uppercase text-[#dc2626] mb-12 text-center">Discography</h2>
     
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
-      {releases.map(release => (
+    <h3 class="text-xs tracking-[0.2em] uppercase text-[#f5f5f5]/40 mb-6 text-center">Albums</h3>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 mb-10">
+      {featured.map(release => (
         <a 
           href={release.link}
           target="_blank"
           rel="noopener noreferrer"
-          class="group relative aspect-square bg-[#1a1a1a] overflow-hidden"
+          class="group relative aspect-square bg-[#1a1a1a] overflow-hidden border border-[#f5f5f5]/10 hover:border-[#dc2626]/50 transition-colors"
         >
-          <img 
-            src={release.image}
-            alt={release.title}
-            class="w-full h-full object-cover opacity-50 group-hover:opacity-70 group-hover:scale-105 transition-all duration-500"
-          />
-          <div class="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-transparent to-transparent opacity-80"></div>
-          <div class="absolute bottom-0 left-0 right-0 p-4">
-            <p class="text-xs text-[#dc2626] tracking-widest mb-1">{release.year}</p>
-            <h3 class="text-lg font-bold uppercase">{release.title}</h3>
+          <div class="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-transparent to-transparent opacity-60"></div>
+          <div class="absolute bottom-0 left-0 right-0 p-3">
+            <p class="text-[10px] text-[#dc2626] tracking-widest mb-0.5">{release.year}</p>
+            <h3 class="text-sm font-bold uppercase leading-tight">{release.title}</h3>
           </div>
-          <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-            <span class="text-sm tracking-wider uppercase text-[#f5f5f5] border border-[#f5f5f5] px-4 py-2">
+          <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-[#0a0a0a]/60">
+            <span class="text-xs tracking-wider uppercase text-[#f5f5f5] border border-[#f5f5f5] px-3 py-1.5">
               Listen
+            </span>
+          </div>
+        </a>
+      ))}
+    </div>
+    
+    <h3 class="text-xs tracking-[0.2em] uppercase text-[#f5f5f5]/40 mb-6 text-center">EPs & Singles</h3>
+    <div class="grid grid-cols-3 md:grid-cols-6 gap-2">
+      {secondary.map(release => (
+        <a 
+          href={release.link}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="group relative aspect-square bg-[#1a1a1a] overflow-hidden hover:border hover:border-[#dc2626]/30 transition-colors"
+        >
+          <div class="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-transparent to-transparent opacity-50"></div>
+          <div class="absolute bottom-0 left-0 right-0 p-2">
+            <p class="text-[8px] text-[#dc2626]/60 tracking-wider mb-0.5">{release.year}</p>
+            <h3 class="text-[10px] font-medium uppercase leading-tight truncate">{release.title}</h3>
+          </div>
+          <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200 bg-[#0a0a0a]/60">
+            <span class="text-[9px] tracking-wider uppercase text-[#f5f5f5] border border-[#f5f5f5]/50 px-2 py-1">
+              →
             </span>
           </div>
         </a>
