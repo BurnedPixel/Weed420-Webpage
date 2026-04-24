@@ -1,5 +1,6 @@
 ---
 const GOOGLE_SHEET_URL = 'https://docs.google.com/spreadsheets/d/10JV33dWWWoVUqHGb5DdUpmmg1TSdHEiccmxEezEZ_ws';
+const CURRENT_YEAR = new Date().getFullYear();
 ---
 
 <section id="tour" class="py-24 px-6">
@@ -7,137 +8,105 @@ const GOOGLE_SHEET_URL = 'https://docs.google.com/spreadsheets/d/10JV33dWWWoVUqH
     <div class="flex items-start justify-between mb-10">
       <h2 class="text-xs tracking-[0.3em] uppercase text-[#dc2626]">Tour Dates</h2>
     </div>
-    
+
     <div id="tour-dates" class="space-y-0 text-left">
-      <div class="text-center text-[#f5f5f5]/50 py-8">
+      <div class="text-[#f5f5f5]/50 py-8">
         <p class="text-xs tracking-wider">Loading tour dates...</p>
       </div>
     </div>
   </div>
 </section>
 
-<script define:vars={{ GOOGLE_SHEET_URL }}>
-function sanitize(str) {
+<script define:vars={{ GOOGLE_SHEET_URL, CURRENT_YEAR }}>
+const container = document.getElementById('tour-dates');
+const months = {JAN:0,FEB:1,MAR:2,APR:3,MAY:4,JUN:5,JUL:6,AUG:7,SEP:8,OCT:9,NOV:10,DEC:11};
+
+function esc(str) {
   if (!str) return '';
-  return str.replace(/[<>\"'&]/g, '').slice(0, 200);
+  return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#039;');
 }
 
-function escapeHtml(str) {
+function sanitize(str) {
   if (!str) return '';
-  return str
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
-    .replace(/'/g, '&#039;');
+  return String(str).replace(/[<>\"'&]/g, '').slice(0, 200);
 }
 
 function parseDate(dateStr) {
   if (!dateStr) return null;
   try {
-    const months = {JAN:0,FEB:1,MAR:2,APR:3,MAY:4,JUN:5,JUL:6,AUG:7,SEP:8,OCT:9,NOV:10,DEC:11};
     const dashIdx = dateStr.indexOf('-');
     const datePart = dashIdx > -1 ? dateStr.slice(0, dashIdx).trim() + ' ' + dateStr.slice(dashIdx + 1).trim() : dateStr;
     const parts = datePart.toUpperCase().trim().split(/[\s,]+/);
     if (parts.length >= 3) {
       const month = months[parts[0]] || 0;
       const day = parseInt(parts[1]) || 1;
-      const year = parseInt(parts[2]) || new Date().getFullYear();
+      const year = parseInt(parts[2]) || CURRENT_YEAR;
       return new Date(year, month, day);
     }
   } catch (e) {}
   return null;
 }
 
-function isPastDate(dateStr) {
+function isPast(dateStr) {
   const d = parseDate(dateStr);
-  if (!d) return false;
-  return d < new Date();
+  return d && d.getFullYear() < CURRENT_YEAR;
 }
 
 async function fetchTourDates() {
-  const container = document.getElementById('tour-dates');
-  if (!container) return;
-  
-  if (GOOGLE_SHEET_URL === 'YOUR_GOOGLE_SHEET_PUBLISHED_URL_HERE') {
-    container.innerHTML = `
-      <div class="text-center text-[#f5f5f5]/40 py-4 text-xs">
-        No tour dates configured
-      </div>
-    `;
+  if (!container || GOOGLE_SHEET_URL === 'YOUR_GOOGLE_SHEET_PUBLISHED_URL_HERE') {
+    if (container) container.innerHTML = '<div class="text-[#f5f5f5]/40 py-4 text-xs">No tour dates configured</div>';
     return;
   }
-  
+
   try {
-    const url = GOOGLE_SHEET_URL + '/gviz/tq?tqx=out:json&sheet=tourdates';
-    const response = await fetch(url);
-    
-    if (!response.ok) {
-      throw new Error('Fetch failed');
-    }
-    
-    const text = await response.text();
-    const jsonStart = text.indexOf('{');
-    const jsonEnd = text.lastIndexOf('}') + 1;
-    const jsonStr = text.slice(jsonStart, jsonEnd);
-    const data = JSON.parse(jsonStr);
-    
-    const rows = data.table ? data.table.rows : [];
-    
+    const res = await fetch(GOOGLE_SHEET_URL + '/gviz/tq?tqx=out:json&sheet=tourdates');
+    const text = await res.text();
+    const json = JSON.parse(text.slice(text.indexOf('{'), text.lastIndexOf('}') + 1));
+    const rows = json.table?.rows || [];
+
     if (rows.length === 0) {
-      container.innerHTML = `
-        <div class="text-center text-[#f5f5f5]/40 py-4 text-xs">
-          No upcoming tour dates
-        </div>
-      `;
+      container.innerHTML = '<div class="text-[#f5f5f5]/40 py-4 text-xs">No upcoming tour dates</div>';
       return;
     }
-    
-    const dates = rows.slice(0, 50).map(row => ({
-      date: sanitize(row.c[0]?.f || row.c[0]?.v || ''),
-      venue: sanitize(row.c[1]?.v || ''),
-      city: sanitize(row.c[2]?.v || ''),
-      ticketLink: sanitize(row.c[3]?.v || ''),
-      isPast: isPastDate(row.c[0]?.v || row.c[0]?.f || '')
-    })).filter(d => d.date || d.venue);
-    
-    const upcoming = dates.filter(d => !d.isPast);
-    const past = dates.filter(d => d.isPast);
-    
-    if (upcoming.length === 0 && past.length === 0) {
-      container.innerHTML = `
-        <div class="text-center text-[#f5f5f5]/40 py-4 text-xs">
-          No upcoming tour dates
-        </div>
-      `;
+
+    let prevDate = null;
+    const dates = rows.slice(0, 50).map(row => {
+      const dateVal = row.c[0]?.f || row.c[0]?.v || prevDate;
+      if (dateVal) prevDate = dateVal;
+      const entry = {
+        date: sanitize(dateVal),
+        venue: sanitize(row.c[1]?.v || ''),
+        city: sanitize(row.c[2]?.v || ''),
+        link: sanitize(row.c[3]?.v || ''),
+        past: isPast(row.c[0]?.v || row.c[0]?.f || '')
+      };
+      return entry;
+    }).filter(d => d.date || d.venue);
+
+    const upcoming = dates.filter(d => !d.past);
+
+    if (upcoming.length === 0) {
+      container.innerHTML = '<div class="text-[#f5f5f5]/40 py-4 text-xs">No upcoming tour dates</div>';
       return;
     }
-    
-    container.innerHTML = upcoming.map(d => d.ticketLink ? `
-      <a href="${escapeHtml(d.ticketLink)}" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between py-3 border-b border-[#f5f5f5]/10 hover:border-[#dc2626]/30 transition-colors block">
+
+    container.innerHTML = upcoming.map(d => {
+      const row = d.link
+        ? `<a href="${esc(d.link)}" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between py-3 border-b border-[#f5f5f5]/10 hover:border-[#dc2626]/30 transition-colors block">`
+        : `<div class="flex items-center justify-between py-3 border-b border-[#f5f5f5]/10">`;
+      const close = d.link ? '</a>' : '</div>';
+      return `${row}
         <div class="flex items-center gap-4">
-          <span class="text-xs font-mono tracking-wider text-[#dc2626]">${escapeHtml(d.date)}</span>
-          <span class="text-xs text-[#f5f5f5]/80">${escapeHtml(d.venue)}</span>
+          <span class="text-xs font-mono tracking-wider text-[#dc2626]">${esc(d.date)}</span>
+          <span class="text-xs text-[#f5f5f5]/80">${esc(d.venue)}</span>
         </div>
-        <span class="text-xs text-[#f5f5f5]/50">${escapeHtml(d.city)}</span>
-      </a>
-    ` : `
-      <div class="flex items-center justify-between py-3 border-b border-[#f5f5f5]/10">
-        <div class="flex items-center gap-4">
-          <span class="text-xs font-mono tracking-wider text-[#dc2626]">${escapeHtml(d.date)}</span>
-          <span class="text-xs text-[#f5f5f5]/80">${escapeHtml(d.venue)}</span>
-        </div>
-        <span class="text-xs text-[#f5f5f5]/50">${escapeHtml(d.city)}</span>
-      </div>
-    `).join('');
-    
-  } catch (error) {
-    console.error('Error fetching tour dates:', error);
-    container.innerHTML = `
-      <div class="text-center text-[#f5f5f5]/40 py-4 text-xs">
-        Unable to load tour dates
-      </div>
-    `;
+        <span class="text-xs text-[#f5f5f5]/50">${esc(d.city)}</span>
+      ${close}`;
+    }).join('');
+
+  } catch (err) {
+    console.error('Error fetching tour dates:', err);
+    container.innerHTML = '<div class="text-[#f5f5f5]/40 py-4 text-xs">Unable to load tour dates</div>';
   }
 }
 
