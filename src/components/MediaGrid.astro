@@ -1,5 +1,20 @@
 ---
-import { featured, secondary } from '../data/discography';
+import { albums, mixtapes, djmixes, live, eps, others } from '../data/discography';
+
+interface Releases {
+  label: string;
+  items: typeof albums;
+  featured?: boolean;
+}
+
+const sections: Releases[] = [
+  { label: 'Album', items: albums, featured: true },
+  { label: 'Mixtapes', items: mixtapes },
+  { label: 'DJ Mixes', items: djmixes },
+  { label: 'Live', items: live },
+  { label: 'EP', items: eps },
+  { label: 'Other Artists', items: others },
+];
 
 const floatDelays = [0, 0.8, 1.6];
 ---
@@ -8,62 +23,69 @@ const floatDelays = [0, 0.8, 1.6];
   <div class="max-w-7xl mx-auto">
     <h2 class="text-xs tracking-[0.3em] uppercase text-accent mb-12 text-center">Discography</h2>
 
-    <h3 class="text-sm tracking-[0.2em] uppercase text-text-dim mb-6 text-center">Albums</h3>
-    <div class="flex flex-wrap justify-center gap-4 md:gap-8 mb-10">
-      {featured.map((release, i) => (
-        <a
-          href={release.link}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="group relative aspect-square bg-bg-card overflow-hidden border border-border hover:border-accent/50 transition-all duration-300 hover:-translate-y-1"
-          style={`width: clamp(140px, 25vw, 260px); animation: float 3s ease-in-out infinite; animation-delay: ${floatDelays[i]}s;`}
-        >
-          <img
-            src={release.image}
-            alt={release.title}
-            loading="lazy"
-            class="w-full h-full object-cover opacity-60 group-hover:opacity-80 group-hover:scale-105 transition-all duration-500"
-          />
-          <div class="absolute inset-0 bg-gradient-to-t from-bg via-transparent to-transparent opacity-60"></div>
-          <div class="absolute bottom-0 left-0 right-0 p-3">
-            <p class="text-xs text-accent tracking-widest mb-0.5">{release.year}</p>
-            <h3 class="text-sm font-semibold uppercase leading-tight">{release.title}</h3>
-          </div>
-          <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-bg/60">
-            <span class="text-sm tracking-wider uppercase text-text border border-text px-3 py-1.5">
-              Listen
-            </span>
-          </div>
-        </a>
-      ))}
-    </div>
-
-    <h3 class="text-sm tracking-[0.2em] uppercase text-text-dim mb-6 text-center">EPs & Singles</h3>
-    <div class="grid grid-cols-3 md:grid-cols-6 gap-2">
-      {secondary.map(release => (
-        <a
-          href={release.link}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="group relative aspect-square bg-bg-card overflow-hidden hover:border hover:border-accent-muted transition-colors"
-        >
-          <img
-            src={release.image}
-            alt={release.title}
-            loading="lazy"
-            class="w-full h-full object-cover opacity-50 group-hover:opacity-70 transition-opacity duration-300"
-          />
-          <div class="absolute inset-0 bg-gradient-to-t from-bg via-transparent to-transparent opacity-50"></div>
-          <div class="absolute bottom-0 left-0 right-0 p-2">
-            <p class="text-xs text-accent/60 tracking-wider mb-0.5">{release.year}</p>
-            <h3 class="text-xs font-medium uppercase leading-tight truncate">{release.title}</h3>
-          </div>
-          <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200 bg-bg/60">
-            <span class="text-xs tracking-wider uppercase text-text border border-text-dim px-2 py-1">
-              &rarr;
-            </span>
-          </div>
-        </a>
+    <div class="space-y-16">
+      {sections.map(section => (
+        <div>
+          <h3 class="text-sm tracking-[0.2em] uppercase text-text-dim mb-6 text-center">{section.label}</h3>
+          {section.featured ? (
+            <div class="flex flex-wrap justify-center gap-4 md:gap-8">
+              {section.items.map((release, i) => (
+                <a
+                  href={release.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="group relative aspect-square bg-bg-card overflow-hidden border border-border hover:border-accent/50 transition-all duration-300 hover:-translate-y-1"
+                  style={`width: clamp(140px, 25vw, 260px); animation: float 3s ease-in-out infinite; animation-delay: ${floatDelays[i]}s;`}
+                >
+                  <img
+                    src={release.image}
+                    alt={release.title}
+                    loading="lazy"
+                    class="w-full h-full object-cover opacity-60 group-hover:opacity-80 group-hover:scale-105 transition-all duration-500"
+                  />
+                  <div class="absolute inset-0 bg-gradient-to-t from-bg via-transparent to-transparent opacity-60"></div>
+                  <div class="absolute bottom-0 left-0 right-0 p-3">
+                    <p class="text-xs text-accent tracking-widest mb-0.5">{release.year}</p>
+                    <h3 class="text-sm font-semibold uppercase leading-tight">{release.title}</h3>
+                  </div>
+                  <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-bg/60">
+                    <span class="text-sm tracking-wider uppercase text-text border border-text px-3 py-1.5">
+                      Listen
+                    </span>
+                  </div>
+                </a>
+              ))}
+            </div>
+          ) : (
+            <div class="grid grid-cols-3 md:grid-cols-6 gap-2">
+              {section.items.map(release => (
+                <a
+                  href={release.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="group relative aspect-square bg-bg-card overflow-hidden hover:border hover:border-accent-muted transition-colors"
+                >
+                  <img
+                    src={release.image}
+                    alt={release.title}
+                    loading="lazy"
+                    class="w-full h-full object-cover opacity-50 group-hover:opacity-70 transition-opacity duration-300"
+                  />
+                  <div class="absolute inset-0 bg-gradient-to-t from-bg via-transparent to-transparent opacity-50"></div>
+                  <div class="absolute bottom-0 left-0 right-0 p-2">
+                    <p class="text-xs text-accent/60 tracking-wider mb-0.5">{release.year}</p>
+                    <h3 class="text-xs font-medium uppercase leading-tight truncate">{release.title}</h3>
+                  </div>
+                  <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200 bg-bg/60">
+                    <span class="text-xs tracking-wider uppercase text-text border border-text-dim px-2 py-1">
+                      &rarr;
+                    </span>
+                  </div>
+                </a>
+              ))}
+            </div>
+          )}
+        </div>
       ))}
     </div>
   </div>
