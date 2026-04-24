@@ -80,7 +80,17 @@ done
 3. Run `npm run build` to verify the integration.
 4. Commit: `git add -A && git commit -m "[feat] Add new Bandcamp release"`
 
-## 6. Current Context & Pending Tasks
+## 6. Branch & Deployment Context
+
+### Branches
+| Branch | Description | URL |
+|--------|-------------|-----|
+| `master` | Original rigid/blocky design | https://master.weed420-epk.pages.dev |
+| `design/organic` | Organic floating design with animations | https://design-organic.weed420-epk.pages.dev |
+
+### Current Discography (both branches)
+- 3 Featured Albums: amor de encava (2025), Estoy viviendo (2026), EVILCHANGA (2024)
+- 8 EPs/Singles: RVRT 3, psp, Esto no es un show, malandreo conceptual, Dedicado a [NTS], Fotos varias [NTS], Miren miren guayo... [NTS], lo que puedo hacer para mejorar es hacer plata
 * **Task 1:** Verify the structural integrity and functionality of social media links located within `Footer.astro`.
 * **Known URLs:**
   * Bandcamp: `[Requires actual URL check]`
