@@ -31,10 +31,10 @@ const svgMap = {
           rel="noopener noreferrer"
           class="group flex flex-col items-center gap-3 text-text-dim hover:text-text transition-all duration-300"
         >
-          <div class="w-16 h-16 flex items-center justify-center border border-border-light group-hover:border-accent group-hover:bg-accent/10 transition-all duration-300">
-            <span class="w-9 h-9 [&>svg]:w-full [&>svg]:h-full" set:html={svgMap[platform.icon]} />
+          <div class="w-20 h-20 flex items-center justify-center border border-border-light group-hover:border-accent group-hover:bg-accent/10 transition-all duration-300">
+            <span class="w-11 h-11 [&>svg]:w-full [&>svg]:h-full" set:html={svgMap[platform.icon]} />
           </div>
-          <span class="text-[10px] tracking-wider uppercase max-w-[64px] text-center leading-tight">{platform.name}</span>
+          <span class="text-[10px] tracking-wider uppercase max-w-[80px] text-center leading-tight">{platform.name}</span>
         </a>
       ))}
     </div>
