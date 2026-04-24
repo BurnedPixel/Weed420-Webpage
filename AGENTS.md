@@ -10,11 +10,10 @@ Electronic Press Kit for Weed420, Venezuelan experimental collective (formed 202
 - **Hosting:** Cloudflare Pages
 
 ## Dev Commands
-| Command | Description |
-|---------|-----------|
-| `npm run dev` | Start dev server (localhost:4321) |
-| `npm run build` | Build to `dist/` |
-| `npm run preview` | Preview production build |
+| Command           | Description                       |
+| ----------------- | --------------------------------- |
+| `npm run build`   | Build to `dist/`                  |
+| `npm run preview` | Preview production build          |
 
 ## Design System
 | Element | Value |

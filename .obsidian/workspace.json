@@ -11,12 +11,14 @@
             "id": "d672cc9b50eb76c2",
             "type": "leaf",
             "state": {
-              "type": "image",
+              "type": "markdown",
               "state": {
-                "file": "pictures/1Weed420 Caracas by Sofia Montilla @sofiamontilla.PNG"
+                "file": "AGENTS.md",
+                "mode": "source",
+                "source": false
               },
-              "icon": "lucide-image",
-              "title": "1Weed420 Caracas by Sofia Montilla @sofiamontilla"
+              "icon": "lucide-file",
+              "title": "AGENTS"
             }
           }
         ]
@@ -181,10 +183,10 @@
       "bases:Create new base": false
     }
   },
-  "active": "e1ddde7caf293a1f",
+  "active": "d672cc9b50eb76c2",
   "lastOpenFiles": [
     "dist/index.html",
-    "dist/_astro/index@_@astro.DwMow1ph.css",
+    "dist/_astro/index@_@astro.B_0HjYAh.css",
     "dist/_astro",
     "dist/robots.txt",
     "dist/images/hero4.jpg",
@@ -196,6 +198,7 @@
     "dist/images",
     "dist/favicon.svg",
     "dist/favicon.ico",
+    "dist/_astro/index@_@astro.DwMow1ph.css",
     "dist/_astro/index@_@astro.kXqJqRU3.css",
     "dist",
     "public/images/albums",
@@ -203,7 +206,6 @@
     "dist/images/weed420_boursedecommerce©raphaelmassart-8.jpg",
     "dist/images/weed420_boursedecommerce©raphaelmassart-7.jpg",
     "dist/images/weed420_boursedecommerce©raphaelmassart-6.jpg",
-    "dist/_astro/index@_@astro.xG83DEre.css",
     "AGENTS.md",
     "SITE_CONTENT.md",
     "node_modules/@img/sharp-libvips-linuxmusl-x64/README.md",

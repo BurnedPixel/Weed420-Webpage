@@ -47,12 +47,11 @@ const links = [
 
 <style>
   #navbar {
-    transition: background-color 0.3s ease, backdrop-filter 0.3s ease, border-color 0.3s ease;
+    transition: background-color 0.3s ease, backdrop-filter 0.3s ease;
+    will-change: background-color;
   }
   #navbar.scrolled {
-    background-color: rgb(10 10 10 / 0.8);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid rgba(245 245 245 / 0.1);
+    background-color: rgb(10 10 10 / 0.95);
   }
 </style>
 
