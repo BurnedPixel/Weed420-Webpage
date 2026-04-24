@@ -185,6 +185,7 @@
   },
   "active": "d672cc9b50eb76c2",
   "lastOpenFiles": [
+    "tourdates.csv",
     "dist/index.html",
     "dist/_astro/index@_@astro.C2vK5LUS.css",
     "dist/_astro",
@@ -206,7 +207,6 @@
     "SITE_CONTENT.md",
     "dist/_astro/index@_@astro.D4v8XUl3.css",
     "src/middleware.ts",
-    "public/robots.txt",
     "AGENTS.md",
     "node_modules/@img/sharp-libvips-linuxmusl-x64/README.md",
     "node_modules/@jridgewell/remapping/README.md",

@@ -34,7 +34,9 @@ function parseDate(dateStr) {
   if (!dateStr) return null;
   try {
     const months = {JAN:0,FEB:1,MAR:2,APR:3,MAY:4,JUN:5,JUL:6,AUG:7,SEP:8,OCT:9,NOV:10,DEC:11};
-    const parts = dateStr.toUpperCase().trim().split(/[\s,]+/);
+    const dashIdx = dateStr.indexOf('-');
+    const datePart = dashIdx > -1 ? dateStr.slice(0, dashIdx).trim() + ' ' + dateStr.slice(dashIdx + 1).trim() : dateStr;
+    const parts = datePart.toUpperCase().trim().split(/[\s,]+/);
     if (parts.length >= 3) {
       const month = months[parts[0]] || 0;
       const day = parseInt(parts[1]) || 1;
