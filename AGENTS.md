@@ -63,18 +63,19 @@ curl -s "[https://docs.google.com/spreadsheets/d/10JV33dWWWoVUqHGb5DdUpmmg1TSdHE
 
 ### SOP: Add New Bandcamp Release
 When a new release is dropped, follow this exact routine to update the site:
-1. Scrape the Bandcamp page for the new album slug and high-resolution CDN cover URL:
+1. Scrape the Bandcamp page for the new album slug, cover URL, and release date:
 ```bash
-for album in $(curl -s "[https://xweed420x.bandcamp.com/music](https://xweed420x.bandcamp.com/music)" | grep -oP 'album/[a-z0-9-]+' | sort -u); do
+for album in $(curl -s "https://xweed420x.bandcamp.com/music" | grep -oP 'album/[a-z0-9-]+' | sort -u); do
   slug=$(echo "$album" | sed 's/album\///')
-  url="[https://xweed420x.bandcamp.com/$album](https://xweed420x.bandcamp.com/$album)"
+  url="https://xweed420x.bandcamp.com/$album"
   cover=$(curl -s "$url" | grep -oP 'image" content="https://f4\.bcbits\.com/img/[^"]+' | head -1 | sed 's/"//g' | sed 's/image" content="//')
-  echo "$slug -> $cover"
+  year=$(curl -s "$url" | grep -oP 'released [A-Za-z]+ \d+, \d{4}' | head -1 | grep -oP '\d{4}')
+  echo "$slug -> $year -> $cover"
 done
 ```
 2. Update `src/components/MediaGrid.astro` by injecting the new entry object:
 ```javascript
-{ title: 'Album Name', year: 'year', featured: false, image: '<SCRAPED_COVER_URL>', link: '[https://xweed420x.bandcamp.com/album/](https://xweed420x.bandcamp.com/album/)<SLUG>' }
+{ title: 'Album Name', year: '<YEAR>', featured: false, image: '<SCRAPED_COVER_URL>', link: 'https://xweed420x.bandcamp.com/album/<SLUG>' }
 ```
 3. Run `npm run build` to verify the integration.
 4. Commit: `git add -A && git commit -m "[feat] Add new Bandcamp release"`
