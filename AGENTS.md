@@ -39,13 +39,11 @@ public/images/
 
 ## Deployment (Cloudflare Pages)
 ```bash
-# First-time setup (requires email verification)
-wrangler login
-wrangler pages project create weed420-epk --production-branch=main
-
-# Deploy
+# Deploy ONLY when explicitly directed by user
 wrangler pages deploy dist --project-name=weed420-epk
 ```
+
+> **Important:** Do NOT auto-deploy after every change. Only deploy when user explicitly requests it.
 
 **Live URL:** https://master.weed420-epk.pages.dev
 
