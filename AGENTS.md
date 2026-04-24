@@ -63,7 +63,7 @@ done
 ### 3. Add New Album to MediaGrid
 In `src/components/MediaGrid.astro`, add entry:
 ```javascript
-{ title: 'Album Name', year: '2026', featured: false, image: 'https://f4.bcbits.com/img/COVER_ID_10.jpg', link: 'https://xweed420x.bandcamp.com/album/slug' },
+{ title: 'Album Name', year: 'year', featured: false, image: 'https://f4.bcbits.com/img/COVER_ID_10.jpg', link: 'https://xweed420x.bandcamp.com/album/slug' },
 ```
 
 ### 4. Then build and deploy

@@ -4,9 +4,11 @@ const GOOGLE_SHEET_URL = 'https://docs.google.com/spreadsheets/d/10JV33dWWWoVUqH
 
 <section id="tour" class="py-24 px-6">
   <div class="max-w-3xl mx-auto">
-    <h2 class="text-xs tracking-[0.3em] uppercase text-[#dc2626] mb-10 text-center">Tour Dates</h2>
+    <div class="flex items-start justify-between mb-10">
+      <h2 class="text-xs tracking-[0.3em] uppercase text-[#dc2626]">Tour Dates</h2>
+    </div>
     
-    <div id="tour-dates" class="space-y-0">
+    <div id="tour-dates" class="space-y-0 text-left">
       <div class="text-center text-[#f5f5f5]/50 py-8">
         <p class="text-xs tracking-wider">Loading tour dates...</p>
       </div>
@@ -95,6 +97,7 @@ async function fetchTourDates() {
       date: sanitize(row.c[0]?.f || row.c[0]?.v || ''),
       venue: sanitize(row.c[1]?.v || ''),
       city: sanitize(row.c[2]?.v || ''),
+      ticketLink: sanitize(row.c[3]?.v || ''),
       isPast: isPastDate(row.c[0]?.v || row.c[0]?.f || '')
     })).filter(d => d.date || d.venue);
     
@@ -110,8 +113,16 @@ async function fetchTourDates() {
       return;
     }
     
-    container.innerHTML = upcoming.map(d => `
-      <div class="flex items-center justify-between py-3 border-b border-[#f5f5f5]/10 hover:border-[#dc2626]/30 transition-colors">
+    container.innerHTML = upcoming.map(d => d.ticketLink ? `
+      <a href="${escapeHtml(d.ticketLink)}" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between py-3 border-b border-[#f5f5f5]/10 hover:border-[#dc2626]/30 transition-colors block">
+        <div class="flex items-center gap-4">
+          <span class="text-xs font-mono tracking-wider text-[#dc2626]">${escapeHtml(d.date)}</span>
+          <span class="text-xs text-[#f5f5f5]/80">${escapeHtml(d.venue)}</span>
+        </div>
+        <span class="text-xs text-[#f5f5f5]/50">${escapeHtml(d.city)}</span>
+      </a>
+    ` : `
+      <div class="flex items-center justify-between py-3 border-b border-[#f5f5f5]/10">
         <div class="flex items-center gap-4">
           <span class="text-xs font-mono tracking-wider text-[#dc2626]">${escapeHtml(d.date)}</span>
           <span class="text-xs text-[#f5f5f5]/80">${escapeHtml(d.venue)}</span>
