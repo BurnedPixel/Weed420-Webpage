@@ -16,14 +16,20 @@ import { PRESS } from '../data/constants';
               <blockquote class="text-sm text-text-muted leading-relaxed mb-4">
                 &ldquo;{item.quote}&rdquo;
               </blockquote>
-              <cite class="text-xs tracking-wider uppercase text-accent not-italic">&mdash; {item.source}</cite>
+              <cite class="inline-flex items-baseline gap-2 text-xs tracking-wider uppercase not-italic">
+                <span class="text-accent">&mdash; {item.source}</span>
+                <span class="text-text/70 text-[10px]">{item.article}</span>
+              </cite>
             </a>
           ) : (
             <div class="block border border-border p-6">
               <blockquote class="text-sm text-text-muted leading-relaxed mb-4">
                 &ldquo;{item.quote}&rdquo;
               </blockquote>
-              <cite class="text-xs tracking-wider uppercase text-accent not-italic">&mdash; {item.source}</cite>
+              <cite class="inline-flex items-baseline gap-2 text-xs tracking-wider uppercase not-italic">
+                <span class="text-accent">&mdash; {item.source}</span>
+                <span class="text-text/70 text-[10px]">{item.article}</span>
+              </cite>
             </div>
           )
         ))}
