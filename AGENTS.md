@@ -94,7 +94,7 @@ done
  * **Platform URLs:**
    * Bandcamp: `https://xweed420x.bandcamp.com/`
    * Spotify: `https://open.spotify.com/artist/5UM6QbXYllW5ByF0umKJt1`
-   * SoundCloud: `https://soundcloud.com/weed420`
+   * SoundCloud: `https://soundcloud.com/alejania`
  * **Social URLs:**
-   * Instagram: `https://instagram.com/weed420`
-   * YouTube: `https://youtube.com/@weed420`
+   * Instagram: `https://www.instagram.com/weedcuatroscientosveinte/`
+   * YouTube: `https://youtube.com/@weedcuatrocientosveinte`

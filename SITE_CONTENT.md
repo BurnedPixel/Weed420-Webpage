@@ -30,7 +30,7 @@
 | ---------- | ------------------------------------------------------ | ------------------------------------- |
 | Bandcamp   | https://xweed420x.bandcamp.com/                        | `src/components/MediaPlatforms.astro` |
 | Spotify    | https://open.spotify.com/artist/5UM6QbXYllW5ByF0umKJt1 | `src/components/MediaPlatforms.astro` |
-| SoundCloud | https://soundcloud.com/weed420                         | `src/components/MediaPlatforms.astro` |
+| SoundCloud | https://soundcloud.com/alejania                        | `src/components/MediaPlatforms.astro` |
 | Instagram  | https://www.instagram.com/weedcuatroscientosveinte/    | `src/components/Footer.astro`         |
 | YouTube    | https://youtube.com/@weedcuatrocientosveinte           | `src/components/Footer.astro`         |
 
