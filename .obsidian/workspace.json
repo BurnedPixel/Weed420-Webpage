@@ -203,7 +203,6 @@
     "dist/images",
     "dist/favicon.ico",
     "dist/_headers",
-    "dist/_astro/index@_@astro.C7ToMaBm.css",
     "node_modules/@tailwindcss/oxide-linux-x64-musl/README.md",
     "node_modules/lightningcss-linux-x64-musl/README.md",
     "notes/site-content.md",
