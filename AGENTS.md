@@ -13,6 +13,7 @@ You must strictly adhere to the following stack. Do not introduce new frameworks
   * Tour Dates: Client-side fetch from Google Sheets JSON endpoint.
   * Album Covers: Local images in `public/images/albums/`, sourced from Bandcamp CDN.
   * Discography: Section-based data in `src/data/discography.ts`.
+  * Press Quotes: Defined in `src/data/constants.ts` as `PRESS` array. Each entry has `quote`, `source`, `article`, optional `url`, and optional `quoteEn` for bilingual hover translations.
 
 ### Directory Structure
 Ensure all new components and logic follow this established structure:
@@ -22,11 +23,14 @@ src/
   ├── data/         # constants.ts, discography.ts
   ├── layouts/      # Layout.astro
   ├── pages/        # index.astro
-  └── styles/       # global.css
+  └── styles/       # global.css (Tailwind @theme tokens: --color-bg, --color-accent, --font-sans, etc.)
 scripts/
   ├── fetch-bandcamp.mjs   # Scrapes Bandcamp for releases & downloads cover art
   └── fix-img-sizes.sh     # Resizes album covers to consistent 500px JPEG quality 75
-public/images/albums/       # All local album cover images (~25-130KB each)
+public/images/
+  ├── albums/               # All local album cover images (~25-130KB each)
+  ├── carousel/             # 7 images (01-07.jpg) for AboutPreview carousel (~14-42KB each)
+  └── caracas-portrait.jpg  # Hero section background image
 ```
 
 ## 3. Design System
@@ -34,7 +38,7 @@ Apply these exact values when constructing or modifying Tailwind classes.
 * **Background:** `#0a0a0a` (Near black)
 * **Text:** `#f5f5f5` (Off-white)
 * **Accent:** `#dc2626` (Deep red)
-* **Typography:** Primary `Inter`, Secondary `Montserrat`
+* **Typography:** `JetBrains Mono` monospace (applied via `--font-sans`)
 
 ## 4. Operational Rules & Workflow
 
@@ -68,6 +72,17 @@ The TourDates component fetches data client-side at runtime. To verify the endpo
 curl -s "https://docs.google.com/spreadsheets/d/10JV33dWWWoVUqHGb5DdUpmmg1TSdHEiccmxEezEZ_ws/gviz/tq?tqx=out:json&sheet=tourdates"
 ```
 The sheets endpoint URL is configured in `src/data/constants.ts` as `SITE.googleSheetBaseUrl`.
+
+**Sheet Column Layout:**
+| Col | Field | Description |
+|-----|-------|-------------|
+| A | date | Date string (e.g., "APR 25 2026") |
+| B | venue | Venue name |
+| C | city | City name |
+| D | link | Ticket/event URL (optional) |
+| E | hidden | Set to "yes" to hide the row from display |
+
+Rows where column E equals "yes" are filtered out client-side. Rows with dates from past years are also excluded. The component logs fetch errors to the browser console.
 
 ### SOP: Scrape Bandcamp for New Releases & Cover Art
 Run the automated fetch script to discover all releases, download cover art, and print discography entries:
