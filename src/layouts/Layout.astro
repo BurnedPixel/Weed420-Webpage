@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import { SITE, PLATFORMS, SOCIALS } from '../data/constants';
 
 interface Props {
   title?: string;
@@ -7,9 +8,39 @@ interface Props {
 }
 
 const { 
-  title = 'weed420 | Venezuelan Experimental Collective',
-  description = 'Electronic experimental collective from Venezuela. Epic collage, hexd, deconstructed club. Amor de encava debuted #2 on RateYourMusic 2025.'
+  title = 'weed420 — Official Site | Venezuelan Experimental Music Collective',
+  description = 'Official website of weed420, Venezuelan experimental music collective. Epic collage, hexd, deconstructed club, cloud rap, reggaeton. Amor de encava debuted #2 on RateYourMusic 2025.'
 } = Astro.props;
+
+const canonicalURL = 'https://weed420.pages.dev';
+const ogImage = new URL('/images/albums/amor-de-encava.jpg', canonicalURL).href;
+
+const sameAs = [
+  ...PLATFORMS.map(p => p.url),
+  ...SOCIALS.map(s => s.url),
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'MusicGroup',
+  name: 'weed420',
+  description: description,
+  url: canonicalURL,
+  sameAs: sameAs,
+  genre: ['Experimental', 'Electronic', 'Deconstructed Club', 'Hexd', 'Cloud Rap', 'Reggaeton', 'Vaporwave'],
+  foundingDate: '2021',
+  foundingLocation: {
+    '@type': 'Place',
+    name: 'Valencia, Venezuela',
+  },
+  subjectOf: [
+    {
+      '@type': 'MusicAlbum',
+      name: 'amor de encava',
+      url: 'https://xweed420x.bandcamp.com/album/amor-de-encava',
+    },
+  ],
+};
 ---
 
 <!DOCTYPE html>
@@ -18,10 +49,35 @@ const {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="canonical" href={canonicalURL} />
     <meta name="generator" content={Astro.generator} />
     <meta name="description" content={description} />
     <meta name="theme-color" content="#0a0a0a" />
+    <meta name="robots" content="index, follow" />
     <title>{title}</title>
+
+    <!-- Open Graph -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="700" />
+    <meta property="og:image:height" content="700" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="es_VE" />
+    <meta property="og:site_name" content="weed420" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+      {JSON.stringify(jsonLd, null, 2)}
+    </script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
