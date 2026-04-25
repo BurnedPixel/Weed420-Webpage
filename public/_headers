@@ -2,18 +2,14 @@
   Cache-Control: no-cache, no-store, must-revalidate
   X-Content-Type-Options: nosniff
 
-/assets/*
-  Content-Encoding: gzip
+/images/*
   Cache-Control: public, max-age=31536000, immutable
 
-/images/*
-  Content-Encoding: gzip
+/assets/*
   Cache-Control: public, max-age=31536000, immutable
 
 .js
-  Content-Encoding: gzip
   Cache-Control: public, max-age=31536000, immutable
 
 .css
-  Content-Encoding: gzip
   Cache-Control: public, max-age=31536000, immutable

@@ -1,6 +1,5 @@
 ---
 import { albums, mixtapes, djmixes, live, eps, others } from '../data/discography';
-import ProgressiveImage from './ProgressiveImage.astro';
 
 const sections = [
   { label: 'Mixtapes', items: mixtapes },
@@ -11,9 +10,6 @@ const sections = [
 ];
 
 const floatDelays = [0, 0.8, 1.6];
-
-const placeholderFor = (imagePath: string) =>
-  imagePath.replace('/albums/', '/placeholders/').replace('.jpg', '.lqip.webp');
 ---
 
 <section id="discography" class="py-24 px-6">
@@ -29,14 +25,12 @@ const placeholderFor = (imagePath: string) =>
           class="group relative aspect-square bg-bg-card overflow-hidden border border-border hover:border-accent/50 transition-all duration-300 hover:-translate-y-1"
           style={`width: clamp(140px, 25vw, 260px); animation: float 3s ease-in-out infinite; animation-delay: ${floatDelays[i]}s;`}
         >
-          <ProgressiveImage
+          <img
             src={release.image}
-            placeholder={placeholderFor(release.image)}
             alt={release.title}
-            priority={false}
-            sizes="(max-width: 768px) 50vw, 25vw"
-            class="w-full h-full"
-            loadingClass="opacity-60 group-hover:opacity-80 group-hover:scale-105 transition-all duration-500"
+            loading="lazy"
+            decoding="async"
+            class="w-full h-full object-cover opacity-60 group-hover:opacity-80 group-hover:scale-105 transition-all duration-500"
           />
           <div class="absolute inset-0 bg-gradient-to-t from-bg via-transparent to-transparent opacity-60"></div>
           <div class="absolute bottom-0 left-0 right-0 p-3">
@@ -64,14 +58,12 @@ const placeholderFor = (imagePath: string) =>
               class="group relative aspect-square bg-bg-card overflow-hidden hover:border hover:border-accent-muted transition-colors"
               style="width: clamp(80px, 15vw, 140px);"
             >
-              <ProgressiveImage
+              <img
                 src={release.image}
-                placeholder={placeholderFor(release.image)}
                 alt={release.title}
-                priority={false}
-                sizes="(max-width: 768px) 25vw, 15vw"
-                class="w-full h-full"
-                loadingClass="opacity-50 group-hover:opacity-70 transition-opacity duration-300"
+                loading="lazy"
+                decoding="async"
+                class="w-full h-full object-cover opacity-50 group-hover:opacity-70 transition-opacity duration-300"
               />
               <div class="absolute inset-0 bg-gradient-to-t from-bg via-transparent to-transparent opacity-50"></div>
               <div class="absolute bottom-0 left-0 right-0 p-1.5">
