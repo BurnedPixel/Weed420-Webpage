@@ -23,7 +23,7 @@ const firstIndex = Math.floor(Math.random() * shuffled.length);
             alt="weed420"
             loading={i === firstIndex ? 'eager' : 'lazy'}
             class="carousel-img w-full h-full object-cover grayscale"
-            style={`position: absolute; inset: 0; transition: opacity 1s ease-in-out; opacity: ${i === firstIndex ? '0.7' : '0'}; animation: kenburns ${15 + i * 2}s ease-in-out infinite alternate; animation-delay: ${i * -2}s;`}
+            style={`position: absolute; inset: 0; transition: opacity 1s ease-in-out; opacity: ${i === firstIndex ? '0.7' : '0'}; animation: kenburns ${15 + i * 2}s ease-in-out infinite alternate; animation-delay: ${i * -2}s; animation-play-state: ${i === firstIndex ? 'running' : 'paused'};`}
           />
         ))}
       </div>

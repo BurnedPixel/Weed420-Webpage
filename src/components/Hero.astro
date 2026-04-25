@@ -35,9 +35,8 @@
   let ticking = false;
 
   function update() {
-    const rect = hero.getBoundingClientRect();
-    const max = rect.height;
-    const scrolled = -rect.top;
+    const scrolled = window.scrollY;
+    const max = window.innerHeight;
     const progress = Math.max(0, Math.min(1, scrolled / max));
 
     hero.style.setProperty('--parallax', `${scrolled}px`);

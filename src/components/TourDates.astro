@@ -70,7 +70,8 @@ try {
     })
     .filter(d => d.date || d.venue)
     .filter(d => !isPast(d.date));
-} catch {
+} catch (e) {
+  console.error('TourDates fetch failed:', e);
   error = 'Unable to load tour dates';
 }
 ---
