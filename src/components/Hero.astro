@@ -1,19 +1,13 @@
 ---
-import ProgressiveImage from './ProgressiveImage.astro';
 ---
 
 <section id="home" class="relative h-screen flex items-center justify-center overflow-hidden" style="--parallax: 0px; --scale: 1;">
-  <ProgressiveImage
-    src="/images/caracas-portrait.jpg"
-    placeholder="/images/placeholders/caracas-portrait.lqip.webp"
-    alt="weed420"
-    priority={true}
-    sizes="100vw"
-    class="absolute inset-0 will-change-transform"
-    style="transform: translateY(calc(var(--parallax) * -0.3)); opacity: 0.4; z-index: 0;"
-  />
+  <div
+    class="absolute inset-0 bg-[url('/images/caracas-portrait.jpg')] bg-cover bg-center will-change-transform"
+    style="transform: translateY(calc(var(--parallax) * -0.3)); opacity: 0.4;"
+  ></div>
 
-  <div class="absolute inset-0 bg-gradient-to-b from-bg/60 via-transparent to-bg z-10"></div>
+  <div class="absolute inset-0 bg-gradient-to-b from-bg/60 via-transparent to-bg"></div>
 
   <div class="relative text-center px-6">
     <h1
