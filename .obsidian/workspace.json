@@ -11,14 +11,12 @@
             "id": "d672cc9b50eb76c2",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "image",
               "state": {
-                "file": "notes/site-content.md",
-                "mode": "source",
-                "source": false
+                "file": "assets/carrousel/weed420_boursedecommerce©raphaelmassart-9.jpg"
               },
-              "icon": "lucide-file",
-              "title": "site-content"
+              "icon": "lucide-image",
+              "title": "weed420_boursedecommerce©raphaelmassart-9"
             }
           }
         ]
@@ -186,27 +184,29 @@
   "active": "d672cc9b50eb76c2",
   "lastOpenFiles": [
     "dist/index.html",
-    "dist/_astro/index@_@astro.xMMiXhy5.css",
+    "dist/_astro/index@_@astro.C7ToMaBm.css",
     "dist/_astro",
     "dist/robots.txt",
+    "dist/images/placeholders/caracas-portrait.lqip.webp",
+    "dist/images/placeholders/07.lqip.webp",
+    "dist/images/placeholders/06.lqip.webp",
+    "dist/images/placeholders/05.lqip.webp",
+    "dist/images/placeholders/04.lqip.webp",
+    "dist/images/placeholders/03.lqip.webp",
+    "dist/images/placeholders/02.lqip.webp",
+    "dist/images/placeholders/01.lqip.webp",
     "dist/images/carousel/07.jpg",
-    "dist/images/carousel/06.jpg",
-    "dist/images/carousel/05.jpg",
     "dist/images/carousel/04.jpg",
-    "dist/images/carousel/03.jpg",
-    "dist/images/carousel/02.jpg",
-    "dist/images/carousel/01.jpg",
-    "dist/images/albums/rvrt-3.jpg",
-    "dist/images/albums/psp.jpg",
-    "dist/images/albums/miren-miren-guayo-nts.jpg",
+    "dist/images/placeholders",
     "dist/images/carousel",
     "dist/images/albums",
     "dist/images",
     "dist/favicon.ico",
-    "dist/_astro/index@_@astro.BfTjaJ6i.css",
-    "dist/_astro/index@_@astro.l-V6mVX6.css",
-    "Untitled.md",
+    "dist/_headers",
+    "node_modules/@tailwindcss/oxide-linux-x64-musl/README.md",
+    "node_modules/lightningcss-linux-x64-musl/README.md",
     "notes/site-content.md",
+    "Untitled.md",
     "SITE_CONTENT.md",
     "README.md",
     "AGENTS.md",
@@ -227,8 +227,6 @@
     "node_modules/@jridgewell/trace-mapping/README.md",
     "node_modules/@jridgewell/gen-mapping/README.md",
     "node_modules/tslib/SECURITY.md",
-    "node_modules/tslib/README.md",
-    "node_modules/@jridgewell/resolve-uri/README.md",
-    "node_modules/graceful-fs/README.md"
+    "node_modules/tslib/README.md"
   ]
 }

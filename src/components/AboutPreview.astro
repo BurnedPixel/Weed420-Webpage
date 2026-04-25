@@ -1,12 +1,12 @@
 ---
 const images = [
-  '/images/carousel/01.jpg',
-  '/images/carousel/02.jpg',
-  '/images/carousel/03.jpg',
-  '/images/carousel/04.jpg',
-  '/images/carousel/05.jpg',
-  '/images/carousel/06.jpg',
-  '/images/carousel/07.jpg',
+  { src: '/images/carousel/01.jpg', placeholder: '/images/placeholders/01.lqip.webp' },
+  { src: '/images/carousel/02.jpg', placeholder: '/images/placeholders/02.lqip.webp' },
+  { src: '/images/carousel/03.jpg', placeholder: '/images/placeholders/03.lqip.webp' },
+  { src: '/images/carousel/04.jpg', placeholder: '/images/placeholders/04.lqip.webp' },
+  { src: '/images/carousel/05.jpg', placeholder: '/images/placeholders/05.lqip.webp' },
+  { src: '/images/carousel/06.jpg', placeholder: '/images/placeholders/06.lqip.webp' },
+  { src: '/images/carousel/07.jpg', placeholder: '/images/placeholders/07.lqip.webp' },
 ];
 
 const shuffled = [...images].sort(() => Math.random() - 0.5);
@@ -17,14 +17,21 @@ const firstIndex = Math.floor(Math.random() * shuffled.length);
   <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 md:gap-20 items-center">
     <div class="relative" style="filter: drop-shadow(0 0 40px rgba(255,255,255,0.06)) drop-shadow(0 0 80px rgba(255,255,255,0.03));">
       <div class="aspect-[4/5] bg-bg-card overflow-hidden cursor-pointer" id="carousel-frame" data-first={firstIndex}>
-        {shuffled.map((src, i) => (
-          <img
-            src={src}
-            alt="weed420"
-            loading={i === firstIndex ? 'eager' : 'lazy'}
-            class="carousel-img w-full h-full object-cover grayscale"
-            style={`position: absolute; inset: 0; transition: opacity 1s ease-in-out; opacity: ${i === firstIndex ? '0.7' : '0'}; animation: kenburns ${15 + i * 2}s ease-in-out infinite alternate; animation-delay: ${i * -2}s; animation-play-state: ${i === firstIndex ? 'running' : 'paused'};`}
-          />
+        {shuffled.map((img, i) => (
+          <div
+            class="carousel-item absolute inset-0 transition-opacity duration-1000 ease-in-out"
+            data-index={i}
+            style={`opacity: ${i === firstIndex ? 1 : 0};`}
+          >
+            <img
+              src={img.src}
+              placeholder={img.placeholder}
+              alt="weed420"
+              class="carousel-img w-full h-full object-cover grayscale"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
         ))}
       </div>
       <div class="absolute inset-0 border border-accent-muted pointer-events-none"></div>
@@ -51,15 +58,22 @@ const firstIndex = Math.floor(Math.random() * shuffled.length);
 
 <style>
   @keyframes kenburns {
-    0% {
-      transform: scale(1) translate(0, 0);
-    }
-    50% {
-      transform: scale(1.08) translate(-1%, -0.5%);
-    }
-    100% {
-      transform: scale(1.04) translate(0.5%, 1%);
-    }
+    0% { transform: scale(1) translate(0, 0); }
+    50% { transform: scale(1.08) translate(-1%, -0.5%); }
+    100% { transform: scale(1.04) translate(0.5%, 1%); }
+  }
+
+  .carousel-item {
+    animation: kenburns 15s ease-in-out infinite alternate;
+    animation-play-state: paused;
+  }
+
+  .carousel-item.active {
+    animation-play-state: running;
+  }
+
+  .carousel-item img {
+    will-change: opacity, transform;
   }
 </style>
 
@@ -67,21 +81,35 @@ const firstIndex = Math.floor(Math.random() * shuffled.length);
   (function() {
     const frame = document.getElementById('carousel-frame');
     if (!frame) return;
-    const imgs = frame.querySelectorAll('.carousel-img');
-    if (!imgs.length) return;
+
+    const items = frame.querySelectorAll('.carousel-item');
+    if (!items.length) return;
 
     let current = parseInt(frame.dataset.first) || 0;
     let timer: ReturnType<typeof setInterval>;
 
+    items.forEach((item, i) => {
+      if (i === current) {
+        item.classList.add('active');
+      }
+    });
+
     function show(index: number) {
-      imgs.forEach((img, i) => {
-        (img as HTMLElement).style.opacity = i === index ? '0.7' : '0';
+      items.forEach((item, i) => {
+        const el = item as HTMLElement;
+        if (i === index) {
+          el.style.opacity = '1';
+          item.classList.add('active');
+        } else {
+          el.style.opacity = '0';
+          item.classList.remove('active');
+        }
       });
       current = index;
     }
 
     function next() {
-      show((current + 1) % imgs.length);
+      show((current + 1) % items.length);
     }
 
     frame.addEventListener('click', next);
@@ -91,5 +119,16 @@ const firstIndex = Math.floor(Math.random() * shuffled.length);
     });
 
     timer = setInterval(next, 6000);
+
+    if ('requestIdleCallback' in window) {
+      (window as any).requestIdleCallback(() => {
+        items.forEach(item => {
+          const img = item.querySelector('img');
+          if (img) {
+            (img as HTMLImageElement).loading = 'lazy';
+          }
+        });
+      }, { timeout: 3000 });
+    }
   })();
 </script>
