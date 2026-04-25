@@ -9,6 +9,7 @@ You are tasked with building and maintaining an Electronic Press Kit (EPK) for *
 You must strictly adhere to this stack. Do not introduce new frameworks or CSS libraries without explicit user approval.
 * **Core Framework:** Astro
 * **Styling:** Tailwind CSS v4 (with `@theme` tokens in global.css)
+* **SEO:** `@astrojs/sitemap` (auto-generates `sitemap-index.xml` on build), JSON-LD structured data in Layout.astro
 * **Data Strategy:**
   * Tour Dates: Client-side fetch from Google Sheets JSON endpoint.
   * Album Covers: Local images in `public/images/albums/`, sourced from Bandcamp CDN.
@@ -160,10 +161,10 @@ Releases are organized into sections, each sorted chronologically:
 ## 7. Branch & Deployment Context
 
 ### Branches
-| Branch | Description | URL |
-|--------|-------------|-----|
-| `master` | Production | https://weed420.pages.dev |
-| `design/organic` | Organic floating design with animations | https://design-organic.weed420-epk.pages.dev |
+| Branch           | Description                             | URL                                          |
+| ---------------- | --------------------------------------- | -------------------------------------------- |
+| `master`         | Production                              | https://weed420.pages.dev                    |
+
 
 ## 8. Platform & Social URLs
 
@@ -253,12 +254,15 @@ Each section has an `id` used for anchor navigation and fade-in animation delay 
 
 ### Layout (`src/layouts/Layout.astro`)
 - **Purpose:** HTML shell wrapping all pages.
-- **Content:** `<head>` with charset, viewport, favicon, description meta, theme-color, title. Loads `JetBrains Mono` from Google Fonts with `preconnect` hints. Preloads the hero background image. Applies global CSS (`global.css`).
-- **Props:** Accepts optional `title` and `description` with defaults.
+- **Content:** `<head>` with charset, viewport, favicon, description meta, theme-color, title, canonical URL, robots `index,follow`. Loads `JetBrains Mono` from Google Fonts with `preconnect` hints. Preloads the hero background image. Applies global CSS (`global.css`).
+- **SEO:** Open Graph tags (`og:title`, `og:description`, `og:image`, `og:url`, `og:type`, `og:locale`, `og:site_name`), Twitter Card (`summary_large_image`), JSON-LD `MusicGroup` structured data with `sameAs` links to all platforms and socials, `amor de encava` album subject.
+- **OG Image:** Uses `/images/albums/amor-de-encava.jpg` for social sharing previews.
+- **Props:** Accepts optional `title` and `description` with defaults (`weed420 — Official Site | Venezuelan Experimental Music Collective`).
+- **Data:** Imports `SITE`, `PLATFORMS`, `SOCIALS` from `constants.ts`.
 
 ### Data Files Summary
 | File | Exports | Used By |
 |------|---------|---------|
-| `constants.ts` | `SITE`, `PLATFORMS`, `SOCIALS`, `PRESS`, `NAV_LINKS` | Navbar, Press, MediaPlatforms, TourDates, Footer |
+| `constants.ts` | `SITE`, `PLATFORMS`, `SOCIALS`, `PRESS`, `NAV_LINKS` | Navbar, Press, MediaPlatforms, TourDates, Footer, Layout |
 | `discography.ts` | `albums`, `mixtapes`, `djmixes`, `live`, `eps`, `others`, `Release`, `ReleaseSection` | MediaGrid |
 | `icons.ts` | `iconDefs`, `IconName`, `IconDef` | Footer |
