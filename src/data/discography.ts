@@ -23,7 +23,7 @@ const releases: Release[] = [
   { title: 'psp', year: '2025', section: 'other', image: '/images/albums/psp.jpg', link: 'https://xweed420x.bandcamp.com/album/psp' },
 ];
 
-export const bySection = (section: ReleaseSection) => releases.filter(r => r.section === section);
+const bySection = (section: ReleaseSection) => releases.filter(r => r.section === section);
 
 export const albums = bySection('album');
 export const mixtapes = bySection('mixtape');

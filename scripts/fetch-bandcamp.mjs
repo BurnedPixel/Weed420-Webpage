@@ -3,7 +3,6 @@
 // Fetches all releases from weed420's Bandcamp, downloads missing covers,
 // and prints release data for discography.ts
 
-import { execSync } from 'child_process';
 import { existsSync, mkdirSync } from 'fs';
 import { writeFileSync } from 'fs';
 
