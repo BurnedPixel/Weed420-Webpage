@@ -10,7 +10,7 @@ const EXCLUDED_FILE = 'weed420_boursedecommerce©raphaelmassart-2.jpg';
 const PLACEHOLDER_WIDTH = 20;
 const PLACEHOLDER_QUALITY = 15;
 
-const IMAGE_DIRS = ['carousel', ''];
+const IMAGE_DIRS = ['carousel', 'albums', ''];
 
 async function processImage(inputPath, outputDir) {
   const baseName = path.basename(inputPath, path.extname(inputPath));
