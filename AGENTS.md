@@ -32,7 +32,7 @@ scripts/
   └── fetch-bandcamp.mjs   # Scrapes Bandcamp for releases & downloads cover art
 public/images/
   ├── albums/               # Local album cover images (~25-130KB each)
-  ├── carousel/             # 7 images (01-07.jpg) for AboutPreview carousel
+  ├── carousel/             # 6 images (01-06.jpg) for AboutPreview carousel
   └── caracas-portrait.jpg  # Hero section background image
 assets/
   └── carrousel/            # Source-resolution originals — NOT used at runtime
@@ -215,7 +215,7 @@ Each section has an `id` used for anchor navigation and fade-in animation delay 
 ### AboutPreview (`src/components/AboutPreview.astro`)
 - **Purpose:** Biography section (`#bio`) with a carousel of 7 images.
 - **Content:** Two-column layout (text left, carousel right on desktop). Descriptive paragraph about the collective.
-- **JS behavior:** IIFE carousel cycling through 7 images (`/images/carousel/01.jpg` to `07.jpg`) every 3 seconds with fade transitions.
+- **JS behavior:** IIFE carousel cycling through 6 images (`/images/carousel/01.jpg` to `06.jpg`) every 6 seconds with fade transitions.
 - **Data:** Carousel image paths are hardcoded in the component's frontmatter.
 
 ### Press (`src/components/Press.astro`)
