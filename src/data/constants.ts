@@ -46,8 +46,8 @@ export const PRESS = [
     url: 'https://remezcla.com/lists/music/8-voices-shaping-venezuelas-music/',
   },
   {
-    quote: 'Explora los vínculos entre memoria, política y experimentación sonora. Ruido y texturas psicodélicas creando reinterpretaciones atmosféricas de la música latinoamericana.',
-    quoteEn: 'Explores the links between memory, politics and sonic experimentation. Noise and psychedelic textures creating atmospheric reinterpretations of Latin American music.',
+    quote: 'Weed420 est un collectif de musique de Valencia, au Venezuela qui explore les liens entre mémoire, politique et expérimentation sonore. À travers guitares, claviers, pédales, voix distordues et synthétiseurs, le projet mêle bruit et textures psychédéliques à des références de salsa et perreo des années 2000, créant des réinterprétations atmosphériques de la musique latino‑américaine qui glissent vers de la musique club, empreints d\'une subtile sensibilité emo.',
+    quoteEn: 'Weed420 is a music collective from Valencia, Venezuela, exploring the links between memory, politics, and sonic experimentation. Through guitars, keyboards, pedals, distorted vocals, and synthesizers, the project blends noise and psychedelic textures with references to 2000s salsa and perreo, creating atmospheric reinterpretations of Latin American music that slide into club music, marked by a subtle emo sensibility.',
     source: 'Pinault Collection',
     article: 'Los Thuthanaka + Weed420',
     url: 'https://www.pinaultcollection.com/fr/boursedecommerce/los-thuthanaka-weed420',
