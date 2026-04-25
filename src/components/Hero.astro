@@ -1,11 +1,17 @@
-<section id="home" class="relative h-screen flex items-center justify-center overflow-hidden">
-  <div class="absolute inset-0 bg-gradient-to-b from-bg/60 via-transparent to-bg z-10"></div>
+<section id="home" class="relative h-screen flex items-center justify-center overflow-hidden" style="--parallax: 0px; --scale: 1;">
+  <div
+    class="absolute inset-0 bg-[url('/images/caracas-portrait.jpg')] bg-cover bg-center opacity-40 will-change-transform"
+    style="transform: translateY(calc(var(--parallax) * -0.3))"
+  ></div>
 
-  <div class="absolute inset-0 bg-[url('/images/caracas-portrait.jpg')] bg-cover bg-center opacity-40"></div>
+  <div class="absolute inset-0 bg-gradient-to-b from-bg/60 via-transparent to-bg"></div>
 
-  <div class="relative z-20 text-center px-6">
-    <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tighter uppercase mb-4">
-      <span class="text-text">weed</span><span class="text-accent">420</span>
+  <div class="relative text-center px-6">
+    <h1
+      class="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tighter uppercase mb-4 text-white mix-blend-difference will-change-transform"
+      style="transform: scale(var(--scale)); transform-origin: center;"
+    >
+      weed420
     </h1>
     <p class="text-base tracking-[0.25em] uppercase text-text-muted mb-12">
       Venezuelan Experimental Collective
@@ -15,10 +21,40 @@
     </p>
   </div>
 
-  <a href="#bio" class="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-2 text-text-dim hover:text-text transition-colors">
+  <a href="#bio" class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-text-dim hover:text-text transition-colors" id="scroll-hint">
     <span class="text-xs tracking-widest uppercase font-medium">Scroll</span>
     <svg class="w-5 h-5 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
     </svg>
   </a>
 </section>
+
+<script>
+  const hero = document.getElementById('home');
+  const hint = document.getElementById('scroll-hint');
+  let ticking = false;
+
+  function update() {
+    const rect = hero.getBoundingClientRect();
+    const max = rect.height;
+    const scrolled = -rect.top;
+    const progress = Math.max(0, Math.min(1, scrolled / max));
+
+    hero.style.setProperty('--parallax', `${scrolled}px`);
+    hero.style.setProperty('--scale', `${1 + progress * 0.5}`);
+    hint.style.opacity = `${1 - progress * 1.5}`;
+    ticking = false;
+  }
+
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      requestAnimationFrame(() => {
+        update();
+        ticking = false;
+      });
+      ticking = true;
+    }
+  }, { passive: true });
+
+  update();
+</script>

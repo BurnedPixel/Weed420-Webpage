@@ -54,6 +54,10 @@ try {
   let prevDate: string | null = null;
   entries = rows
     .slice(1)
+    .filter(row => {
+      const hidden = row.c?.[4]?.v;
+      return !hidden || String(hidden).toLowerCase() !== 'yes';
+    })
     .map(row => {
       const dateVal = row.c?.[0]?.f || row.c?.[0]?.v || prevDate;
       if (dateVal) prevDate = dateVal;

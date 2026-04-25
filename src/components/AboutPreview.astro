@@ -1,14 +1,33 @@
+---
+const images = [
+  '/images/carousel/01.jpg',
+  '/images/carousel/02.jpg',
+  '/images/carousel/03.jpg',
+  '/images/carousel/04.jpg',
+  '/images/carousel/05.jpg',
+  '/images/carousel/06.jpg',
+  '/images/carousel/07.jpg',
+];
+
+const shuffled = [...images].sort(() => Math.random() - 0.5);
+const firstIndex = Math.floor(Math.random() * shuffled.length);
+---
+
 <section id="bio" class="py-24 px-6">
   <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 md:gap-20 items-center">
-    <div class="relative">
-      <div class="aspect-[4/5] bg-bg-card overflow-hidden">
-        <img
-          src="/images/hero2.jpg"
-          alt="weed420 portrait"
-          class="w-full h-full object-cover opacity-70 grayscale hover:grayscale-0 transition-all duration-700"
-        />
+    <div class="relative" style="filter: drop-shadow(0 0 40px rgba(255,255,255,0.06)) drop-shadow(0 0 80px rgba(255,255,255,0.03));">
+      <div class="aspect-[4/5] bg-bg-card overflow-hidden cursor-pointer" id="carousel-frame" data-first={firstIndex}>
+        {shuffled.map((src, i) => (
+          <img
+            src={src}
+            alt="weed420"
+            loading={i === firstIndex ? 'eager' : 'lazy'}
+            class="carousel-img w-full h-full object-cover grayscale"
+            style={`position: absolute; inset: 0; transition: opacity 1s ease-in-out; opacity: ${i === firstIndex ? '0.7' : '0'}; animation: kenburns ${15 + i * 2}s ease-in-out infinite alternate; animation-delay: ${i * -2}s;`}
+          />
+        ))}
       </div>
-      <div class="absolute inset-0 border border-accent-muted"></div>
+      <div class="absolute inset-0 border border-accent-muted pointer-events-none"></div>
     </div>
 
     <div>
@@ -29,3 +48,48 @@
     </div>
   </div>
 </section>
+
+<style>
+  @keyframes kenburns {
+    0% {
+      transform: scale(1) translate(0, 0);
+    }
+    50% {
+      transform: scale(1.08) translate(-1%, -0.5%);
+    }
+    100% {
+      transform: scale(1.04) translate(0.5%, 1%);
+    }
+  }
+</style>
+
+<script>
+  (function() {
+    const frame = document.getElementById('carousel-frame');
+    if (!frame) return;
+    const imgs = frame.querySelectorAll('.carousel-img');
+    if (!imgs.length) return;
+
+    let current = parseInt(frame.dataset.first) || 0;
+    let timer: ReturnType<typeof setInterval>;
+
+    function show(index: number) {
+      imgs.forEach((img, i) => {
+        (img as HTMLElement).style.opacity = i === index ? '0.7' : '0';
+      });
+      current = index;
+    }
+
+    function next() {
+      show((current + 1) % imgs.length);
+    }
+
+    frame.addEventListener('click', next);
+    frame.addEventListener('mouseenter', () => clearInterval(timer));
+    frame.addEventListener('mouseleave', () => {
+      timer = setInterval(next, 6000);
+    });
+
+    timer = setInterval(next, 6000);
+  })();
+</script>
