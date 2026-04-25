@@ -39,6 +39,10 @@
     hero.style.setProperty('--parallax', `${scrolled}px`);
     hero.style.setProperty('--scale', `${1 + progress * 0.5}`);
     hint.style.opacity = `${1 - progress * 1.5}`;
+
+    const navOpacity = Math.max(0, Math.min(1, (progress - 0.35) / 0.2));
+    document.documentElement.style.setProperty('--nav-title-opacity', String(navOpacity));
+
     ticking = false;
   }
 
