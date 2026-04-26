@@ -262,7 +262,7 @@ Custom 404 page matching the site design with a "Back home" link. All text must 
 
 ### Layout (`src/layouts/Layout.astro`)
 - **Purpose:** HTML shell wrapping all pages.
-- **Content:** `<head>` with charset, viewport, favicon, description meta, theme-color, title, canonical URL, robots `index,follow`. Loads `JetBrains Mono` from Google Fonts with `preconnect` hints. Preloads the hero background image. Applies global CSS (`global.css`).
+- **Content:** `<head>` with charset, viewport, favicon, description meta, theme-color, title, canonical URL, robots `index,follow`. Loads `JetBrains Mono` via `@fontsource` imports in global.css. Preloads the hero background image. Applies global CSS (`global.css`).
 - **SEO:** Open Graph tags (`og:title`, `og:description`, `og:image`, `og:url`, `og:type`, `og:locale`, `og:site_name`), Twitter Card (`summary_large_image`), JSON-LD `MusicGroup` structured data with `sameAs` links to all platforms and socials, `amor de encava` album subject.
 - **OG Image:** Uses `/images/albums/amor-de-encava.jpg` for social sharing previews.
 - **Props:** Accepts optional `title` and `description` with defaults (`weed420 — Official Site | Venezuelan Experimental Music Collective`).
@@ -334,40 +334,6 @@ practices for Google Search approval.
   No horizontal overflow at any viewport width.
 
 ### Verification
-- Run PageSpeed Insights after every deploy: https://pagespeed.web.dev/
+- Run PageSpeed Insights at user request: https://pagespeed.web.dev/
 - Validate structured data: https://search.google.com/test/rich-results
 - Use Lighthouse in Chrome DevTools during development
-
-`snip` is a CLI proxy that intercepts shell commands and condenses verbose
-output to save context tokens. Always prefix shell commands with it:
-
-```bash
-snip git status
-snip npm run build
-snip wrangler pages deploy ...
-```
-
-### How It Works
-- **Filter matches:** ~126 built-in YAML filters (git, npm, cargo, go, etc.).
-  Output is condensed (e.g. `git status` → `"0 changes:"`).
-- **No filter:** Prints `snip: no filter for "<cmd>", passing through` and
-  passes raw output through unchanged. **This is not an error** — the command
-  still executes and exit codes are preserved.
-- **Piped commands** (e.g. `snip find ... | wc -l`) — the pipe is handled by
-  the shell, not by snip.
-
-### Behavior Reference
-| Command | What to expect |
-|---------|---------------|
-| `snip git status` | Condensed summary like `"0 changes:"` or `"N changes:\n M file.ts"` |
-| `snip git add -A && git commit ...` | Only final commit status shown |
-| `snip npm run build` | `"ok"` on success |
-| `snip npm run dev` | No filter → raw output |
-| `snip wrangler pages deploy` | No filter → raw output passes through |
-| `snip find ... \| wc -l` | snip handles `find`, shell handles pipe |
-
-### Troubleshooting
-- `"no filter for X, passing through"` — harmless stderr. Just proceed.
-- To see what filters are available: `snip discover`
-- Custom filters live at `~/.config/snip/filters/` (YAML files).
-- More info: https://github.com/edouard-claude/snip
