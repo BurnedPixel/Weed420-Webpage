@@ -1,4 +1,4 @@
-export type ReleaseSection = 'album' | 'mixtape' | 'djmix' | 'live' | 'ep' | 'other';
+type ReleaseSection = 'album' | 'mixtape' | 'djmix' | 'live' | 'ep' | 'other';
 
 export interface Release {
   title: string;

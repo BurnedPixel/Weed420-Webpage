@@ -1,6 +1,6 @@
-export type IconName = 'instagram' | 'youtube';
+type IconName = 'instagram' | 'youtube';
 
-export interface IconDef {
+interface IconDef {
   viewBox: string;
   path: string;
 }
