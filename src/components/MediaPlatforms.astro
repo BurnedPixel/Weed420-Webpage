@@ -21,7 +21,7 @@ const svgMap = {
 
 <section id="music" class="py-24 px-6">
   <div class="max-w-7xl mx-auto">
-    <h2 class="text-xs tracking-[0.3em] uppercase text-accent mb-12 text-center">Listen</h2>
+    <h2 class="text-xs tracking-section uppercase text-accent mb-12 text-center">Listen</h2>
 
     <div class="flex flex-wrap justify-center gap-4 md:gap-6">
       {PLATFORMS.map(platform => (
@@ -32,9 +32,9 @@ const svgMap = {
           class="group flex flex-col items-center gap-3 text-text-dim hover:text-text transition-all duration-300"
         >
           <div class="w-20 h-20 flex items-center justify-center border border-border-light group-hover:border-accent group-hover:bg-accent/10 transition-all duration-300">
-            <span class="w-11 h-11 [&>svg]:w-full [&>svg]:h-full" set:html={svgMap[platform.icon]} />
+            <span class="w-11 h-11 svg-full" set:html={svgMap[platform.icon]} />
           </div>
-          <span class="text-[10px] tracking-wider uppercase max-w-[100px] text-center leading-tight whitespace-nowrap">{platform.name}</span>
+          <span class="text-2xs tracking-wider uppercase max-w-[100px] text-center leading-tight whitespace-nowrap">{platform.name}</span>
         </a>
       ))}
     </div>

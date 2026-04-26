@@ -1,75 +1,13 @@
 ---
 import { SITE } from '../data/constants';
-
-const SHEET_URL = `${SITE.googleSheetBaseUrl}/gviz/tq?tqx=out:json&sheet=tourdates`;
-const CURRENT_YEAR = new Date().getFullYear();
-
-interface TourEntry {
-  date: string;
-  venue: string;
-  city: string;
-  link: string;
-}
-
-const months: Record<string, number> = {
-  JAN: 0, FEB: 1, MAR: 2, APR: 3, MAY: 4, JUN: 5,
-  JUL: 6, AUG: 7, SEP: 8, OCT: 9, NOV: 10, DEC: 11,
-};
-
-function parseDate(dateStr: string): Date | null {
-  if (!dateStr) return null;
-  const dashIdx = dateStr.indexOf('-');
-  if (dashIdx > -1) {
-    dateStr = dateStr.slice(0, dashIdx).trim() + dateStr.slice(dateStr.lastIndexOf(' '));
-  }
-  const parts = dateStr.toUpperCase().trim().split(/[\s,]+/);
-  if (parts.length >= 3) {
-    const month = months[parts[0]] ?? 0;
-    const day = parseInt(parts[1]) || 1;
-    const year = parseInt(parts[parts.length - 1]) || CURRENT_YEAR;
-    return new Date(year, month, day);
-  }
-  return null;
-}
-
-function isPast(dateStr: string): boolean {
-  const d = parseDate(dateStr);
-  return d ? d.getFullYear() < CURRENT_YEAR : false;
-}
-
-function sanitize(str: string | null | undefined): string {
-  if (!str) return '';
-  return String(str).replace(/[<>"'&]/g, '').slice(0, 200);
-}
+import { fetchTourDates, type TourEntry } from '../data/tour';
+import TourDateRow from './TourDateRow.astro';
 
 let entries: TourEntry[] = [];
 let error: string | null = null;
 
 try {
-  const res = await fetch(SHEET_URL);
-  const text = await res.text();
-  const json = JSON.parse(text.slice(text.indexOf('{'), text.lastIndexOf('}') + 1));
-  const rows: Array<{ c?: Array<{ f?: string; v?: string }> }> = json.table?.rows || [];
-
-  let prevDate: string | null = null;
-  entries = rows
-    .slice(1)
-    .filter(row => {
-      const hidden = row.c?.[4]?.v;
-      return !hidden || String(hidden).toLowerCase() !== 'yes';
-    })
-    .map(row => {
-      const dateVal = row.c?.[0]?.f || row.c?.[0]?.v || prevDate;
-      if (dateVal) prevDate = dateVal;
-      return {
-        date: sanitize(dateVal),
-        venue: sanitize(row.c?.[1]?.v),
-        city: sanitize(row.c?.[2]?.v),
-        link: sanitize(row.c?.[3]?.v),
-      };
-    })
-    .filter(d => d.date || d.venue)
-    .filter(d => !isPast(d.date));
+  entries = await fetchTourDates(SITE.googleSheetBaseUrl);
 } catch (e) {
   console.error('TourDates fetch failed:', e);
   error = 'Unable to load tour dates';
@@ -78,7 +16,7 @@ try {
 
 <section id="tour" class="py-24 px-6">
   <div class="max-w-3xl mx-auto">
-    <h2 class="text-xs tracking-[0.3em] uppercase text-accent mb-10">Tour Dates</h2>
+    <h2 class="text-xs tracking-section uppercase text-accent mb-10">Tour Dates</h2>
 
     <div class="space-y-0 text-left">
       {error && (
@@ -94,23 +32,7 @@ try {
       )}
 
       {!error && entries.map(d => (
-        d.link ? (
-          <a href={d.link} target="_blank" rel="noopener noreferrer" class="flex items-center justify-between py-3 border-b border-border hover:border-accent-muted transition-colors block">
-            <div class="flex items-center gap-2 sm:gap-4">
-              <span class="text-[11px] sm:text-sm tracking-wider text-accent uppercase">{d.date}</span>
-              <span class="text-[11px] sm:text-sm text-text/80">{d.venue}</span>
-            </div>
-            <span class="text-[11px] sm:text-sm text-text-dim">{d.city}</span>
-          </a>
-        ) : (
-          <div class="flex items-center justify-between py-3 border-b border-border">
-            <div class="flex items-center gap-2 sm:gap-4">
-              <span class="text-[11px] sm:text-sm tracking-wider text-accent uppercase">{d.date}</span>
-              <span class="text-[11px] sm:text-sm text-text/80">{d.venue}</span>
-            </div>
-            <span class="text-[11px] sm:text-sm text-text-dim">{d.city}</span>
-          </div>
-        )
+        <TourDateRow date={d.date} venue={d.venue} city={d.city} link={d.link || undefined} />
       ))}
     </div>
   </div>

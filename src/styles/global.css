@@ -13,6 +13,11 @@
   --color-border: oklch(from var(--color-text) l c h / 0.1);
   --color-border-light: oklch(from var(--color-text) l c h / 0.2);
   --font-sans: 'JetBrains Mono', monospace;
+  --text-2xs: 0.625rem;
+  --text-3xs: 0.5625rem;
+  --text-4xs: 0.6875rem;
+  --tracking-section: 0.3em;
+  --tracking-label: 0.25em;
 }
 
 html {
@@ -35,6 +40,17 @@ body {
 @keyframes float {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-6px); }
+}
+
+@utility writing-rl {
+  writing-mode: vertical-rl;
+}
+
+@utility svg-full {
+  & > svg {
+    width: 100%;
+    height: 100%;
+  }
 }
 
 section {

@@ -1,0 +1,28 @@
+---
+interface Props {
+  date: string;
+  venue: string;
+  city: string;
+  link?: string;
+}
+
+const { date, venue, city, link } = Astro.props;
+---
+
+{link ? (
+  <a href={link} target="_blank" rel="noopener noreferrer" class="flex items-center justify-between py-3 border-b border-border hover:border-accent-muted transition-colors">
+    <div class="flex items-center gap-2 sm:gap-4">
+      <span class="text-4xs sm:text-sm tracking-wider text-accent uppercase">{date}</span>
+      <span class="text-4xs sm:text-sm text-text/80">{venue}</span>
+    </div>
+    <span class="text-4xs sm:text-sm text-text-dim">{city}</span>
+  </a>
+) : (
+  <div class="flex items-center justify-between py-3 border-b border-border">
+    <div class="flex items-center gap-2 sm:gap-4">
+      <span class="text-4xs sm:text-sm tracking-wider text-accent uppercase">{date}</span>
+      <span class="text-4xs sm:text-sm text-text/80">{venue}</span>
+    </div>
+    <span class="text-4xs sm:text-sm text-text-dim">{city}</span>
+  </div>
+)}

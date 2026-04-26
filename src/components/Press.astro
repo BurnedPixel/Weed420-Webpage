@@ -4,7 +4,7 @@ import { PRESS } from '../data/constants';
 
 <section id="press" class="py-24 px-6">
   <div class="max-w-4xl mx-auto">
-    <h2 class="text-xs tracking-[0.3em] uppercase text-accent mb-12 text-center">Press</h2>
+    <h2 class="text-xs tracking-section uppercase text-accent mb-12 text-center">Press</h2>
 
     {PRESS.length === 0 ? (
       <p class="text-sm text-text-dim text-center">Press reviews coming soon.</p>
@@ -30,9 +30,9 @@ import { PRESS } from '../data/constants';
               </blockquote>
               <cite class="inline-flex items-baseline gap-2 text-xs tracking-wider uppercase not-italic">
                 <span class="text-accent">&mdash; {item.source}</span>
-                <span class="text-text/70 text-[10px]">{item.article}</span>
+                <span class="text-text/70 text-2xs">{item.article}</span>
                 {hasEn && (
-                  <span class="hidden md:inline text-text/40 text-[9px] tracking-normal lowercase md:group-hover:opacity-0 transition-opacity duration-300">(hover to translate)</span>
+                  <span class="hidden md:inline text-text/40 text-3xs tracking-normal lowercase md:group-hover:opacity-0 transition-opacity duration-300">(hover to translate)</span>
                 )}
               </cite>
             </>

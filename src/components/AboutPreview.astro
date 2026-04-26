@@ -15,7 +15,7 @@ const firstIndex = Math.floor(Math.random() * shuffled.length);
 <section id="bio" class="py-24 px-6">
   <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 md:gap-20 items-center">
     <div class="relative" style="filter: drop-shadow(0 0 40px rgba(255,255,255,0.06)) drop-shadow(0 0 80px rgba(255,255,255,0.03));">
-      <div class="aspect-[4/5] bg-bg-card overflow-hidden cursor-pointer" id="carousel-frame" data-first={firstIndex}>
+      <div class="aspect-4/5 bg-bg-card overflow-hidden cursor-pointer" id="carousel-frame" data-first={firstIndex}>
         {shuffled.map((src, i) => (
           <img
             src={src}
@@ -31,7 +31,7 @@ const firstIndex = Math.floor(Math.random() * shuffled.length);
     </div>
 
     <div>
-      <h2 class="text-xs tracking-[0.3em] uppercase text-accent mb-4">About</h2>
+      <h2 class="text-xs tracking-section uppercase text-accent mb-4">About</h2>
       <h3 class="text-2xl md:text-3xl font-semibold uppercase mb-8 text-text-muted">Venezuelan Collective</h3>
       <p class="text-text-muted text-sm leading-relaxed mb-8 max-w-md">
         weed420 is an experimental sound-collage collective from Valencia, Venezuela, exploring memory, politics, and the experience of uprooting. Blending noise, lo-fi, and maximalist vaporwave, they fuse somber cloud-rap and ambient textures with 2000s perreo and salsa. Through guitars, synths, and processed vocals, they connect chopped &lsquo;n&rsquo; screwed trap with deep-rooted Latin American influences, creating hyper-emo, atmospheric reinterpretations of club music filled with joyful abandon.
