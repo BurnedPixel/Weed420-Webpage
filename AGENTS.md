@@ -310,3 +310,64 @@ snip wrangler pages deploy ...
 - To see what filters are available: `snip discover`
 - Custom filters live at `~/.config/snip/filters/` (YAML files).
 - More info: https://github.com/edouard-claude/snip
+
+## 11. SEO & Performance Compliance
+
+The site must comply with Google PageSpeed Insights and search-engine best
+practices for Google Search approval.
+
+### Requirements
+- **Performance:** All `<img>` tags must have explicit `width` and `height`
+  attributes to prevent Cumulative Layout Shift (CLS). Hero image uses
+  `fetchpriority="high"`, all other images `loading="lazy"`. Fonts must be
+  self-hosted (`@fontsource`), never loaded from Google Fonts CDN.
+- **SEO:** Every page needs a unique `<title>` and `<meta name="description">`
+  (≤160 chars). The `<html>` `lang` attribute must match the page's primary
+  language. Canonical URL, `robots: index, follow`, Open Graph and Twitter
+  Card tags, and JSON-LD structured data are required. `sitemap-index.xml`
+  auto-generated on every build via `@astrojs/sitemap`.
+- **Accessibility:** All images have descriptive `alt` text (empty `alt=""`
+  only for decorative images). Color contrast meets WCAG AA (4.5:1 text,
+  3:1 large text). Semantic HTML (`<nav>`, `<main>`, `<section>`, `<footer>`).
+  All interactive elements must be keyboard-navigable.
+- **Mobile:** Responsive design tested at 320px–1024px. Touch targets ≥48×48px.
+  No horizontal overflow at any viewport width.
+
+### Verification
+- Run PageSpeed Insights after every deploy: https://pagespeed.web.dev/
+- Validate structured data: https://search.google.com/test/rich-results
+- Use Lighthouse in Chrome DevTools during development
+
+`snip` is a CLI proxy that intercepts shell commands and condenses verbose
+output to save context tokens. Always prefix shell commands with it:
+
+```bash
+snip git status
+snip npm run build
+snip wrangler pages deploy ...
+```
+
+### How It Works
+- **Filter matches:** ~126 built-in YAML filters (git, npm, cargo, go, etc.).
+  Output is condensed (e.g. `git status` → `"0 changes:"`).
+- **No filter:** Prints `snip: no filter for "<cmd>", passing through` and
+  passes raw output through unchanged. **This is not an error** — the command
+  still executes and exit codes are preserved.
+- **Piped commands** (e.g. `snip find ... | wc -l`) — the pipe is handled by
+  the shell, not by snip.
+
+### Behavior Reference
+| Command | What to expect |
+|---------|---------------|
+| `snip git status` | Condensed summary like `"0 changes:"` or `"N changes:\n M file.ts"` |
+| `snip git add -A && git commit ...` | Only final commit status shown |
+| `snip npm run build` | `"ok"` on success |
+| `snip npm run dev` | No filter → raw output |
+| `snip wrangler pages deploy` | No filter → raw output passes through |
+| `snip find ... \| wc -l` | snip handles `find`, shell handles pipe |
+
+### Troubleshooting
+- `"no filter for X, passing through"` — harmless stderr. Just proceed.
+- To see what filters are available: `snip discover`
+- Custom filters live at `~/.config/snip/filters/` (YAML files).
+- More info: https://github.com/edouard-claude/snip
