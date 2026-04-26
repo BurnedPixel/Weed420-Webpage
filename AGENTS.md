@@ -69,7 +69,7 @@ When authorized, execute:
 2. `git add -A && git commit -m "[deploy] <message>"`
 3. `wrangler pages deploy dist --project-name=weed420 --branch=master`
 4. Clean up old deployments: `wrangler pages deployment delete <id> --project-name=weed420 --force`
-*Live Production URL:* https://weed420.pages.dev
+*Live Production URL:* https://weed420.pages.dev (custom domain: https://weed420x.com)
 
 ## 5. Standard Operating Procedures (SOPs)
 
@@ -163,7 +163,8 @@ Releases are organized into sections, each sorted chronologically:
 ### Branches
 | Branch           | Description                             | URL                                          |
 | ---------------- | --------------------------------------- | -------------------------------------------- |
-| `master`         | Production                              | https://weed420.pages.dev                    |
+| `master`         | Production (Cloudflare Pages)           | https://weed420.pages.dev                    |
+| `master`         | Production (Custom Domain)              | https://weed420x.com                        |
 
 
 ## 8. Platform & Social URLs

@@ -4,7 +4,7 @@ import tailwindcss from '@tailwindcss/vite';
 import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
-  site: 'https://weed420.pages.dev',
+  site: 'https://weed420x.com',
   output: 'static',
   integrations: [sitemap()],
   vite: {
