@@ -24,11 +24,11 @@ You must strictly adhere to this stack. Do not introduce new frameworks or CSS l
 ### Directory Structure
 ```
 src/
-  ├── components/   # Navbar, Hero, AboutPreview, Press, MediaPlatforms, MediaGrid, TourDates, Footer, AlbumCard, TourDateRow
-  ├── data/         # constants.ts, discography.ts, icons.ts, tour.ts
+  ├── components/   # Navbar, Hero, AboutPreview, Press, MediaPlatforms, MediaGrid, TourDates, Footer
+  ├── data/         # constants.ts, discography.ts, icons.ts
   ├── layouts/      # Layout.astro (shell: <html>, <head> meta, fonts, <slot />)
-  ├── pages/        # index.astro (composes all components in order), 404.astro
-  └── styles/       # global.css (Tailwind @theme tokens, @utility classes, keyframes: fadeIn, float)
+  ├── pages/        # index.astro (composes all components in order)
+  └── styles/       # global.css (Tailwind @theme tokens, keyframes: fadeIn, float)
 scripts/
   └── fetch-bandcamp.mjs   # Scrapes Bandcamp for releases & downloads cover art
 public/images/
@@ -49,45 +49,7 @@ Apply these exact values when constructing or modifying Tailwind classes.
 * **Typography:** `JetBrains Mono` monospace (applied via `--font-sans`)
 * **Muted variants** are derived via oklch: `--color-text-muted` (60% opacity), `--color-text-dim` (40%), `--color-text-faint` (30%), `--color-accent-muted` (30% opacity), `--color-border` (10%), `--color-border-light` (20%).
 
-### Custom Theme Tokens
-All type and spacing tokens are defined in `@theme` in `global.css`. Do NOT use arbitrary bracket values (`[...]`). Use these instead:
-
-| Token | Value | Utility | Usage |
-|-------|-------|---------|-------|
-| `--text-2xs` | `0.625rem` (10px) | `text-2xs` | Album metadata, platform labels, compact cards |
-| `--text-3xs` | `0.5625rem` (9px) | `text-3xs` | Fine print (hover hints, footnotes) |
-| `--text-4xs` | `0.6875rem` (11px) | `text-4xs` | Tour date rows |
-| `--tracking-section` | `0.3em` | `tracking-section` | Section headings (h2) |
-| `--tracking-label` | `0.25em` | `tracking-label` | Sidebar section labels |
-
-### Custom Utilities
-Defined via `@utility` in `global.css`:
-
-| Utility | Effect |
-|---------|--------|
-| `writing-rl` | `writing-mode: vertical-rl` (section sidebar labels) |
-| `svg-full` | Forces child `<svg>` to fill its container (`& > svg { width: 100%; height: 100%; }`)
-
-### Architectural Rule
-**No arbitrary bracket values (`[...]`).** Always use theme tokens for repeated values, inline `style` for one-off layout, or `@utility` for cross-cutting layout patterns.
-
-## 4. Architecture & Best Practices
-
-### Component Size
-* Keep `.astro` files under 70 lines of template markup.
-* When a file exceeds this, break it down — extract reusable elements into their own components.
-
-### Duplication → Extraction
-* If the same markup pattern appears more than once, extract it into a shared component with props for variants.
-  * Example: `AlbumCard.astro` handles both featured (large) and compact (small) album cards via a `compact` prop.
-  * Example: `TourDateRow.astro` renders linked or unlinked rows via an optional `link` prop.
-
-### Frontmatter Separation
-* Astro frontmatter is for imports, prop definitions, and straightforward fetch calls only.
-* Complex data fetching, parsing, and transformation logic goes in `src/data/*.ts` utility files.
-  * Example: `src/data/tour.ts` exports `fetchTourDates()` — the TourDates component calls it, keeps the frontmatter clean.
-
-## 5. Operational Rules & Workflow
+## 4. Operational Rules & Workflow
 
 ### Development Commands
 * `npm run dev` : Start local development server on localhost:4321
@@ -110,10 +72,10 @@ When authorized, execute:
 4. Clean up old deployments: `wrangler pages deployment delete <id> --project-name=weed420 --force`
 *Live Production URL:* https://weed420.pages.dev (custom domain: https://weed420x.com)
 
-## 6. Standard Operating Procedures (SOPs)
+## 5. Standard Operating Procedures (SOPs)
 
 ### SOP: Fetch Latest Tour Dates from Google Sheets
-The TourDates component fetches data at build time via `fetchTourDates()` from `src/data/tour.ts`. To verify the raw sheet data:
+The TourDates component fetches data client-side at runtime. To verify:
 ```bash
 curl -s "https://docs.google.com/spreadsheets/d/10JV33dWWWoVUqHGb5DdUpmmg1TSdHEiccmxEezEZ_ws/gviz/tq?tqx=out:json&sheet=tourdates"
 ```
@@ -128,7 +90,7 @@ Endpoint URL is in `src/data/constants.ts` as `SITE.googleSheetBaseUrl`.
 | D | link | Ticket/event URL (optional) |
 | E | hidden | Set to "yes" to hide the row |
 
-Rows where column E equals "yes" are filtered out. Dates from past years are also excluded.
+Rows where column E equals "yes" are filtered out client-side. Dates from past years are also excluded.
 
 ### SOP: Scrape Bandcamp for New Releases & Cover Art
 ```bash
@@ -158,7 +120,7 @@ done
 ```
 Target: 500px max dimension, JPEG quality 75, stripped metadata. Images should be 25-135KB each.
 
-## 7. Discography Structure
+## 6. Discography Structure
 Releases are organized into sections, each sorted chronologically:
 
 ### Album
@@ -197,7 +159,7 @@ Releases are organized into sections, each sorted chronologically:
 | lo que puedo hacer para mejorar es hacer plata | 2025 | lo-que-puedo-hacer-para-mejorar-es-hacer-plata |
 | psp | 2025 | psp |
 
-## 8. Branch & Deployment Context
+## 7. Branch & Deployment Context
 
 ### Branches
 | Branch           | Description                             | URL                                          |
@@ -206,7 +168,7 @@ Releases are organized into sections, each sorted chronologically:
 | `master`         | Production (Custom Domain)              | https://weed420x.com                        |
 
 
-## 9. Platform & Social URLs
+## 8. Platform & Social URLs
 
 ### Streaming Platforms
 | Platform | URL |
@@ -225,7 +187,7 @@ Releases are organized into sections, each sorted chronologically:
 | Instagram | `https://www.instagram.com/weedcuatroscientosveinte/` |
 | YouTube | `https://youtube.com/@weedcuatrocientosveinte` |
 
-## 10. Component Reference & Page Flow
+## 9. Component Reference & Page Flow
 
 ### Page Assembly (index.astro)
 Components are composed in this order inside `<Layout>`:
@@ -276,35 +238,18 @@ Custom 404 page matching the site design with a "Back home" link. All text must 
 
 ### MediaGrid (`src/components/MediaGrid.astro`)
 - **Purpose:** Discography section (`#discography`).
-- **Content:** Featured albums row, then sections (Mixtapes, DJ Mixes, Live, EPs, Other) each with a grid of album cover cards linking to Bandcamp. All cards are rendered via the shared `AlbumCard` component.
-- **Animation:** Featured album cards have a `float` keyframe animation with staggered delays (0s, 0.8s, 1.6s) — passed as `floatDelay` prop to `AlbumCard`.
-- **Data:** Imports section arrays (`albums`, `mixtapes`, `djmixes`, `live`, `eps`, `others`) from `discography.ts`. Section sidebar labels use `writing-rl` and `tracking-label` utilities.
+- **Content:** Sections (Albums, Mixtapes, DJ Mixes, Live, EPs, Other) each with a grid of album cover cards linking to Bandcamp.
+- **Animation:** Album cover cards have a `float` keyframe animation with staggered delays (`animation-delay-0`, `animation-delay-[2000ms]`, `animation-delay-[4000ms]`) — currently 3 delay slots for up to 3 albums per section.
+- **Data:** Imports section arrays (`albums`, `mixtapes`, `djmixes`, `live`, `eps`, `others`) from `discography.ts`. Each release has: `title`, `year`, `image`, `link`, `section`.
 
 ### TourDates (`src/components/TourDates.astro`)
 - **Purpose:** Tour dates section (`#tour`).
-- **Content:** Tour date rows rendered by the shared `TourDateRow` component.
-- **Data fetching:** Frontmatter calls `fetchTourDates()` from `src/data/tour.ts`, which fetches from Google Sheets JSON endpoint at build time.
+- **Content:** Initially empty container. All tour date rows are fetched and rendered client-side.
+- **Data fetching:** Fetches from Google Sheets JSON endpoint (`SITE.googleSheetBaseUrl` in `constants.ts`). Parses the Google Visualization JSON format.
 - **Filtering:** Excludes rows where hidden column = "yes" and dates from past years.
-- **Empty state:** Shows "No upcoming tour dates" when no entries are available.
-- **Error handling:** Catches fetch errors in frontmatter, shows "Unable to load tour dates" on failure.
-- **Security:** The `sanitize` function in `tour.ts` strips HTML tags from external cell data before rendering.
-
-### AlbumCard (`src/components/AlbumCard.astro`)
-- **Purpose:** Shared album cover card component used by MediaGrid.
-- **Props:**
-  - `release` — `Release` object from `discography.ts` (title, year, image, link).
-  - `compact` (boolean, default `false`) — switches between featured (large, floating, "Listen" overlay) and compact (small, "→" overlay) variants.
-  - `floatDelay` (number, optional) — seconds for `animation-delay` on the `float` keyframe (featured only).
-- **Data:** Imports `Release` type from `discography.ts`.
-
-### TourDateRow (`src/components/TourDateRow.astro`)
-- **Purpose:** Shared tour date row component used by TourDates.
-- **Props:**
-  - `date` — formatted date string (e.g. "Nov 07 2026").
-  - `venue` — venue name.
-  - `city` — city/location string.
-  - `link` (string, optional) — wraps the row in an `<a>` if present, renders as `<div>` otherwise.
-- **No data imports** — all content passed via props.
+- **Empty state:** Shows "No upcoming dates" with placeholder text.
+- **Error handling:** Logs fetch errors to console, shows "No upcoming dates" on failure.
+- **Security:** Uses a `sanitize` function to strip HTML tags from external cell data before rendering.
 
 ### Footer (`src/components/Footer.astro`)
 - **Purpose:** Contact/booking footer (`#booking`).
@@ -326,4 +271,3 @@ Custom 404 page matching the site design with a "Back home" link. All text must 
 | `constants.ts` | `SITE`, `PLATFORMS`, `SOCIALS`, `PRESS`, `NAV_LINKS` | Navbar, Press, MediaPlatforms, TourDates, Footer, Layout |
 | `discography.ts` | `albums`, `mixtapes`, `djmixes`, `live`, `eps`, `others`, `Release`, `ReleaseSection` | MediaGrid |
 | `icons.ts` | `iconDefs`, `IconName`, `IconDef` | Footer |
-| `tour.ts` | `fetchTourDates`, `TourEntry` | TourDates |
