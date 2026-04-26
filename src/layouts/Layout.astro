@@ -1,9 +1,6 @@
 ---
 import '../styles/global.css';
 import { SITE, PLATFORMS, SOCIALS } from '../data/constants';
-import { readFileSync } from 'node:fs';
-
-const googleFontsCss = readFileSync('src/styles/google-fonts.css', 'utf-8');
 
 interface Props {
   title?: string;
@@ -79,8 +76,6 @@ const jsonLd = {
     <!-- JSON-LD Structured Data -->
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
 
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <style set:html={googleFontsCss}></style>
     <link rel="preload" href="/images/caracas-portrait.jpg" as="image" fetchpriority="high" />
   </head>
   <body class="antialiased">
