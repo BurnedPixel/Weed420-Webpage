@@ -37,13 +37,16 @@ const overlayClass = compact
   class={wrapperClass}
   style={`${widthStyle} ${animationStyle}`}
 >
-  <img
-    src={release.image}
-    alt={release.title}
-    loading="lazy"
-    decoding="async"
-    class={imgClass}
-  />
+  <picture>
+    <source srcset={release.image.replace('.jpg', '.webp')} type="image/webp" />
+    <img
+      src={release.image}
+      alt={release.title}
+      loading="lazy"
+      decoding="async"
+      class={imgClass}
+    />
+  </picture>
   <div class={compact ? 'absolute inset-0 bg-gradient-to-t from-bg via-transparent to-transparent opacity-50' : 'absolute inset-0 bg-gradient-to-t from-bg via-transparent to-transparent opacity-60'}></div>
   <div class={compact ? 'absolute bottom-0 left-0 right-0 p-1.5' : 'absolute bottom-0 left-0 right-0 p-3'}>
     {compact ? (
