@@ -3,6 +3,7 @@
 ## 1. Project Overview
 You are tasked with building and maintaining an Electronic Press Kit (EPK) for **Weed420**, a Venezuelan experimental music collective formed in 2021.
 * **Aesthetic & Domain:** Experimental, epic collage, hexd, deconstructed club, cloud rap, reggaetón.
+* **Site Language:** English-first. All UI copy should be in English.
 * **Key Fact:** Their release "Amor de encava" debuted #2 on RateYourMusic in 2025.
 
 ## 2. Technical Stack
@@ -194,6 +195,9 @@ Components are composed in this order inside `<Layout>`:
 Navbar → main → Hero → AboutPreview → Press → MediaPlatforms → MediaGrid → TourDates → Footer
 ```
 Each section has an `id` used for anchor navigation and fade-in animation delay staggering (`global.css` lines 45-51).
+
+### 404 Page (`src/pages/404.astro`)
+Custom 404 page matching the site design with a "Back home" link. All text must be in English to match the rest of the site.
 
 ### Navbar (`src/components/Navbar.astro`)
 - **Purpose:** Fixed top navigation bar (z-50). Transparent by default, adds `bg-bg/95` backdrop after scrolling past 50px.
