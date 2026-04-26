@@ -46,7 +46,7 @@ Apply these exact values when constructing or modifying Tailwind classes.
 * **Card Background:** `#1a1a1a` (`--color-bg-card`, used by AboutPreview, MediaGrid)
 * **Text:** `#f5f5f5` (Off-white, `--color-text`)
 * **Accent:** `#dc2626` (Deep red, `--color-accent`)
-* **Typography:** `JetBrains Mono` monospace (applied via `--font-sans`)
+* **Typography:** `JetBrains Mono` monospace (Latin subset only, weights 400 + 700, applied via `--font-sans`)
 * **Muted variants** are derived via oklch: `--color-text-muted` (60% opacity), `--color-text-dim` (40%), `--color-text-faint` (30%), `--color-accent-muted` (30% opacity), `--color-border` (10%), `--color-border-light` (20%).
 
 ## 4. Operational Rules & Workflow
@@ -55,6 +55,9 @@ Apply these exact values when constructing or modifying Tailwind classes.
 * `npm run dev` : Start local development server on localhost:4321
 * `npm run build` : Compile static output to `dist/`
 * `npm run preview` : Preview the compiled production build locally
+
+### Shell Command Prefix
+All shell commands must be prefixed with `snip` (e.g. `snip git status`, `snip npm run build`). See §10 for details on how snip works.
 
 ### Git Commit Convention
 You must commit your work after every logical change. Use: `[<type>] <description>`
@@ -271,3 +274,39 @@ Custom 404 page matching the site design with a "Back home" link. All text must 
 | `constants.ts` | `SITE`, `PLATFORMS`, `SOCIALS`, `PRESS`, `NAV_LINKS` | Navbar, Press, MediaPlatforms, TourDates, Footer, Layout |
 | `discography.ts` | `albums`, `mixtapes`, `djmixes`, `live`, `eps`, `others`, `Release`, `ReleaseSection` | MediaGrid |
 | `icons.ts` | `iconDefs`, `IconName`, `IconDef` | Footer |
+
+## 10. snip — Token-Saving CLI Proxy
+
+`snip` is a CLI proxy that intercepts shell commands and condenses verbose
+output to save context tokens. Always prefix shell commands with it:
+
+```bash
+snip git status
+snip npm run build
+snip wrangler pages deploy ...
+```
+
+### How It Works
+- **Filter matches:** ~126 built-in YAML filters (git, npm, cargo, go, etc.).
+  Output is condensed (e.g. `git status` → `"0 changes:"`).
+- **No filter:** Prints `snip: no filter for "<cmd>", passing through` and
+  passes raw output through unchanged. **This is not an error** — the command
+  still executes and exit codes are preserved.
+- **Piped commands** (e.g. `snip find ... | wc -l`) — the pipe is handled by
+  the shell, not by snip.
+
+### Behavior Reference
+| Command | What to expect |
+|---------|---------------|
+| `snip git status` | Condensed summary like `"0 changes:"` or `"N changes:\n M file.ts"` |
+| `snip git add -A && git commit ...` | Only final commit status shown |
+| `snip npm run build` | `"ok"` on success |
+| `snip npm run dev` | No filter → raw output |
+| `snip wrangler pages deploy` | No filter → raw output passes through |
+| `snip find ... \| wc -l` | snip handles `find`, shell handles pipe |
+
+### Troubleshooting
+- `"no filter for X, passing through"` — harmless stderr. Just proceed.
+- To see what filters are available: `snip discover`
+- Custom filters live at `~/.config/snip/filters/` (YAML files).
+- More info: https://github.com/edouard-claude/snip
